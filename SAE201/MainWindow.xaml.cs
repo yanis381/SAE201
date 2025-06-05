@@ -18,7 +18,10 @@ namespace SAE201
     {
         public MainWindow()
         {
-            InitializeComponent(); int 2;
+            InitializeComponent();
+
+
+            string yanis; 
         }
     }
 }
