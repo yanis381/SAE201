@@ -21,7 +21,7 @@ namespace SAE201
             InitializeComponent();
 
 
-            string yanis; 
+             
 
         }
     }
