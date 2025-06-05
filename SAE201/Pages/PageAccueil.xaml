@@ -7,8 +7,17 @@
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
       Title="PageAccueil">
+    <DockPanel>
+        <Menu DockPanel.Dock="Top">
+            <MenuItem  Header="_Commandes">
+            </MenuItem>
+            <MenuItem Header="Cré_dits">
+            </MenuItem>
+            <MenuItem Header="_Assurance">
+            </MenuItem>
 
-    <Grid>
-        
-    </Grid>
+        </Menu>
+        <ContentControl x:Name="MainContent" Content="Maincontent"/>
+
+    </DockPanel>
 </Page>
