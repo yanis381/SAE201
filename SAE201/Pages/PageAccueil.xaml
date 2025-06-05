@@ -9,7 +9,7 @@
       Title="PageAccueil">
     <DockPanel>
         <Menu DockPanel.Dock="Top">
-            <MenuItem  Header="_Commandes">
+            <MenuItem x:Name="BtnCommandeUC"  Header="_Commandes" Click="MenuItem_Click">
             </MenuItem>
             <MenuItem Header="Cré_dits">
             </MenuItem>
