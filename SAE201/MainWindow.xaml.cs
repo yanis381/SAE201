@@ -21,7 +21,12 @@ namespace SAE201
             InitializeComponent();
 
 
-            string yanis; 
+           
+        }
+
+        private void cbChoix_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
         }
     }
 }
