@@ -24,5 +24,7 @@ namespace SAE201.Pages
         {
             InitializeComponent();
         }
+
+        
     }
 }

@@ -37,8 +37,8 @@
                 </StackPanel>
 
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,20,0,0">
-                    <Button Content="Valider ✔" Width="100" Height="35" Background="#5CB85C" 
-                            Foreground="White" FontWeight="Bold" Margin="5"/>
+                    <Button x:Name="btnValider" Content="Valider ✔" Width="100" Height="35" Background="#5CB85C" 
+                            Foreground="White" FontWeight="Bold" Margin="5" Click="btnValider_Click"/>
                 </StackPanel>
 
                 <TextBlock Text="© Maison Sibilia – Espace connexion" FontSize="10"
