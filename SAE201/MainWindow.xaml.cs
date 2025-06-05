@@ -1,4 +1,5 @@
-﻿using System.Text;
+﻿using SAE201.Pages;
+using System.Text;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -19,8 +20,7 @@ namespace SAE201
         public MainWindow()
         {
             InitializeComponent();
-
-
+           
            
         }
 

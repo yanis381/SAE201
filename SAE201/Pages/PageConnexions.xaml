@@ -5,12 +5,12 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:SAE201.Pages"
       mc:Ignorable="d" 
-      Background="#F4C7C3"
+      Background="RED" 
       Title="PageConnexions">
 
     <DockPanel>
         <!-- Bandeau haut rouge avec logo -->
-        <Border Background="#FF5E5E" Height="80" DockPanel.Dock="Top">
+        <Border Background="RED" Height="80" DockPanel.Dock="Top">
             <Image Source="/img/sibilia.png" Height="50" Margin="20,15"/>
         </Border>
 
@@ -24,8 +24,8 @@
                 <TextBlock Text="Connexion – Maison Sibilia" FontSize="16" FontWeight="Bold"
                            HorizontalAlignment="Center" Margin="0,0,0,20"/>
 
-                <TextBlock Text="Adresse e-mail" FontWeight="SemiBold"/>
-                <TextBox Height="30" Margin="0,5,0,10" Text="prenom.nom@sibilia.fr" Foreground="Gray" TextChanged="TextBox_TextChanged"/>
+                <TextBlock Text="Login" FontWeight="SemiBold"/>
+                <TextBox Height="30" Margin="0,5,0,10" Text="entrez votre login" Foreground="Gray" TextChanged="TextBox_TextChanged"/>
 
 
                 <TextBlock Text="Mot de passe" FontWeight="SemiBold"/>
@@ -37,8 +37,6 @@
                 </StackPanel>
 
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,20,0,0">
-                    <Button Content="Retour ✖" Width="100" Height="35" Background="#D9534F" 
-                            Foreground="White" FontWeight="Bold" Margin="5"/>
                     <Button Content="Valider ✔" Width="100" Height="35" Background="#5CB85C" 
                             Foreground="White" FontWeight="Bold" Margin="5"/>
                 </StackPanel>
