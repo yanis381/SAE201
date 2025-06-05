@@ -1,5 +1,8 @@
-﻿using SAE201.Pages;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -10,25 +13,16 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace SAE201
+namespace SAE201.Pages
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Logique d'interaction pour PageAccueil.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class PageAccueil : Page
     {
-        public MainWindow()
+        public PageAccueil()
         {
             InitializeComponent();
-            MainFrame.Navigate(new Pages.PageConnexions());
-
-
-           
-        }
-
-        private void cbChoix_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-
         }
     }
 }
