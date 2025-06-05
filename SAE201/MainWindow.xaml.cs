@@ -20,6 +20,7 @@ namespace SAE201
         public MainWindow()
         {
             InitializeComponent();
+            MainFrame.Navigate(new Pages.PageConnexions());
 
 
            
