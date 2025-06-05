@@ -9,6 +9,7 @@
       Title="PageConnexions">
 
     <Grid>
-        
+        <Label Content="Label" HorizontalAlignment="Left" Margin="439,134,0,0" VerticalAlignment="Top"/>
+
     </Grid>
 </Page>
