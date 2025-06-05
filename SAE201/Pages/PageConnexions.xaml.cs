@@ -29,5 +29,10 @@ namespace SAE201.Pages
         {
 
         }
+
+        private void btnValider_Click(object sender, RoutedEventArgs e)
+        {
+            NavigationService.Navigate(new Pages.PageAccueil());
+        }
     }
 }
