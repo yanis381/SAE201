@@ -1,5 +1,4 @@
-﻿using SAE201.UserControl;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -14,23 +13,16 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace SAE201.Pages
+namespace SAE201.UserControl
 {
     /// <summary>
-    /// Logique d'interaction pour PageAccueil.xaml
+    /// Logique d'interaction pour UCCommande.xaml
     /// </summary>
-    public partial class PageAccueil : Page
+    public partial class UCCommande : Page
     {
-        public PageAccueil()
+        public UCCommande()
         {
             InitializeComponent();
-        }
-
-        
-
-        private void menueVoirCommandes(object sender, RoutedEventArgs e)
-        {
-            
         }
     }
 }
