@@ -7,6 +7,22 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
 
-    <Frame x:Name="MainFrame" NavigationUIVisibility="Hidden" />
+    <DockPanel>
+        <Menu DockPanel.Dock="Top">
+            <MenuItem  Header="_Commandes"  x:Name="menusCommandes">
+                <MenuItem
+x:Name="menuevoirLescommande"
+Header="_Voir les commandes" Click="menuevoirLescommande_Click" />
 
+            </MenuItem>
+            <MenuItem Header="Cré_dits">
+
+            </MenuItem>
+            <MenuItem Header="_Assurance">
+
+            </MenuItem>
+
+        </Menu>
+        <ContentControl x:Name="MainContent" Content="Maincontent"/>
+    </DockPanel>
 </Window>
