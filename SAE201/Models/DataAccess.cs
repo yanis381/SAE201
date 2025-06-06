@@ -13,7 +13,7 @@ namespace TD3_BindingBDPension.Model
     public  class DataAccess
     {
         private static readonly DataAccess instance = new DataAccess();
-        private readonly string connectionString = "Host=srv-peda-new;Port=5433;Username=savya;Password=H2ogpP;Database=savya_pension2;Options='-c search_path=savya'";
+        private readonly string connectionString = "Host=srv-peda-new;Port=5433;Username=turkf;Password=mi6y2H;Database=sae201_Sibilia_tp31;Options='-c search_path=turkf'";
         private NpgsqlConnection connection;
 
         public static DataAccess Instance
