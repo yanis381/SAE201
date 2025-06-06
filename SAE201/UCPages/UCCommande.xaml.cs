@@ -13,21 +13,16 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace SAE201.Pages
+namespace SAE201.UCPages
 {
     /// <summary>
-    /// Logique d'interaction pour Connexions.xaml
+    /// Logique d'interaction pour UCCommande.xaml
     /// </summary>
-    public partial class Connexions : Page
+    public partial class UCCommande : UserControl
     {
-        public Connexions()
+        public UCCommande()
         {
             InitializeComponent();
-        }
-
-        private void btnValider_Click(object sender, RoutedEventArgs e)
-        {
-            
         }
     }
 }

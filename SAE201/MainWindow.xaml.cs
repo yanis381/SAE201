@@ -1,4 +1,5 @@
 ﻿using SAE201.Pages;
+using SAE201.UCPages;
 using System.Text;
 using System.Windows;
 using System.Windows.Controls;
@@ -21,7 +22,7 @@ namespace SAE201
         {
             InitializeComponent();
             //MainContent.Content = new Connexions();
-            MainFrame.Navigate(new Connexions());
+            
             //MainFrame.Navigate(new Pages.PageConnexions());
              
 
@@ -34,6 +35,11 @@ namespace SAE201
         private void cbChoix_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
 
+        }
+
+        private void menuevoirLescommande_Click(object sender, RoutedEventArgs e)
+        {
+            MainContent.Content = new UCCommande();
         }
     }
 }
