@@ -1,8 +1,12 @@
-﻿using System;
+﻿using Npgsql;
+using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TD3_BindingBDPension.Model;
 
 namespace SAE201.Models
 {
@@ -13,6 +17,29 @@ namespace SAE201.Models
         private bool paiyee;
         private bool retiree;
         private decimal prixTotal;
+        private int idCommande;
+       
+
+        public Commande()
+        {
+        }
+
+        public Commande(DateTime dateCommande, DateTime dateRetraitprevue, bool paiyee, bool retiree, decimal prixTotal)
+        {
+
+            this.DateCommande = dateCommande;
+            this.DateRetraitprevue = dateRetraitprevue;
+            this.Paiyee = paiyee;
+            this.Retiree = retiree;
+            this.PrixTotal = prixTotal;
+        }
+
+        public Commande(DateTime dateCommande, DateTime dateRetraitprevue, bool paiyee, bool retiree, decimal prixTotal, int idCommande) : this(dateCommande, dateRetraitprevue, paiyee, retiree, prixTotal)
+        {
+            this.idCommande = idCommande;
+        }
+
+        
 
         public DateTime DateCommande
         {
@@ -78,5 +105,34 @@ namespace SAE201.Models
                 this.prixTotal = value;
             }
         }
+
+        public int IdCommande
+        {
+            get
+            {
+                return this.idCommande;
+            }
+
+            set
+            {
+                this.idCommande = value;
+            }
+        }
+
+        
+
+        public List<Commande> FindAll()
+        {
+            List<Commande> lesCommandes = new List<Commande>();
+            using (NpgsqlCommand cmdSelect = new NpgsqlCommand("select * from commande ;"))
+            {
+                DataTable dt = DataAccess.Instance.ExecuteSelect(cmdSelect);
+                foreach (DataRow dr in dt.Rows)
+                    lesCommandes.Add(new Commande(DateTime.Parse((string)dr["datecommande"]), DateTime.Parse( (string)dr["dateretraitprevue"]),
+                   (Boolean)dr["payee"], (Boolean)dr["retiree"], Decimal.Parse((string)dr["prixtotal"]), (int)dr["numcommande"]));
+            }
+            return lesCommandes;
+        }
+
     }
 }

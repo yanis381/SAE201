@@ -15,6 +15,16 @@ namespace SAE201.Models
         private string adresseCodePostal;
         private string adresseVille;
 
+        public Clients(string nomClient, string prenomClient, string telClient, string adresseRue, string adresseCodePostal, string adresseVille)
+        {
+            this.NomClient = nomClient;
+            this.PrenomClient = prenomClient;
+            this.TelClient = telClient;
+            this.AdresseRue = adresseRue;
+            this.AdresseCodePostal = adresseCodePostal;
+            this.AdresseVille = adresseVille;
+        }
+
         public string NomClient
         {
             get

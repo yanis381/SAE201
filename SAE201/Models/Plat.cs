@@ -13,6 +13,14 @@ namespace SAE201.Models
         private int delaiPreparation;
         private int nbPersonne;
 
+        public Plat(string nomPlat, decimal prixUnitaire, int delaiPreparation, int nbPersonne)
+        {
+            this.nomPlat = nomPlat;
+            this.prixUnitaire = prixUnitaire;
+            this.delaiPreparation = delaiPreparation;
+            this.nbPersonne = nbPersonne;
+        }
+
         public string NomPlat
         {
             get
