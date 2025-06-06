@@ -21,6 +21,8 @@ namespace SAE201
         public MainWindow()
         {
             InitializeComponent();
+            WindowsConnexions wind  = new WindowsConnexions();
+            wind.ShowDialog();
             //MainContent.Content = new Connexions();
             
             //MainFrame.Navigate(new Pages.PageConnexions());
