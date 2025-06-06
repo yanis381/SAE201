@@ -28,7 +28,8 @@ namespace SAE201.Pages
 
         private void menuevoirLescommande_Click(object sender, RoutedEventArgs e)
         {
-            NavigationService.Navigate(new UCCommande());
+            //NavigationService.Navigate(new UCCommande());
+            MainContent.Content = new UCCommande();
         }
     }
 }
