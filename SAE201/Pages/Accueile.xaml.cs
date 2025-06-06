@@ -17,20 +17,18 @@ using System.Windows.Shapes;
 namespace SAE201.Pages
 {
     /// <summary>
-    /// Logique d'interaction pour PageAccueil.xaml
+    /// Logique d'interaction pour Accueile.xaml
     /// </summary>
-    public partial class PageAccueil : Page
+    public partial class Accueile : Page
     {
-        public PageAccueil()
+        public Accueile()
         {
             InitializeComponent();
         }
 
-        
-
-        private void menueVoirCommandes(object sender, RoutedEventArgs e)
+        private void menuevoirLescommande_Click(object sender, RoutedEventArgs e)
         {
-            
+            NavigationService.Navigate(new UCCommande());
         }
     }
 }

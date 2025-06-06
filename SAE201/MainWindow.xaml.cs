@@ -20,13 +20,15 @@ namespace SAE201
         public MainWindow()
         {
             InitializeComponent();
-            PageConnexions PageCo = new PageConnexions();
-            PageConnexions.ShowDialog();
+            //MainContent.Content = new Connexions();
+            MainFrame.Navigate(new Connexions());
             //MainFrame.Navigate(new Pages.PageConnexions());
-            
+             
 
 
-           
+
+
+
         }
 
         private void cbChoix_SelectionChanged(object sender, SelectionChangedEventArgs e)

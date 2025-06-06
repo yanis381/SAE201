@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SAE201.Pages"
         mc:Ignorable="d"
-        Title="WindowsConnexions" Height="450" Width="800">
+        Title="WindowsConnexions" Height="540" Width="800">
     <DockPanel>
         <!-- Bandeau haut rouge avec logo -->
         <Border Background="#F94C4C" Height="80" DockPanel.Dock="Top">
@@ -23,7 +23,7 @@
                        HorizontalAlignment="Center" Margin="0,0,0,20"/>
 
                 <TextBlock Text="Login" FontWeight="SemiBold"/>
-                <TextBox Height="23" Margin="0,5,0,10" Text="entrez votre login" Foreground="Gray" TextChanged="TextBox_TextChanged"/>
+                <TextBox Height="23" Margin="0,5,0,10" Text="entrez votre login" Foreground="Gray"/>
 
 
                 <TextBlock Text="Mot de passe" FontWeight="SemiBold"/>

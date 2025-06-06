@@ -16,23 +16,18 @@ using System.Windows.Shapes;
 namespace SAE201.Pages
 {
     /// <summary>
-    /// Logique d'interaction pour PageConnexions.xaml
+    /// Logique d'interaction pour Connexions.xaml
     /// </summary>
-    public partial class PageConnexions : Page
+    public partial class Connexions : Page
     {
-        public PageConnexions()
+        public Connexions()
         {
             InitializeComponent();
         }
 
-        private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
-        {
-
-        }
-
         private void btnValider_Click(object sender, RoutedEventArgs e)
         {
-            NavigationService.Navigate(new Pages.PageAccueil());
+            NavigationService.Navigate(new Accueile());
         }
     }
 }

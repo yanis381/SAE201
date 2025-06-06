@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SAE201.UserControl;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -15,23 +16,18 @@ using System.Windows.Shapes;
 namespace SAE201.Pages
 {
     /// <summary>
-    /// Logique d'interaction pour WindowsConnexions.xaml
+    /// Logique d'interaction pour WindowAcceuile.xaml
     /// </summary>
-    public partial class WindowsConnexions : Window
+    public partial class WindowAcceuile : Window
     {
-        public WindowsConnexions()
+        public WindowAcceuile()
         {
             InitializeComponent();
         }
 
-        private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
+        private void menuevoirLescommande_Click(object sender, RoutedEventArgs e)
         {
-
-        }
-
-        private void btnValider_Click(object sender, RoutedEventArgs e)
-        {
-            
+            MainContent.Content = new UCCommande();
         }
     }
 }

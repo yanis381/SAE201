@@ -6,6 +6,7 @@
         xmlns:local="clr-namespace:SAE201"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
+
     <Frame x:Name="MainFrame" NavigationUIVisibility="Hidden" />
 
 </Window>
