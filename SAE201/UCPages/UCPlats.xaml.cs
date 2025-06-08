@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SAE201.Pages;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,6 +24,11 @@ namespace SAE201.UCPages
         public UCPlats()
         {
             InitializeComponent();
+        }
+
+        private void bouttonAjoutDsBdPlats_Click(object sender, RoutedEventArgs e)
+        {
+            
         }
     }
 }

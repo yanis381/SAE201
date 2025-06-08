@@ -15,7 +15,7 @@ x:Name="menuevoirLescommande"
 Header="_Voir les commandes" Click="menuevoirLescommande_Click" />
 
             </MenuItem>
-            <MenuItem Header="Cré_dits">
+            <MenuItem x:Name="menuPlat" Header="Pl_ats" Click="menuPlat_Click">
 
             </MenuItem>
             <MenuItem Header="_Assurance">

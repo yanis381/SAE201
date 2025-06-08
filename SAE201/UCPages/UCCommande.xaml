@@ -15,7 +15,7 @@
         <TextBox x:Name="textMotClefChien"
         Width="200"
         Height="20"
-        TextWrapping="Wrap" Margin="297,-290,297,0" TextChanged="textMotClefChien_TextChanged" />
+        TextWrapping="Wrap" Margin="297,-290,297,0" />
         <DataGrid
         x:Name="dgChiens"
         Width="300"
@@ -50,11 +50,11 @@
             </DataGrid.Columns>
         </DataGrid>
         <Button x:Name="btnsupp" FontFamily="Segoe MDL2 Assets" 
-            Content="&#xE74D;"  HorizontalAlignment="Left" Margin="629,196,0,0" VerticalAlignment="Top" Width="30" Height="30" Click="btnsupp_Click"/>
+            Content="&#xE74D;"  HorizontalAlignment="Left" Margin="629,196,0,0" VerticalAlignment="Top" Width="30" Height="30"/>
         <Button x:Name="bouttonAjoutDsBd" Content="&#xE710;"
-            FontFamily="Segoe MDL2 Assets" HorizontalAlignment="Left" Margin="629,255,0,0" VerticalAlignment="Top" Width="30" Height="30" Click="Button_Click"/>
+            FontFamily="Segoe MDL2 Assets" HorizontalAlignment="Left" Margin="629,255,0,0" VerticalAlignment="Top" Width="30" Height="30"/>
         <Button x:Name="editButon" Content="&#xEDFB;"
-            FontFamily="Segoe MDL2 Assets" HorizontalAlignment="Left" Margin="631,307,0,0" VerticalAlignment="Top" Width="30" Height="30" Click="editButon_Click"/>
+            FontFamily="Segoe MDL2 Assets" HorizontalAlignment="Left" Margin="631,307,0,0" VerticalAlignment="Top" Width="30" Height="30"/>
 
 
 

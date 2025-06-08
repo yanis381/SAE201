@@ -10,7 +10,6 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace SAE201.Pages
@@ -18,7 +17,7 @@ namespace SAE201.Pages
     /// <summary>
     /// Logique d'interaction pour CreationPlats.xaml
     /// </summary>
-    public partial class CreationPlats : Page
+    public partial class CreationPlats : Window
     {
         public CreationPlats()
         {

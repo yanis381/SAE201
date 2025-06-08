@@ -31,6 +31,13 @@ namespace SAE201.Pages
 
         private void btnValider_Click(object sender, RoutedEventArgs e)
         {
+            if (string.IsNullOrWhiteSpace(textBoxlogin.Text))
+            {
+                MessageBox.Show("metter votre login");
+            }
+            else {
+                this.Close();
+            }
             
         }
     }

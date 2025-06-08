@@ -43,5 +43,10 @@ namespace SAE201
         {
             MainContent.Content = new UCCommande();
         }
+
+        private void menuPlat_Click(object sender, RoutedEventArgs e)
+        {
+            MainContent.Content = new UCPlats();
+        }
     }
 }

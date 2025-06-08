@@ -7,6 +7,13 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
-            
+        <TextBox x:Name="TextBoxRechercheplat" HorizontalAlignment="Left" Margin="342,61,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
+        <Button x:Name="btnsupp" FontFamily="Segoe MDL2 Assets" 
+    Content="&#xE74D;"  HorizontalAlignment="Left" Margin="629,196,0,0" VerticalAlignment="Top" Width="30" Height="30"/>
+        <Button x:Name="bouttonAjoutDsBdPlats" Content="&#xE710;"
+    FontFamily="Segoe MDL2 Assets" HorizontalAlignment="Left" Margin="629,255,0,0" VerticalAlignment="Top" Width="30" Height="30" Click="bouttonAjoutDsBdPlats_Click"/>
+        <Button x:Name="editButon" Content="&#xEDFB;"
+    FontFamily="Segoe MDL2 Assets" HorizontalAlignment="Left" Margin="631,307,0,0" VerticalAlignment="Top" Width="30" Height="30"/>
+
     </Grid>
 </UserControl>

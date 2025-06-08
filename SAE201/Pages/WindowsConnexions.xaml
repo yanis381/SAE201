@@ -23,11 +23,11 @@
                        HorizontalAlignment="Center" Margin="0,0,0,20"/>
 
                 <TextBlock Text="Login" FontWeight="SemiBold"/>
-                <TextBox Height="23" Margin="0,5,0,10" Text="entrez votre login" Foreground="Gray"/>
+                <TextBox x:Name="textBoxlogin" Height="23" Margin="0,5,0,10" Text="entrez votre login" Foreground="Gray"/>
 
 
                 <TextBlock Text="Mot de passe" FontWeight="SemiBold"/>
-                <PasswordBox Height="22" Margin="0,5,0,10"/>
+                <PasswordBox x:Name="TextBoxMotDePasse" Height="22" Margin="0,5,0,10"/>
 
                 <StackPanel Orientation="Horizontal" Margin="0,10,0,10">
                     <CheckBox Content="Se souvenir de moi"/>
