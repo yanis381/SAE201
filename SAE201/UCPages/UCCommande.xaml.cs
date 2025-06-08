@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SAE201.Pages;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,6 +24,16 @@ namespace SAE201.UCPages
         public UCCommande()
         {
             InitializeComponent();
+        }
+
+        private void btnsupp_Click(object sender, RoutedEventArgs e)
+        {
+            
+        }
+
+        private void bouttonAjoutDsBd_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

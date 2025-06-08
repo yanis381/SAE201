@@ -28,7 +28,8 @@ namespace SAE201.UCPages
 
         private void bouttonAjoutDsBdPlats_Click(object sender, RoutedEventArgs e)
         {
-            
+            CreationPlats nouveauPlats = new CreationPlats();
+            bool? result = nouveauPlats.ShowDialog();
         }
     }
 }
