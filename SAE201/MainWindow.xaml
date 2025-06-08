@@ -23,6 +23,9 @@ Header="_Voir les commandes" Click="menuevoirLescommande_Click" />
             </MenuItem>
 
         </Menu>
-        <ContentControl x:Name="MainContent" Content="Maincontent"/>
+        <ContentControl x:Name="MainContent">
+            <TextBlock TextWrapping="Wrap" Text="Bienvenue Choisiez votre action dans le menue " VerticalAlignment="Center" FontSize="35" Margin="40,0,0,0"/>
+
+        </ContentControl>
     </DockPanel>
 </Window>
