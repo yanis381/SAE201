@@ -18,6 +18,7 @@ namespace SAE201
     /// </summary>
     public partial class MainWindow : Window
     {
+        public enum Action { Modifier, Créer }
         public MainWindow()
         {
             InitializeComponent();

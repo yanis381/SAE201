@@ -19,9 +19,10 @@ namespace SAE201.Pages
     /// </summary>
     public partial class CreationPlats : Window
     {
-        public CreationPlats()
+        public CreationPlats(MainWindow.Action actionDeLaPage)
         {
             InitializeComponent();
+            ValidBTnCReaPlats.Content = actionDeLaPage ;
         }
 
         private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
