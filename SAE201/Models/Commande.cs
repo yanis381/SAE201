@@ -6,7 +6,7 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using TD3_BindingBDPension.Model;
+using SAE201.Models;
 
 namespace SAE201.Models
 {

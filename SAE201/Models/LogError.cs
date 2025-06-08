@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace TD3_BindingBDPension.Model
+namespace SAE201.Models
 {
     public class LogError
     {

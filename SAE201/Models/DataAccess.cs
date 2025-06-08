@@ -7,7 +7,7 @@ using Microsoft.Extensions.Logging;
 using Npgsql;
 
 
-namespace TD3_BindingBDPension.Model
+namespace SAE201.Models
 {
 
     public  class DataAccess

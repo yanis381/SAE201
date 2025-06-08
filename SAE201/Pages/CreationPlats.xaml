@@ -9,7 +9,7 @@
     <Grid>
         <TextBlock HorizontalAlignment="Center" Margin="0,103,0,0" TextWrapping="Wrap" Text="Nom du plats" VerticalAlignment="Top"/>
         <TextBox x:Name="textBoxCreaPlats" HorizontalAlignment="Center" Margin="0,154,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
-        <TextBox x:Name="TextBoxPrixPlat" HorizontalAlignment="Center" Margin="0,217,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120" TextChanged="TextBox_TextChanged"/>
+        <TextBox x:Name="TextBoxPrixPlat" Text="{Binding Montant,StringFormat={}{0:N2} €}" HorizontalAlignment="Center" Margin="0,217,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" TextChanged="TextBox_TextChanged"/>
         <TextBlock x:Name="TextPrixPlat" HorizontalAlignment="Center" Margin="0,196,0,0" TextWrapping="Wrap" Text="Prix du plats" VerticalAlignment="Top"/>
         <TextBlock x:Name="TextBlocNmPersonne" HorizontalAlignment="Center" Margin="0,277,0,0" TextWrapping="Wrap" Text="nombre de personne" VerticalAlignment="Top"/>
         <TextBox HorizontalAlignment="Left" Margin="364,318,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
