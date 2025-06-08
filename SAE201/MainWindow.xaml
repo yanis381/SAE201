@@ -18,8 +18,14 @@ Header="_Voir les commandes" Click="menuevoirLescommande_Click" />
             <MenuItem x:Name="menuPlat" Header="Pl_ats" Click="menuPlat_Click">
 
             </MenuItem>
-            <MenuItem Header="_Assurance">
+            <MenuItem Header="_Client">
 
+                
+                </MenuItem>
+            <MenuItem x:Name="itemDeconnexion" Header="_Déconexion" >
+                <MenuItem x:Name="itemJusteSeDeco" Click="itemJusteSeDeco_Click" Header="Se deco_nnecter"></MenuItem>
+                <MenuItem x:Name="itemSeDecoEtQuitter" Click="itemSeDecoEtQuitter_Click" Header="Se deconnecter e_t fermer le logiciel"></MenuItem>
+                
             </MenuItem>
 
         </Menu>

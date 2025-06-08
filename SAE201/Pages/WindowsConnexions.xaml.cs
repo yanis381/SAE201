@@ -19,9 +19,30 @@ namespace SAE201.Pages
     /// </summary>
     public partial class WindowsConnexions : Window
     {
+        private bool testCo;
+
+        public bool TestCo
+        {
+            get
+            {
+                return this.testCo;
+            }
+
+            set
+            {
+                this.testCo = value;
+            }
+        }
+
+        public WindowsConnexions(bool dejaCo)
+        {
+            InitializeComponent();
+            this.testCo = dejaCo;
+        }
         public WindowsConnexions()
         {
             InitializeComponent();
+            
         }
 
         private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
@@ -35,6 +56,14 @@ namespace SAE201.Pages
             {
                 MessageBox.Show("metter votre login");
             }
+            /*else if (testCo != false)
+            {
+                
+                MainWindow reouverture = new MainWindow();
+                reouverture.ShowDialog();
+                testCo = false;
+                
+            }*/
             else {
                 this.Close();
             }

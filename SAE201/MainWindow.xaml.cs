@@ -18,6 +18,8 @@ namespace SAE201
     /// </summary>
     public partial class MainWindow : Window
     {
+        
+
         public enum Action { Modifier, Créer }
         public MainWindow()
         {
@@ -49,5 +51,36 @@ namespace SAE201
         {
             MainContent.Content = new UCPlats();
         }
+
+        
+
+        private void itemJusteSeDeco_Click(object sender, RoutedEventArgs e)
+        {
+            //DecoPuisReco();
+            MessageBox.Show("en devellopement");
+
+            
+            
+        }
+
+        private void itemSeDecoEtQuitter_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+            
+        }
+        private void DecoPuisReco()
+        {
+            this.Close();
+            DecoPartdeux();
+        }
+        private void DecoPartdeux()
+        {
+            MainWindow reco = new MainWindow();
+
+            reco.ShowDialog();
+            this.Close();
+        }
+
+
     }
 }
