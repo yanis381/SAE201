@@ -34,6 +34,10 @@ namespace SAE201.Models
 
             set
             {
+                if (string.IsNullOrWhiteSpace(value)) {
+                    throw new ArgumentException("met un nom au client");
+                
+                }
                 this.nomClient = value;
             }
         }
@@ -47,6 +51,11 @@ namespace SAE201.Models
 
             set
             {
+                if (string.IsNullOrWhiteSpace(value))
+                {
+                    throw new ArgumentException("met un prenom au client");
+
+                }
                 this.prenomClient = value;
             }
         }
@@ -60,6 +69,18 @@ namespace SAE201.Models
 
             set
             {
+                if (string.IsNullOrWhiteSpace(value))
+                {
+                    throw new ArgumentException("vous devez donnez un numero de tel ");
+
+                }
+                else if (value.Length > 10) {
+                    throw new ArgumentException("le num de tel est trop long");
+                }
+                else if (value.Length < 10)
+                {
+                    throw new ArgumentException(" le num de tel est trop cout");
+                }
                 this.telClient = value;
             }
         }

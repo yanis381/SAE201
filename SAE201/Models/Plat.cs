@@ -30,6 +30,11 @@ namespace SAE201.Models
 
             set
             {
+                if (string.IsNullOrWhiteSpace(value))
+                {
+                    throw new ArgumentException("le plat doit etre nomé");
+
+                }
                 this.nomPlat = value;
             }
         }
@@ -43,6 +48,10 @@ namespace SAE201.Models
 
             set
             {
+                if(value <= 0)
+                {
+                    throw new ArgumentException("le prix peut pas etre negatif ou a 0 ");
+                }
                 this.prixUnitaire = value;
             }
         }
@@ -56,6 +65,10 @@ namespace SAE201.Models
 
             set
             {
+                if(value < 0)
+                {
+                    throw new ArgumentException("le temps de prepa doit etre positif");
+                }
                 this.delaiPreparation = value;
             }
         }
@@ -69,6 +82,10 @@ namespace SAE201.Models
 
             set
             {
+                if(value <= 0)
+                {
+                    throw new ArgumentException(" il doit etre au moins pour une personne");
+                }
                 this.nbPersonne = value;
             }
         }

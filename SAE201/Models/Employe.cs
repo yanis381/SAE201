@@ -10,7 +10,7 @@ namespace SAE201.Models
     public class Employe
     {
         private string nomEmploye;
-        private string PrenomEmploye;
+        private string prenomEmploye;
         private string password;
         private string login;
 
@@ -23,22 +23,15 @@ namespace SAE201.Models
 
             set
             {
+                if (string.IsNullOrWhiteSpace(value))
+                {
+                    throw new ArgumentException("met un nom a l'employe");
+
+                }
                 this.nomEmploye = value;
             }
         }
 
-        public string PrenomEmploye1
-        {
-            get
-            {
-                return this.PrenomEmploye;
-            }
-
-            set
-            {
-                this.PrenomEmploye = value;
-            }
-        }
 
         public string Password
         {
@@ -63,6 +56,24 @@ namespace SAE201.Models
             set
             {
                 this.login = value;
+            }
+        }
+
+        public string PrenomEmploye
+        {
+            get
+            {
+                return this.prenomEmploye;
+            }
+
+            set
+            {
+                if (string.IsNullOrWhiteSpace(value))
+                {
+                    throw new ArgumentException("met un prennom a l'employe");
+
+                }
+                this.prenomEmploye = value;
             }
         }
     }

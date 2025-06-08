@@ -102,6 +102,10 @@ namespace SAE201.Models
 
             set
             {
+                if (value <= 0)
+                {
+                    throw new ArgumentException("le prix doit etre superieur a 0");
+                }
                 this.prixTotal = value;
             }
         }
@@ -115,6 +119,10 @@ namespace SAE201.Models
 
             set
             {
+                if (value < 0)
+                {
+                    throw new ArgumentException("l'id Commande ne peut etre negatif");
+                }
                 this.idCommande = value;
             }
         }
