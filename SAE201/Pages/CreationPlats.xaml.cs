@@ -28,5 +28,10 @@ namespace SAE201.Pages
         {
             // ne pas utiliser sauf si besoin
         }
+
+        private void AnnulerBTnCReaPlats_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+        }
     }
 }
