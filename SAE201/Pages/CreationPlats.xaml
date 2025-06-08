@@ -8,7 +8,13 @@
         Title="CreationPlats" Height="450" Width="800">
     <Grid>
         <TextBlock HorizontalAlignment="Center" Margin="0,103,0,0" TextWrapping="Wrap" Text="Nom du plats" VerticalAlignment="Top"/>
-        <TextBox x:Name="textBoxCreaPlats" HorizontalAlignment="Center" Margin="0,154,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="textBoxCreaPlats" HorizontalAlignment="Center" Margin="0,154,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="TextBoxPrixPlat" HorizontalAlignment="Center" Margin="0,217,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120" TextChanged="TextBox_TextChanged"/>
+        <TextBlock x:Name="TextPrixPlat" HorizontalAlignment="Center" Margin="0,196,0,0" TextWrapping="Wrap" Text="Prix du plats" VerticalAlignment="Top"/>
+        <TextBlock x:Name="TextBlocNmPersonne" HorizontalAlignment="Center" Margin="0,277,0,0" TextWrapping="Wrap" Text="nombre de personne" VerticalAlignment="Top"/>
+        <TextBox HorizontalAlignment="Left" Margin="364,318,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
+        <Button x:Name="ValidBTnCReaPlats" Content="Valider" HorizontalAlignment="Left" Margin="235,370,0,0" VerticalAlignment="Top"/>
+        <Button x:Name="AnnulerBTnCReaPlats" Content="Annuler" HorizontalAlignment="Left" Margin="444,370,0,0" VerticalAlignment="Top"/>
 
     </Grid>
 </Window>
