@@ -5,8 +5,29 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SAE201.Pages"
         mc:Ignorable="d"
-        Title="CreationClient" Height="450" Width="800">
+       Title="Nouveau client" Height="400" Width="300"  WindowStartupLocation="CenterScreen">
     <Grid>
-        
+        <StackPanel Margin="20" x:Name="panelFormClient">
+
+            <Label Content="Nom" />
+            <TextBox Text="{Binding NomClient, ValidatesOnDataErrors=True}" Width="250"/>
+
+            <Label Content="Prénom" />
+            <TextBox Text="{Binding PrenomClient, ValidatesOnDataErrors=True}" Width="250"/>
+
+            <Label Content="Téléphone" />
+            <TextBox Text="{Binding TelClient, ValidatesOnDataErrors=True}" Width="250"/>
+
+            <Label Content="Adresse rue" />
+            <TextBox Text="{Binding AdresseRue}" Width="250"/>
+
+            <Label Content="Code postal" />
+            <TextBox Text="{Binding AdresseCodePostal}" Width="250"/>
+
+            <Label Content="Ville" />
+            <TextBox Text="{Binding AdresseVille}" Width="250"/>
+
+            <Button x:Name="boutValider" Content="Créer" Margin="0,20,0,0" Width="250" Click="boutValider_Click"/>
+        </StackPanel>
     </Grid>
 </Window>

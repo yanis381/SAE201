@@ -1,16 +1,17 @@
 ﻿using Npgsql;
+using SAE201.Models;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using SAE201.Models;
 
 namespace SAE201.Models
 {
-    public class Commande
+    public class Commande : INotifyPropertyChanged
     {
         private DateTime dateCommande;
         private DateTime dateRetraitprevue;
@@ -127,7 +128,7 @@ namespace SAE201.Models
             }
         }
 
-        
+        public event PropertyChangedEventHandler? PropertyChanged;
 
         public List<Commande> FindAll()
         {
