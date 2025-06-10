@@ -1,5 +1,7 @@
-﻿using System;
+﻿using Npgsql;
+using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -41,6 +43,18 @@ namespace SAE201.Models
             {
                 this.nomSousCategorie = value;
             }
+        }
+        public static List<SousCategorie> FindAll()
+        {
+            List<SousCategorie> lesSousCatgories = new List<SousCategorie>();
+            using (NpgsqlCommand cmdSelect = new NpgsqlCommand("select * from  SousCategorie;"))
+            {
+                DataTable dt = DataAccess.Instance.ExecuteSelect(cmdSelect);
+                foreach (DataRow row in dt.Rows)
+                    lesSousCatgories.Add(new SousCategorie((int)row["numsouscategorie"], (String)row["nomsouscategorie"] ));
+            }
+
+            return lesSousCatgories;
         }
     }
 }

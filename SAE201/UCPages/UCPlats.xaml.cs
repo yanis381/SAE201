@@ -32,5 +32,44 @@ namespace SAE201.UCPages
             platforms = Plat.FindAll();
             dataPlats.ItemsSource = platforms;  
         }
+
+        private void creerproduit_Click(object sender, RoutedEventArgs e)
+        {
+            int periodenb = 0;
+            int typeproduits = 0; 
+            CreationPlats plats = new CreationPlats(MainWindow.Action.Créer);
+            Plat pl = new Plat(); 
+            if(plats.comboBoxPeriodeDef.Text == "plats principale") {
+                periodenb = 1;
+            }
+            else if(plats.comboBoxPeriodeDef.Text == "dessert")
+            {
+
+            periodenb = 2;}
+            if(plats.comboBoxTypePlatsDef.Text == "printemps")
+            {
+
+            typeproduits = 1;}
+            else if (plats.comboBoxTypePlatsDef.Text == "hivert")
+            {
+
+                typeproduits = 2;
+            }
+            bool? result = plats.ShowDialog();
+            if (result == true)
+            {
+                try
+                {
+                    pl.IdPlat = pl.Create(typeproduits , periodenb);
+                    
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show( "Le Box n'a pas pu être créé.", "Attention", MessageBoxButton.OK, MessageBoxImage.Error);
+
+                }
+            }
+
+        }
     }
 }

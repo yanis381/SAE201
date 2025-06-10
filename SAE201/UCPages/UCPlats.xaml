@@ -11,22 +11,23 @@
             <TextBlock Text="Rechercher un client" FontSize="18" FontWeight="Bold" Margin="0,0,0,10"/>
             <TextBox x:Name="searchBox" Width="300" Margin="0,0,0,10"  />
 
-            <DataGrid x:Name="dataPlats" Height="300"
+            <DataGrid x:Name="dataPlats" Height="232"
               AutoGenerateColumns="False"
               SelectionMode="Single"
               Margin="0,0,0,10"
-              IsReadOnly="True">
-                <DataGrid.Columns>
+              IsReadOnly="True" Width="690">
+                <DataGrid.Columns> 
                     <DataGridTextColumn Header="Nom Plats" Binding="{Binding NomPlat}" Width="*" />
                     <DataGridTextColumn Header="Prix unitaire" Binding="{Binding PrixUnitaire}" Width="*" />
                     <DataGridTextColumn Header="delai preparations" Binding="{Binding DelaiPreparation}" Width="*" />
                     <DataGridTextColumn Header="nombre de personne " Binding="{Binding NbPersonne}" Width="*" />
-                    <DataGridTextColumn Header="categorie " Binding="{Binding NomCategorie }" Width="*" />
-                    <DataGridTextColumn Header="categorie " Binding="{Binding  NomSousCategorie }" Width="*" />
+                    <DataGridTextColumn Header="categorie " Binding="{Binding Categorie.NomCategorie }" Width="*" />
+                    <DataGridTextColumn Header="categorie " Binding="{Binding  SousCategorie.NomSousCategorie }" Width="*" />
                     
                     
                 </DataGrid.Columns>
             </DataGrid>
+            <Button x:Name="creerproduit" Content="ajouter plat" Width="150" Click="creerproduit_Click"/>
         </StackPanel>
     </Grid>
 </UserControl>

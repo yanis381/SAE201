@@ -1,5 +1,7 @@
-﻿using System;
+﻿using SAE201.Models;
+using System;
 using System.Collections.Generic;
+using System.Diagnostics.Contracts;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -19,6 +21,8 @@ namespace SAE201.Pages
     /// </summary>
     public partial class CreationPlats : Window
     {
+        public Plat Platcreer { get; set; }
+        public enum comboBoxPeriode { été , hiver , printemps }
         public CreationPlats(MainWindow.Action actionDeLaPage)
         {
             InitializeComponent();
@@ -32,7 +36,36 @@ namespace SAE201.Pages
 
         private void AnnulerBTnCReaPlats_Click(object sender, RoutedEventArgs e)
         {
-            this.Close();
+           this.Close();
         }
+
+        private void ValidBTnCReaPlats_Click(object sender, RoutedEventArgs e)
+        {
+
+            bool ok = true;
+            foreach (UIElement uie in stackPanelcreerPlat.Children)
+            {
+                if (uie is TextBox)
+                {
+                    TextBox txt = (TextBox)uie;
+                    txt.GetBindingExpression(TextBox.TextProperty).UpdateSource();
+
+                }
+                else if (Validation.GetHasError(uie))
+                {
+                    ok = false;
+                }
+
+                // NE PAS activer sinon ca marche plus 
+                /*else
+                {
+                    MessageBox.Show("c'est pas bon", "etstss" , MessageBoxButton.OK , MessageBoxImage.Warning);
+                    return;
+                }*/
+            }
+            DialogResult = true;
+        }
+        
     }
-}
+    }
+

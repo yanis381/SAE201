@@ -1,4 +1,6 @@
 ﻿using Npgsql;
+using SAE201.Pages;
+using SAE201.UCPages;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -10,13 +12,20 @@ namespace SAE201.Models
 {
     public class Plat
     {
+        private int idPlat;
         private string nomPlat;
         private decimal prixUnitaire;
         private int delaiPreparation;
         private int nbPersonne;
         private Categorie categorie2;
         private SousCategorie sousCategorie3;
-        
+        private string nomSousCategorie;
+        private int numSousCategorie;
+        private int numPeriode;
+
+        public Plat()
+        {
+        }
 
         public Plat(string nomPlat, decimal prixUnitaire, int delaiPreparation, int nbPersonne)
         {
@@ -127,18 +136,78 @@ namespace SAE201.Models
             }
         }
 
+        public int NumSousCategorie
+        {
+            get
+            {
+                
+                return this.numSousCategorie;
+            }
+
+            set
+            {
+                this.numSousCategorie = value;
+            }
+        }
+
+        public int NumPeriode
+        {
+            get
+            {
+                return this.numPeriode;
+            }
+
+            set
+            {
+                this.numPeriode = value;
+            }
+        }
+
+        public int IdPlat
+        {
+            get
+            {
+                return this.idPlat;
+            }
+
+            set
+            {
+                this.idPlat = value;
+            }
+        }
+
         public static List<Plat> FindAll()
         {
+            /*List<Categorie> listC = Categorie.FindAll();*/
+            List<SousCategorie> listSC = SousCategorie.FindAll();
             List<Plat> lesPlats = new List<Plat>();
             using (NpgsqlCommand cmdSelect = new NpgsqlCommand("select * from plat P join SousCategorie SC on Sc.numSousCategorie = P.numSousCategorie join Categorie CT on CT.numCategorie = SC.numCategorie join periode Pe on Pe.numPeriode =  P.numPeriode;"))
             {
                 DataTable dt = DataAccess.Instance.ExecuteSelect(cmdSelect);
                 foreach (DataRow row in dt.Rows)
                     lesPlats.Add(new Plat((String)row["nomplat"], (Decimal)row["prixunitaire"],
-                   (int)row["delaipreparation"], (int)row["nbpersonnes"] , new Categorie((int)row["numsouscategorie"], (string)row["nomsouscategorie"] ), new SousCategorie((int)row["numsouscategorie"] , (string)row["nomcategorie"])) );
+                   (int)row["delaipreparation"], (int)row["nbpersonnes"] , new Categorie((int)row["numcategorie"], (string)row["nomcategorie"] ) , new SousCategorie((int)row["numsouscategorie"] , (string)row["nomsouscategorie"])) );
             }
 
             return lesPlats;
+        }
+        public int Create(int souscat , int numperiodess)
+        {
+            int nb = 0;
+            using (var cmdInsert = new NpgsqlCommand("INSERT INTO plat (nomplat, prixunitaire, delaipreparation , nbpersonnes, numsouscategorie , numperiode) VALUES (@nomplat,@prixunitaire, @delaipreparation, @nbpersonnes , @numsouscategorie , 1) RETURNING numplat"))
+            {
+                cmdInsert.Parameters.AddWithValue("nomplat", this.NomPlat);
+                cmdInsert.Parameters.AddWithValue("prixunitaire", this.PrixUnitaire);
+                cmdInsert.Parameters.AddWithValue("delaipreparation", this.DelaiPreparation);
+                cmdInsert.Parameters.AddWithValue("nbpersonnes", this.NbPersonne);
+                
+                cmdInsert.Parameters.AddWithValue("numsouscategorie", souscat);
+                cmdInsert.Parameters.AddWithValue("numperiode", numperiodess);
+
+                nb = DataAccess.Instance.ExecuteInsert(cmdInsert);
+            }
+            this.IdPlat = nb;
+            return nb;
         }
     }
 }
