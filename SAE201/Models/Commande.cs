@@ -125,7 +125,7 @@ namespace SAE201.Models
 
         public int Create()
         {
-            int nb;
+            int nb = 0;
             using (var cmdInsert = new NpgsqlCommand("INSERT INTO commande (datecommande, dateretraitprevue, payee, retiree, prixtotal) VALUES (@date, @retrait, @payee, @retiree, @prix) RETURNING numcommande"))
             {
                 cmdInsert.Parameters.AddWithValue("date", this.DateCommande);
@@ -176,7 +176,7 @@ namespace SAE201.Models
             }
         }
 
-        public List<Commande> FindAll()
+        public static List<Commande> FindAll()
         {
             List<Commande> lesCommandes = new List<Commande>();
             using (NpgsqlCommand cmdSelect = new NpgsqlCommand("SELECT * FROM commande;"))

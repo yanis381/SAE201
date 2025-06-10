@@ -10,8 +10,10 @@ namespace SAE201.Models
 {
     public class Categorie
     {
-        private int idcategorie; 
+        private int idcategorie;
         private string nomCategorie;
+
+        public Categorie() { }
 
         public Categorie(int idcategorie, string nomCategorie)
         {
@@ -49,7 +51,7 @@ namespace SAE201.Models
         public static List<Categorie> FindAll()
         {
             List<Categorie> lesCatgories = new List<Categorie>();
-            using (NpgsqlCommand cmdSelect = new NpgsqlCommand("select * from  SousCategorie;"))
+            using (NpgsqlCommand cmdSelect = new NpgsqlCommand("select * from Categorie;"))
             {
                 DataTable dt = DataAccess.Instance.ExecuteSelect(cmdSelect);
                 foreach (DataRow row in dt.Rows)

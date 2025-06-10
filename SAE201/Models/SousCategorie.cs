@@ -13,6 +13,8 @@ namespace SAE201.Models
         private int idsoucategorie; 
         private string nomSousCategorie;
 
+        public SousCategorie() { }
+
         public SousCategorie(int idsoucategorie, string nomSousCategorie)
         {
             this.idsoucategorie = idsoucategorie;

@@ -23,12 +23,19 @@ namespace SAE201.Pages
     {
         public Plat Platcreer { get; set; }
         public enum comboBoxPeriode { été , hiver , printemps }
-        public CreationPlats(MainWindow.Action actionDeLaPage)
+
+        public int TypePlatSelectionne { get; private set; }
+        public int PeriodeSelectionnee { get; private set; }
+
+        private Plat monPlat;
+
+        public CreationPlats(MainWindow.Action actionDeLaPage, Plat p)
         {
             InitializeComponent();
-            ValidBTnCReaPlats.Content = actionDeLaPage ;
+            ValidBTnCReaPlats.Content = actionDeLaPage;
+            monPlat = p;
+            this.DataContext = monPlat;
         }
-
         private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
             // ne pas utiliser sauf si besoin

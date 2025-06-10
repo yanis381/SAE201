@@ -35,46 +35,43 @@ namespace SAE201.UCPages
 
         private void creerproduit_Click(object sender, RoutedEventArgs e)
         {
-            int periodenb = 0;
-            int typeproduits = 0; 
-            CreationPlats plats = new CreationPlats(MainWindow.Action.Créer);
-            Plat pl = new Plat(); 
-            if(plats.comboBoxPeriodeDef.Text == "plats principale") {
-                periodenb = 1;
-            }
-            else if(plats.comboBoxPeriodeDef.Text == "dessert")
-            {
 
-            periodenb = 2;}
-            if(plats.comboBoxTypePlatsDef.Text == "printemps")
-            {
+            //Plat unPlat = new Plat();
+            //CreationPlats wPlat = new CreationPlats(unPlat);
 
-            typeproduits = 1;}
-            else if (plats.comboBoxTypePlatsDef.Text == "hivert")
-            {
+            //bool? result = wPlat.ShowDialog();
 
-                typeproduits = 2;
-            }
-            bool? result = plats.ShowDialog();
-            if (result == true)
-            {
-                try
-                {
-                    pl.IdPlat = pl.Create(typeproduits , periodenb);
-                    
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show( "Le Box n'a pas pu être créé.", "Attention", MessageBoxButton.OK, MessageBoxImage.Error);
-
-                }
-            }
-
+            //if (result == true)
+            //{
+            //    try
+            //    {
+            //        int id = unPlat.Create(wPlat.NumSousCategorie, wPlat.NumPeriode); // Insère en base
+            //        platforms.Add(unPlat); // Ajout à la liste affichée
+            //        dataPlats.ItemsSource = null;
+            //        dataPlats.ItemsSource = platforms;
+            //    }
+            //    catch (Exception ex)
+            //    {
+            //        MessageBox.Show("Le plat n'a pas pu être créé.", "Erreur", MessageBoxButton.OK, MessageBoxImage.Error);
+            //    }
+            //}
         }
 
         private void textBoxPlats_TextChanged(object sender, TextChangedEventArgs e)
         {
-            CollectionViewSource.GetDefaultView(dataPlats.ItemsSource).Refresh();
+            string filtre = textBoxPlats.Text.ToLower();
+            List<Plat> resultat = new List<Plat>();
+
+            foreach (Plat p in platforms)
+            {
+                if (p.NomPlat.ToLower().Contains(filtre) ||
+                    p.Categorie2.NomCategorie.ToLower().Contains(filtre) ||
+                    p.SousCategorie3.NomSousCategorie.ToLower().Contains(filtre))
+                {
+                    resultat.Add(p);
+                }
+            }
+            dataPlats.ItemsSource = resultat;
         }
     }
 }

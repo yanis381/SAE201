@@ -30,23 +30,25 @@ namespace SAE201.Pages
         private void boutValider_Click(object sender, RoutedEventArgs e)
         {
             bool ok = true;
-
             foreach (UIElement uie in panelFormClient.Children)
             {
-                if (uie is TextBox txt)
+                if (uie is TextBox)
+                {
+                    TextBox txt = (TextBox)uie;
                     txt.GetBindingExpression(TextBox.TextProperty)?.UpdateSource();
+                }
 
                 if (Validation.GetHasError(uie))
                     ok = false;
-
-
-                else
-                {
-                    MessageBox.Show("Corrigez les erreurs avant de valider.");
-                    return;
-                }
             }
-            DialogResult = true;
+
+            if (!ok)
+            {
+                MessageBox.Show("Corrigez les erreurs avant de valider.");
+                return;
+            }
+
+            this.DialogResult = true;
         }
     }
 }

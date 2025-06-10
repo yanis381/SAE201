@@ -17,7 +17,7 @@ namespace SAE201.Models
         public MagazinReserv(string nom)
         {
             this.nom = nom;
-            this.Lescommandes = new ObservableCollection<Commande>(new Commande().FindAll());
+            this.Lescommandes = new ObservableCollection<Commande>(Commande.FindAll());
 
         }
 

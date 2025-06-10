@@ -34,7 +34,11 @@ namespace SAE201.Models
             this.delaiPreparation = delaiPreparation;
             this.nbPersonne = nbPersonne;
         }
-
+        public Plat(int id, string nomPlat, decimal prixUnitaire, int delaiPreparation, int nbPersonne, Categorie categorie2, SousCategorie sousCategorie3)
+    : this(nomPlat, prixUnitaire, delaiPreparation, nbPersonne, categorie2, sousCategorie3)
+        {
+            this.idPlat = id;
+        }
         public Plat(string nomPlat, decimal prixUnitaire, int delaiPreparation, int nbPersonne, Categorie categorie2, SousCategorie sousCategorie3) : this(nomPlat, prixUnitaire, delaiPreparation, nbPersonne)
         {
             this.categorie2 = categorie2;
@@ -185,8 +189,15 @@ namespace SAE201.Models
             {
                 DataTable dt = DataAccess.Instance.ExecuteSelect(cmdSelect);
                 foreach (DataRow row in dt.Rows)
-                    lesPlats.Add(new Plat((String)row["nomplat"], (Decimal)row["prixunitaire"],
-                   (int)row["delaipreparation"], (int)row["nbpersonnes"] , new Categorie((int)row["numcategorie"], (string)row["nomcategorie"] ) , new SousCategorie((int)row["numsouscategorie"] , (string)row["nomsouscategorie"])) );
+                    lesPlats.Add(new Plat(
+                        (int)row["numplat"],
+                        (string)row["nomplat"],
+                        (decimal)row["prixunitaire"],
+                        (int)row["delaipreparation"],
+                        (int)row["nbpersonnes"],
+                        new Categorie((int)row["numcategorie"], (string)row["nomcategorie"]),
+                        new SousCategorie((int)row["numsouscategorie"], (string)row["nomsouscategorie"])
+));
             }
 
             return lesPlats;
@@ -201,14 +212,18 @@ namespace SAE201.Models
                 cmdInsert.Parameters.AddWithValue("prixunitaire", this.PrixUnitaire);
                 cmdInsert.Parameters.AddWithValue("delaipreparation",this.DelaiPreparation);
                 cmdInsert.Parameters.AddWithValue("nbpersonnes", this.NbPersonne);
-                
-                cmdInsert.Parameters.AddWithValue("numsouscategorie", 2);
-                cmdInsert.Parameters.AddWithValue("numperiode", 2);
+
+                cmdInsert.Parameters.AddWithValue("numsouscategorie", souscat);
+                cmdInsert.Parameters.AddWithValue("numperiode", numperiodess);
 
                 nb = DataAccess.Instance.ExecuteInsert(cmdInsert);
             }
             this.IdPlat = nb;
             return nb;
+        }
+        public override string ToString()
+        {
+            return $"{NomPlat} - {PrixUnitaire}€";
         }
     }
 }
