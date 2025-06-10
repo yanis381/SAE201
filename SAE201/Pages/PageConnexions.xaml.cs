@@ -34,5 +34,10 @@ namespace SAE201.Pages
         {
             NavigationService.Navigate(new Pages.PageAccueil());
         }
+
+        private void Button_Click()
+        {
+
+        }
     }
 }
