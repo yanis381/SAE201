@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SAE201.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -17,7 +18,7 @@ namespace SAE201.Pages
     /// <summary>
     /// Logique d'interaction pour WindowsConnexions.xaml
     /// </summary>
-    public partial class WindowsConnexions : Window
+    public partial class PageConnexion : Window
     {
         private bool testCo;
 
@@ -34,40 +35,46 @@ namespace SAE201.Pages
             }
         }
 
-        public WindowsConnexions(bool dejaCo)
+
+
+        public PageConnexion()
         {
             InitializeComponent();
-            this.testCo = dejaCo;
-        }
-        public WindowsConnexions()
-        {
-            InitializeComponent();
-            
-        }
-
-        private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
-        {
 
         }
+
 
         private void btnValider_Click(object sender, RoutedEventArgs e)
         {
-            if (string.IsNullOrWhiteSpace(textBoxlogin.Text))
+            if (string.IsNullOrWhiteSpace(tbLogin.Text))
             {
                 MessageBox.Show("metter votre login");
             }
-            /*else if (testCo != false)
+          
+            else
             {
-                
-                MainWindow reouverture = new MainWindow();
-                reouverture.ShowDialog();
-                testCo = false;
-                
-            }*/
-            else {
                 this.Close();
             }
-            
         }
+        private void btnEmploye_Click(object sender, RoutedEventArgs e)
+        {
+            string login = tbLogin.Text.Trim();
+            string mdp = tbPassword.Password.Trim();
+
+            if (Employe.VerifierConnexion(login, mdp))
+            {
+                MessageBox.Show("Connexion réussie !");
+                // ouvrir la fenêtre suivante ici
+            }
+            else
+            {
+                MessageBox.Show("Identifiants incorrects.");
+            }
+        }
+
+
     }
 }
+
+    
+
