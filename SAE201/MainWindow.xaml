@@ -18,7 +18,7 @@ Header="_Voir les commandes" Click="menuevoirLescommande_Click" />
             <MenuItem x:Name="menuPlat" Header="Pl_ats" Click="menuPlat_Click">
 
             </MenuItem>
-            <MenuItem Header="_Client">
+            <MenuItem Header="_Client" Click="MenuItem_Click">
 
                 
                 </MenuItem>

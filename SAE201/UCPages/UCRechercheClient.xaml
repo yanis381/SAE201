@@ -28,7 +28,7 @@
 
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,10,0,0">
                 <Button Content="Sélectionner" Width="150" Margin="10,0" Click="Valider_Click"/>
-                <Button Content="Voir historique" Width="150" Margin="0,10,0,0" Click="VoirHistorique_Click"/>
+                <Button Content="Voir historique" Width="150" Margin="0,10,0,0"  />
                 <Button Content="Créer nouveau client" Width="180" Margin="10,0" Click="Creer_Click"/>
             </StackPanel>
 

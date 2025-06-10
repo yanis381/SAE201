@@ -97,6 +97,10 @@ namespace SAE201
             this.Close();
         }
 
-
+        private void MenuItem_Click(object sender, RoutedEventArgs e)
+        {
+            // clients 
+            MainContent.Content = new UCRechercheClient();
+        }
     }
 }

@@ -79,13 +79,13 @@ namespace SAE201.UCPages
             }
         }
 
-        private void VoirHistorique_Click(object sender, RoutedEventArgs e)
+       /* private void VoirHistorique_Click(object sender, RoutedEventArgs e)
         {
             if (dataClients.SelectedItem != null)
             {
                 Clients c = (Clients)dataClients.SelectedItem;
 
-                List<Commande> commandes = Commande.TrouverParClient(c.NumClient);
+               List<Commande> commandes = Commande.TrouverParClient(c.NumClient);
 
                 if (commandes.Count == 0)
                 {
@@ -103,6 +103,6 @@ namespace SAE201.UCPages
                 MessageBox.Show("Veuillez sélectionner un client.");
             }
 
-        }
+        }*/
     }
 }
