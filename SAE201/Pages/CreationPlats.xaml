@@ -8,21 +8,37 @@
         Title="CreationPlats" Height="450" Width="800" ResizeMode="NoResize">
     <Grid>
         <Image Source="/image/logo-sibilia.png" Margin="25,354,639,18"/>
-        <TextBlock HorizontalAlignment="Left" Margin="261,95,0,0" TextWrapping="Wrap" Text="Nom du plats" VerticalAlignment="Top"/>
-        <TextBox x:Name="textBoxCreaPlats" HorizontalAlignment="Left" Margin="237,137,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
-        <TextBox x:Name="TextBoxPrixPlat" Text="{Binding Montant,StringFormat={}{0:N2} €}" HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" TextChanged="TextBox_TextChanged" Margin="468,137,0,0"/>
-        <TextBlock x:Name="TextPrixPlat" HorizontalAlignment="Left" Margin="496,95,0,0" TextWrapping="Wrap" Text="Prix du plats" VerticalAlignment="Top"/>
-        <TextBlock x:Name="TextBlocNmPersonne" HorizontalAlignment="Left" TextWrapping="Wrap" Text="nombre de personne" VerticalAlignment="Top" Margin="241,192,0,0"/>
-        <TextBox HorizontalAlignment="Left" Margin="232,242,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
-        <Button x:Name="ValidBTnCReaPlats" Content="Valider" HorizontalAlignment="Left" Margin="336,326,0,0" VerticalAlignment="Top" Background="#FF25FF00" BorderBrush="{x:Null}" Width="60" Height="30"/>
-        <Button x:Name="AnnulerBTnCReaPlats" Content="Annuler" HorizontalAlignment="Left" Margin="440,327,0,0" VerticalAlignment="Top" Click="AnnulerBTnCReaPlats_Click" BorderBrush="{x:Null}" Foreground="Black" Background="Red" Width="60" Height="30"/>
-        <TextBlock x:Name="TextBlocNmPersonne_Copy" HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top" Margin="493,187,0,0"><Run Language="fr-fr" Text="type de plats"/></TextBlock>
-        <ComboBox x:Name="comboBoxTypePlats" HorizontalAlignment="Left" Margin="467,242,0,0" VerticalAlignment="Top" Width="120">
-            <ComboBoxItem>entrée</ComboBoxItem>
-            <ComboBoxItem>plats</ComboBoxItem>
-            <ComboBoxItem>dessert</ComboBoxItem>
-        </ComboBox>
+        <StackPanel x:Name="stackPanelcreerPlat" >
+            <TextBlock HorizontalAlignment="Left" Margin="261,95,0,0" TextWrapping="Wrap" Text="Nom du plats" VerticalAlignment="Top"/>
+            <TextBox x:Name="textBoxCreaPlats" TextWrapping="Wrap" Text="{Binding NomPlat, ValidatesOnDataErrors=True}" Width="120" Margin="-180,30,0,0"/>
+           
+            <TextBox x:Name="TextBoxPrixPlat" Text="{Binding PrixUnitaire , ValidatesOnDataErrors=True}" HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" TextChanged="TextBox_TextChanged" Margin="486,-20,0,0"/>
+            <TextBlock x:Name="TextPrixPlat" HorizontalAlignment="Left" Margin="495,-65,0,0" TextWrapping="Wrap" Text="Prix du plats" VerticalAlignment="Top"/>
+            <TextBlock x:Name="TextBlocNmPersonne" HorizontalAlignment="Left" TextWrapping="Wrap" Text="nombre de personne" VerticalAlignment="Top" Margin="120,48,0,0"/>
+            <TextBox HorizontalAlignment="Left" Margin="111,20,0,0" TextWrapping="Wrap" 
+Text="{Binding NbPersonne , ValidatesOnDataErrors=True }" VerticalAlignment="Top" Width="120"/>
+            <Button x:Name="ValidBTnCReaPlats" Content="Valider" HorizontalAlignment="Left" Margin="336,90,0,0" VerticalAlignment="Top" Background="#FF25FF00" BorderBrush="{x:Null}" Width="60" Height="30" Click="ValidBTnCReaPlats_Click"/>
+            <Button x:Name="AnnulerBTnCReaPlats" Content="Annuler" HorizontalAlignment="Left" Margin="440,-28,0,0" VerticalAlignment="Top" Click="AnnulerBTnCReaPlats_Click" BorderBrush="{x:Null}" Foreground="Black" Background="Red" Width="60" Height="30"/>
+            <TextBlock x:Name="TextBlocNmPersonne_Copy" HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top" Margin="372,-182,0,0"><Run Language="fr-fr" Text="type de plats"/></TextBlock>
+            <ComboBox x:Name="comboBoxTypePlatsDef" HorizontalAlignment="Left" Margin="346,-145,0,0" VerticalAlignment="Top" Width="120">
 
+                <ComboBoxItem IsEnabled="False" IsSelected="True" >
+                    <TextBlock> entrée</TextBlock>
+                </ComboBoxItem>
+                <ComboBoxItem>plats principale</ComboBoxItem>
+                <ComboBoxItem>dessert</ComboBoxItem>
+            </ComboBox>
+            <TextBlock x:Name="TextBlocPeriode" HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top" Margin="568,-180,0,0"><Run Language="fr-fr" Text="periode"/></TextBlock>
+            <ComboBox x:Name="comboBoxPeriodeDef" HorizontalAlignment="Left" Margin="542,-145,0,0" VerticalAlignment="Top" Width="120">
+
+                <ComboBoxItem IsEnabled="False" IsSelected="True">
+                    <TextBlock><Run Text="été"/></TextBlock>
+                </ComboBoxItem>
+                <ComboBoxItem Content="printemps"/>
+                <ComboBoxItem Content="hivert"/>
+            </ComboBox>
+            <TextBox TextWrapping="Wrap" Text="{Binding DelaiPreparation, ValidatesOnDataErrors=True}" Width="120"/>
+        </StackPanel>
     </Grid>
 
 </Window>

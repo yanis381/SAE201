@@ -7,13 +7,27 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
-        <TextBox x:Name="TextBoxRechercheplat" HorizontalAlignment="Left" Margin="342,61,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
-        <Button x:Name="btnsupp" FontFamily="Segoe MDL2 Assets" 
-    Content="&#xE74D;"  HorizontalAlignment="Left" Margin="629,196,0,0" VerticalAlignment="Top" Width="30" Height="30"/>
-        <Button x:Name="bouttonAjoutDsBdPlats" Content="&#xE710;"
-    FontFamily="Segoe MDL2 Assets" HorizontalAlignment="Left" Margin="629,255,0,0" VerticalAlignment="Top" Width="30" Height="30" Click="bouttonAjoutDsBdPlats_Click"/>
-        <Button x:Name="editButon" Content="&#xEDFB;"
-    FontFamily="Segoe MDL2 Assets" HorizontalAlignment="Left" Margin="631,307,0,0" VerticalAlignment="Top" Width="30" Height="30"/>
+        <StackPanel Margin="10">
+            <TextBlock Text="Rechercher un client" FontSize="18" FontWeight="Bold" Margin="0,0,0,10"/>
+            <TextBox x:Name="textBoxPlats" Width="300" Margin="0,0,0,10" TextChanged="textBoxPlats_TextChanged"  />
 
+            <DataGrid x:Name="dataPlats" Height="232"
+              AutoGenerateColumns="False"
+              SelectionMode="Single"
+              Margin="0,0,0,10"
+              IsReadOnly="True" Width="690">
+                <DataGrid.Columns> 
+                    <DataGridTextColumn Header="Nom Plats" Binding="{Binding NomPlat}" Width="*" />
+                    <DataGridTextColumn Header="Prix unitaire" Binding="{Binding PrixUnitaire}" Width="*" />
+                    <DataGridTextColumn Header="delai preparations" Binding="{Binding DelaiPreparation}" Width="*" />
+                    <DataGridTextColumn Header="nombre de personne " Binding="{Binding NbPersonne}" Width="*" />
+                    <DataGridTextColumn Header="categorie " Binding="{Binding Categorie.NomCategorie }" Width="*" />
+                    <DataGridTextColumn Header="categorie " Binding="{Binding  SousCategorie.NomSousCategorie }" Width="*" />
+                    
+                    
+                </DataGrid.Columns>
+            </DataGrid>
+            <Button x:Name="creerproduit" Content="ajouter plat" Width="150" Click="creerproduit_Click"/>
+        </StackPanel>
     </Grid>
 </UserControl>

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Npgsql;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -76,5 +77,25 @@ namespace SAE201.Models
                 this.prenomEmploye = value;
             }
         }
+
+        public static bool VerifierConnexion(string login, string password)
+        {
+            try
+            {
+                string sql = "SELECT COUNT(*) FROM employe WHERE login = @login AND password = @password";
+                NpgsqlCommand cmd = new NpgsqlCommand(sql);
+                cmd.Parameters.AddWithValue("login", login);
+                cmd.Parameters.AddWithValue("password", password);
+
+                object res = DataAccess.Instance.ExecuteSelectUneValeur(cmd);
+                return res != null && Convert.ToInt32(res) > 0;
+            }
+            catch (Exception ex)
+            {
+                LogError.Log(ex, "Erreur lors de la vérification de l'employé.");
+                throw;
+            }
+        }
+
     }
 }
