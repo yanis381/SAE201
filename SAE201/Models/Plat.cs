@@ -194,15 +194,16 @@ namespace SAE201.Models
         public int Create(int souscat , int numperiodess)
         {
             int nb = 0;
-            using (var cmdInsert = new NpgsqlCommand("INSERT INTO plat (nomplat, prixunitaire, delaipreparation , nbpersonnes, numsouscategorie , numperiode) VALUES (@nomplat,@prixunitaire, @delaipreparation, @nbpersonnes , @numsouscategorie , 1) RETURNING numplat"))
+            
+            using (var cmdInsert = new NpgsqlCommand("INSERT INTO plat (nomplat, prixunitaire, delaipreparation , nbpersonnes, numsouscategorie , numperiode) VALUES (@nomplat, @prixunitaire, @delaipreparation , @nbpersonnes, @numsouscategorie , @numperiode) RETURNING numplat"))
             {
-                cmdInsert.Parameters.AddWithValue("nomplat", this.NomPlat);
+                cmdInsert.Parameters.AddWithValue("nomplat", this.NomPlat ) ;
                 cmdInsert.Parameters.AddWithValue("prixunitaire", this.PrixUnitaire);
-                cmdInsert.Parameters.AddWithValue("delaipreparation", this.DelaiPreparation);
+                cmdInsert.Parameters.AddWithValue("delaipreparation",this.DelaiPreparation);
                 cmdInsert.Parameters.AddWithValue("nbpersonnes", this.NbPersonne);
                 
-                cmdInsert.Parameters.AddWithValue("numsouscategorie", souscat);
-                cmdInsert.Parameters.AddWithValue("numperiode", numperiodess);
+                cmdInsert.Parameters.AddWithValue("numsouscategorie", 2);
+                cmdInsert.Parameters.AddWithValue("numperiode", 2);
 
                 nb = DataAccess.Instance.ExecuteInsert(cmdInsert);
             }

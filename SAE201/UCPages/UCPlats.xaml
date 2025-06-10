@@ -9,7 +9,7 @@
     <Grid>
         <StackPanel Margin="10">
             <TextBlock Text="Rechercher un client" FontSize="18" FontWeight="Bold" Margin="0,0,0,10"/>
-            <TextBox x:Name="searchBox" Width="300" Margin="0,0,0,10"  />
+            <TextBox x:Name="textBoxPlats" Width="300" Margin="0,0,0,10" TextChanged="textBoxPlats_TextChanged"  />
 
             <DataGrid x:Name="dataPlats" Height="232"
               AutoGenerateColumns="False"

@@ -71,5 +71,10 @@ namespace SAE201.UCPages
             }
 
         }
+
+        private void textBoxPlats_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            CollectionViewSource.GetDefaultView(dataPlats.ItemsSource).Refresh();
+        }
     }
 }
