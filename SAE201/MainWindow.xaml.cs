@@ -1,5 +1,7 @@
-﻿using SAE201.Pages;
+﻿using SAE201.Models;
+using SAE201.Pages;
 using SAE201.UCPages;
+using System;
 using System.Text;
 using System.Windows;
 using System.Windows.Controls;
@@ -18,7 +20,7 @@ namespace SAE201
     /// </summary>
     public partial class MainWindow : Window
     {
-        
+        public MagazinReserv LeMagazin {  get; set; }
 
         public enum Action { Modifier, Créer }
         public MainWindow()
@@ -35,6 +37,20 @@ namespace SAE201
 
 
 
+        }
+        public void ChargeData()
+        {
+            try
+            {
+                LeMagazin = new MagazinReserv("LeMagasin");
+                this.DataContext = LeMagazin;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Problème lors de récupération des données, veuillez consulter votre admin");
+
+                Application.Current.Shutdown();
+            }
         }
 
         private void cbChoix_SelectionChanged(object sender, SelectionChangedEventArgs e)

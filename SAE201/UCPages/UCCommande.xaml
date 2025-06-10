@@ -8,9 +8,9 @@
              d:DesignHeight="450" d:DesignWidth="800"
              xmlns:model="clr-namespace:SAE201.Models"
 >
-     <!-- <Window.DataContext>
-        <model:MagazinReserv x:Name="laCommande" Lescommandes="lescommandes" />
-    </Window.DataContext> --> 
+      <Window.DataContext>
+        <model:MagazinReserv x:Name="laCommande" Lescommandes="LeMagasin" />
+    </Window.DataContext> 
     <Grid >
         <TextBox x:Name="textMotClefChien"
         Width="200"

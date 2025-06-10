@@ -9,9 +9,17 @@ namespace SAE201.Models
 {
     public class MagazinReserv
     {
+        private string nom;
         private ObservableCollection<Clients> lesclients;
         private ObservableCollection<Plat> lesPlatscommandée;
         private ObservableCollection<Commande> lescommandes;
+
+        public MagazinReserv(string nom)
+        {
+            this.nom = nom;
+            this.Lescommandes = new ObservableCollection<Commande>(new Commande().FindAll());
+
+        }
 
         public ObservableCollection<Clients> Lesclients
         {
@@ -49,6 +57,19 @@ namespace SAE201.Models
             set
             {
                 this.lescommandes = value;
+            }
+        }
+
+        public string Nom
+        {
+            get
+            {
+                return this.nom;
+            }
+
+            set
+            {
+                this.nom = value;
             }
         }
     }

@@ -137,7 +137,10 @@ namespace SAE201.Models
                 DataTable dt = DataAccess.Instance.ExecuteSelect(cmdSelect);
                 foreach (DataRow dr in dt.Rows)
                     lesCommandes.Add(new Commande(DateTime.Parse((string)dr["datecommande"]), DateTime.Parse( (string)dr["dateretraitprevue"]),
-                   (Boolean)dr["payee"], (Boolean)dr["retiree"], Decimal.Parse((string)dr["prixtotal"]), (int)dr["numcommande"]));
+                   (Boolean)dr["payee"],
+                   (Boolean)dr["retiree"],
+                   Decimal.Parse((string)dr["prixtotal"]),
+                   (int)dr["numcommande"]));
             }
             return lesCommandes;
         }
