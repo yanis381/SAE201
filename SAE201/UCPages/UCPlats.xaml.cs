@@ -1,4 +1,5 @@
-﻿using SAE201.Pages;
+﻿using SAE201.Models;
+using SAE201.Pages;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,15 +22,15 @@ namespace SAE201.UCPages
     /// </summary>
     public partial class UCPlats : UserControl
     {
+
+        public Plat PlatAPrevoir { get; set; }
+        private List<Plat> platforms = new List<Plat>();
         public UCPlats()
         {
-            InitializeComponent();
-        }
 
-        private void bouttonAjoutDsBdPlats_Click(object sender, RoutedEventArgs e)
-        {
-            CreationPlats nouveauPlats = new CreationPlats(MainWindow.Action.Créer);
-            bool? result = nouveauPlats.ShowDialog();
+            InitializeComponent();
+            platforms = Plat.FindAll();
+            dataPlats.ItemsSource = platforms;  
         }
     }
 }

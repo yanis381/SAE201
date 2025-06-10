@@ -8,7 +8,14 @@ namespace SAE201.Models
 {
     public class Categorie
     {
+        private int idcategorie; 
         private string nomCategorie;
+
+        public Categorie(int idcategorie, string nomCategorie)
+        {
+            this.Idcategorie = idcategorie;
+            this.nomCategorie = nomCategorie;
+        }
 
         public string NomCategorie
         {
@@ -20,6 +27,21 @@ namespace SAE201.Models
             set
             {
                 this.nomCategorie = value;
+            }
+        }
+
+        
+
+        public int Idcategorie
+        {
+            get
+            {
+                return this.idcategorie;
+            }
+
+            set
+            {
+                this.idcategorie = value;
             }
         }
     }
