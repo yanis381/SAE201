@@ -1,0 +1,62 @@
+﻿<UserControl x:Class="SAE201.UCPages.UCCommande"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:SAE201.UCPages"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800"
+             xmlns:model="clr-namespace:SAE201.Models"
+>
+      <!-- <Window.DataContext>
+        <model:MagazinReserv x:Name="laCommande" Lescommandes="LeMagasin" />
+    </Window.DataContext> -->
+    <Grid >
+        <TextBox x:Name="textMotClefChien"
+        Width="200"
+        Height="20"
+        TextWrapping="Wrap" Margin="297,-290,297,0" />
+        <DataGrid
+        x:Name="dgChiens"
+        Width="300"
+        AutoGenerateColumns="False"
+        ItemsSource="{Binding Lescommandes}" Margin="247,122,247,35" IsReadOnly="True">
+
+
+            <DataGrid.Columns>
+                <DataGridTextColumn
+                Width="*"
+                Binding="{Binding IdCommande , ValidatesOnExceptions=true}"
+                Header="Nom" />
+
+                <DataGridTextColumn
+                Width="*"
+                Binding="{Binding Maitre , ValidatesOnExceptions=true}"
+                Header="Maitre" />
+                <DataGridCheckBoxColumn
+                        Width="*"
+                    Binding="{Binding Paiyee , ValidatesOnExceptions=true}"
+                    Header="Paiyee" />
+                <DataGridCheckBoxColumn
+                     Width="*"
+                    Binding="{Binding Retiree  , ValidatesOnExceptions=true}"
+                    Header="Retiree" />
+                
+                <DataGridTextColumn
+                Width="*"
+                Binding="{Binding Poids , ValidatesOnExceptions=true}"
+                Header="poids (kg)" />
+
+            </DataGrid.Columns>
+        </DataGrid>
+        <Button x:Name="btnsupp" FontFamily="Segoe MDL2 Assets" 
+            Content="&#xE74D;"  HorizontalAlignment="Left" Margin="629,196,0,0" VerticalAlignment="Top" Width="30" Height="30" Click="btnsupp_Click"/>
+        <Button x:Name="bouttonAjoutDsBd" Content="&#xE710;"
+            FontFamily="Segoe MDL2 Assets" HorizontalAlignment="Left" Margin="629,255,0,0" VerticalAlignment="Top" Width="30" Height="30" Click="bouttonAjoutDsBd_Click"/>
+        <Button x:Name="editButon" Content="&#xEDFB;"
+            FontFamily="Segoe MDL2 Assets" HorizontalAlignment="Left" Margin="631,307,0,0" VerticalAlignment="Top" Width="30" Height="30"/>
+
+
+
+    </Grid>
+</UserControl>

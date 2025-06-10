@@ -10,34 +10,29 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace SAE201.Pages
 {
     /// <summary>
-    /// Logique d'interaction pour PageConnexions.xaml
+    /// Logique d'interaction pour CreationPlats.xaml
     /// </summary>
-    public partial class PageConnexions : Page
+    public partial class CreationPlats : Window
     {
-        public PageConnexions()
+        public CreationPlats(MainWindow.Action actionDeLaPage)
         {
             InitializeComponent();
+            ValidBTnCReaPlats.Content = actionDeLaPage ;
         }
 
         private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
-
+            // ne pas utiliser sauf si besoin
         }
 
-        private void btnValider_Click(object sender, RoutedEventArgs e)
+        private void AnnulerBTnCReaPlats_Click(object sender, RoutedEventArgs e)
         {
-            NavigationService.Navigate(new Pages.PageAccueil());
-        }
-
-        private void Button_Click()
-        {
-
+            this.Close();
         }
     }
 }

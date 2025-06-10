@@ -1,0 +1,47 @@
+﻿<Window x:Name="WindowsConnexionwProprieter" x:Class="SAE201.Pages.WindowsConnexions"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:SAE201.Pages"
+        mc:Ignorable="d"
+        Title="WindowsConnexions" Height="540" Width="800" ResizeMode="NoResize">
+    <DockPanel>
+        <!-- Bandeau haut rouge avec logo -->
+        <Border Background="#F94C4C" Height="80" DockPanel.Dock="Top">
+            <Image Source="/image/logo-sibilia.png" Width="132" Height="59" Margin="0,16,0,5"/>
+        </Border>
+
+        <!-- Formulaire dans StackPanel -->
+        <Border Background="White" CornerRadius="10" Width="380" Padding="30" Margin="0,30,0,30" Height="405">
+
+            <StackPanel>
+
+                <Image Source="/image/vache.jpg" Width="132" Height="59"/>
+
+                <TextBlock Text="Connexion – Maison Sibilia" FontSize="16" FontWeight="Bold"
+                       HorizontalAlignment="Center" Margin="0,0,0,20"/>
+
+                <TextBlock Text="Login" FontWeight="SemiBold"/>
+                <TextBox x:Name="textBoxlogin" Height="23" Margin="0,5,0,10" Text="entrez votre login" Foreground="Gray"/>
+
+
+                <TextBlock Text="Mot de passe" FontWeight="SemiBold"/>
+                <PasswordBox x:Name="TextBoxMotDePasse" Height="22" Margin="0,5,0,10"/>
+
+                <StackPanel Orientation="Horizontal" Margin="0,10,0,10">
+                    <CheckBox Content="Se souvenir de moi"/>
+                    <TextBlock Text="   Mot de passe oublié ?" FontWeight="Bold" Cursor="Hand"/>
+                </StackPanel>
+
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,20,0,0">
+                    <Button x:Name="btnValider" Content="Valider ✔" Width="100" Height="35" Background="#5CB85C" 
+                        Foreground="White" FontWeight="Bold" Margin="5" Click="btnValider_Click"/>
+                </StackPanel>
+
+                <TextBlock Text="© Maison Sibilia – Espace connexion" FontSize="10"
+                       HorizontalAlignment="Center" Margin="0,20,0,0"/>
+            </StackPanel>
+        </Border>
+    </DockPanel>
+</Window>

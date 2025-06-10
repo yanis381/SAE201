@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SAE201.Pages;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -13,18 +14,22 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace SAE201.Pages
+namespace SAE201.UCPages
 {
     /// <summary>
-    /// Logique d'interaction pour PageAccueil.xaml
+    /// Logique d'interaction pour UCPlats.xaml
     /// </summary>
-    public partial class PageAccueil : Page
+    public partial class UCPlats : UserControl
     {
-        public PageAccueil()
+        public UCPlats()
         {
             InitializeComponent();
         }
 
-        
+        private void bouttonAjoutDsBdPlats_Click(object sender, RoutedEventArgs e)
+        {
+            CreationPlats nouveauPlats = new CreationPlats(MainWindow.Action.Créer);
+            bool? result = nouveauPlats.ShowDialog();
+        }
     }
 }
