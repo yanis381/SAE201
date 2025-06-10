@@ -8,18 +8,38 @@ namespace SAE201.Models
 {
     public class SousCategorie
     {
-        private string NomSousCategorie;
+        private int idsoucategorie; 
+        private string nomSousCategorie;
 
-        public string NomSousCategorie1
+        public SousCategorie(int idsoucategorie, string nomSousCategorie)
+        {
+            this.idsoucategorie = idsoucategorie;
+            this.nomSousCategorie = nomSousCategorie;
+        }
+
+        public int Idsoucategorie
         {
             get
             {
-                return this.NomSousCategorie;
+                return this.idsoucategorie;
             }
 
             set
             {
-                this.NomSousCategorie = value;
+                this.idsoucategorie = value;
+            }
+        }
+
+        public string NomSousCategorie
+        {
+            get
+            {
+                return this.nomSousCategorie;
+            }
+
+            set
+            {
+                this.nomSousCategorie = value;
             }
         }
     }
