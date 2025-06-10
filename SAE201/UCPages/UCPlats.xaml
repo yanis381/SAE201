@@ -21,6 +21,9 @@
                     <DataGridTextColumn Header="Prix unitaire" Binding="{Binding PrixUnitaire}" Width="*" />
                     <DataGridTextColumn Header="delai preparations" Binding="{Binding DelaiPreparation}" Width="*" />
                     <DataGridTextColumn Header="nombre de personne " Binding="{Binding NbPersonne}" Width="*" />
+                    <DataGridTextColumn Header="categorie " Binding="{Binding NomCategorie }" Width="*" />
+                    <DataGridTextColumn Header="categorie " Binding="{Binding  NomSousCategorie }" Width="*" />
+                    
                     
                 </DataGrid.Columns>
             </DataGrid>
