@@ -135,7 +135,7 @@ namespace SAE201.Models
                 DataTable dt = DataAccess.Instance.ExecuteSelect(cmdSelect);
                 foreach (DataRow row in dt.Rows)
                     lesPlats.Add(new Plat((String)row["nomplat"], (Decimal)row["prixunitaire"],
-                   (int)row["delaipreparation"], (int)row["nbpersonnes"] , new Categorie((int)row["numsouscategorie"], (string)row["nomsouscategorie"] ), new SousCategorie( (int) );
+                   (int)row["delaipreparation"], (int)row["nbpersonnes"] , new Categorie((int)row["numsouscategorie"], (string)row["nomsouscategorie"] ), new SousCategorie((int)row["numsouscategorie"] , (string)row["nomcategorie"])) );
             }
 
             return lesPlats;
