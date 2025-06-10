@@ -21,10 +21,10 @@ namespace SAE201.Pages
     /// </summary>
     public partial class CreationClient : Window
     {
-        public CreationClient(Clients client, string action)
+        public CreationClient(Clients unClient)
         {
-            this.DataContext = client;
-            boutValider.Content = action;
+            this.DataContext = unClient;
+            InitializeComponent();
         }
 
         private void boutValider_Click(object sender, RoutedEventArgs e)
@@ -38,15 +38,14 @@ namespace SAE201.Pages
 
                 if (Validation.GetHasError(uie))
                     ok = false;
-            }
 
-            if (!ok)
-            {
-                MessageBox.Show("Corrigez les erreurs avant de valider.");
-                return;
-            }
 
-            ((Clients)this.DataContext).Create(); // insert en BDD
+                else
+                {
+                    MessageBox.Show("Corrigez les erreurs avant de valider.");
+                    return;
+                }
+            }
             DialogResult = true;
         }
     }
