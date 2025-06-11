@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SAE201.Pages"
         mc:Ignorable="d"
-        Title="CreationPlats" Height="500" Width="300" ResizeMode="NoResize">
+        Title="CreationPlats" Height="549" Width="300" ResizeMode="NoResize">
     <Grid>
         <Image Source="/image/logo-sibilia.png" Margin="25,354,639,18"/>
         <StackPanel Margin="20" x:Name="stackPanelcreerPlat">

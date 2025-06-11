@@ -28,7 +28,12 @@ namespace SAE201
             InitializeComponent();
             
             PageConnexion wind  = new PageConnexion();
-            wind.ShowDialog();
+            
+            bool? result = wind.ShowDialog();
+           /* if (result == false) {
+                Application.Current.Shutdown();
+            }*/
+            
             //MainContent.Content = new Connexions();
             
             //MainFrame.Navigate(new Pages.PageConnexions());

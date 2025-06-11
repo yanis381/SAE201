@@ -271,7 +271,7 @@ namespace SAE201.Models
 
                 nb = DataAccess.Instance.ExecuteInsert(cmdInsert);
             }
-            this.IdPlat = nb;
+             
             return nb;
         }
         public override string ToString()
