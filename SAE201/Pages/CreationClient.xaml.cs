@@ -21,20 +21,22 @@ namespace SAE201.Pages
     /// </summary>
     public partial class CreationClient : Window
     {
-        public CreationClient(Clients client, string action)
+        public CreationClient(Clients unClient)
         {
-            this.DataContext = client;
-            boutValider.Content = action;
+            this.DataContext = unClient;
+            InitializeComponent();
         }
 
         private void boutValider_Click(object sender, RoutedEventArgs e)
         {
             bool ok = true;
-
             foreach (UIElement uie in panelFormClient.Children)
             {
-                if (uie is TextBox txt)
+                if (uie is TextBox)
+                {
+                    TextBox txt = (TextBox)uie;
                     txt.GetBindingExpression(TextBox.TextProperty)?.UpdateSource();
+                }
 
                 if (Validation.GetHasError(uie))
                     ok = false;
@@ -46,8 +48,7 @@ namespace SAE201.Pages
                 return;
             }
 
-            ((Clients)this.DataContext).Create(); // insert en BDD
-            DialogResult = true;
+            this.DialogResult = true;
         }
     }
 }

@@ -12,41 +12,24 @@
         <model:MagazinReserv x:Name="laCommande" Lescommandes="LeMagasin" />
     </Window.DataContext> -->
     <Grid >
-        <TextBox x:Name="textMotClefChien"
+        <TextBlock Text="Rechercher une commande" FontSize="18" FontWeight="Bold" Margin="0,0,0,10"/>
+        <TextBox x:Name="textMotClefCommande"
         Width="200"
         Height="20"
         TextWrapping="Wrap" Margin="297,-290,297,0" />
         <DataGrid
-        x:Name="dgChiens"
-        Width="300"
-        AutoGenerateColumns="False"
-        ItemsSource="{Binding Lescommandes}" Margin="247,122,247,35" IsReadOnly="True">
-
-
+x:Name="dgCommandes"
+    Width="300"
+    AutoGenerateColumns="False"
+    IsReadOnly="True"
+    Margin="247,122,247,35">
             <DataGrid.Columns>
-                <DataGridTextColumn
-                Width="*"
-                Binding="{Binding IdCommande , ValidatesOnExceptions=true}"
-                Header="Nom" />
-
-                <DataGridTextColumn
-                Width="*"
-                Binding="{Binding Maitre , ValidatesOnExceptions=true}"
-                Header="Maitre" />
-                <DataGridCheckBoxColumn
-                        Width="*"
-                    Binding="{Binding Paiyee , ValidatesOnExceptions=true}"
-                    Header="Paiyee" />
-                <DataGridCheckBoxColumn
-                     Width="*"
-                    Binding="{Binding Retiree  , ValidatesOnExceptions=true}"
-                    Header="Retiree" />
-                
-                <DataGridTextColumn
-                Width="*"
-                Binding="{Binding Poids , ValidatesOnExceptions=true}"
-                Header="poids (kg)" />
-
+                <DataGridTextColumn Binding="{Binding IdCommande}" Header="ID" Width="*"/>
+                <DataGridTextColumn Binding="{Binding DateCommande, StringFormat=dd/MM/yyyy}" Header="Date commande" Width="*"/>
+                <DataGridTextColumn Binding="{Binding DateRetraitPrevue, StringFormat=dd/MM/yyyy}" Header="Date retrait" Width="*"/>
+                <DataGridCheckBoxColumn Binding="{Binding Payee}" Header="Payée" Width="*"/>
+                <DataGridCheckBoxColumn Binding="{Binding Retiree}" Header="Retirée" Width="*"/>
+                <DataGridTextColumn Binding="{Binding PrixTotal}" Header="Prix (€)" Width="*"/>
             </DataGrid.Columns>
         </DataGrid>
         <Button x:Name="btnsupp" FontFamily="Segoe MDL2 Assets" 
@@ -54,7 +37,7 @@
         <Button x:Name="bouttonAjoutDsBd" Content="&#xE710;"
             FontFamily="Segoe MDL2 Assets" HorizontalAlignment="Left" Margin="629,255,0,0" VerticalAlignment="Top" Width="30" Height="30" Click="bouttonAjoutDsBd_Click"/>
         <Button x:Name="editButon" Content="&#xEDFB;"
-            FontFamily="Segoe MDL2 Assets" HorizontalAlignment="Left" Margin="631,307,0,0" VerticalAlignment="Top" Width="30" Height="30"/>
+            FontFamily="Segoe MDL2 Assets" HorizontalAlignment="Left" Margin="631,307,0,0" VerticalAlignment="Top" Width="30" Height="30" Click="editButon_Click"/>
 
 
 

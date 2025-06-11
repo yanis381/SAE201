@@ -232,9 +232,14 @@ namespace SAE201.Models
             {
                 DataTable dt = DataAccess.Instance.ExecuteSelect(cmdSelect);
                 foreach (DataRow row in dt.Rows)
-                    lesClients.Add(new Clients((Int32)row["numclient"], (String)row["nomclient"],
-                   (String)row["prenomclient"], (String)row["tel"], (String)row["adresserue"],
-                   (String)row["adressecp"], (String)row["adresseville"]));
+                    lesClients.Add(new Clients(
+                        (int)row["numclient"], 
+                        (String)row["nomclient"],
+                        (String)row["prenomclient"], 
+                        (String)row["tel"], 
+                        (String)row["adresserue"],
+                        (String)row["adressecp"], 
+                        (String)row["adresseville"]));
             }
 
             return lesClients;

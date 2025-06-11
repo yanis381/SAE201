@@ -29,8 +29,45 @@ namespace SAE201.UCPages
         {
 
             InitializeComponent();
+            dataPlats.Items.Filter = RecherchePlat;
             platforms = Plat.FindAll();
             dataPlats.ItemsSource = platforms;  
+        }
+        private bool RecherchePlat(object obj)
+        {
+            Plat unplat = obj as Plat;
+            return (unplat.NomPlat.StartsWith(textBoxPlats.Text, StringComparison.OrdinalIgnoreCase)
+            || unplat.NomPlat.StartsWith(textBoxPlats.Text, StringComparison.OrdinalIgnoreCase));
+        }
+
+        private void creerproduit_Click(object sender, RoutedEventArgs e)
+        {
+
+            Plat unPlat = new Plat();
+            CreationPlats wPlat = new CreationPlats(unPlat);
+
+            bool? result = wPlat.ShowDialog();
+
+            //if (result == true)
+            //{
+            //    try
+            //    {
+            //        int id = unPlat.Create(wPlat.NumSousCategorie, wPlat.NumPeriode); // Insère en base
+            //        platforms.Add(unPlat); // Ajout à la liste affichée
+            //        dataPlats.ItemsSource = null;
+            //        dataPlats.ItemsSource = platforms;
+            //    }
+            //    catch (Exception ex)
+            //    {
+            //        MessageBox.Show("Le plat n'a pas pu être créé.", "Erreur", MessageBoxButton.OK, MessageBoxImage.Error);
+            //    }
+            //}
+        }
+
+        private void textBoxPlats_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            
+            CollectionViewSource.GetDefaultView(dataPlats.ItemsSource).Refresh();
         }
     }
 }

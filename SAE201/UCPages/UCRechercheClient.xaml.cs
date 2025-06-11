@@ -22,14 +22,17 @@ namespace SAE201.UCPages
     /// </summary>
     public partial class UCRechercheClient : UserControl
     {
-        public Clients ClientSelectionne { get; private set; }
         private List<Clients> tousLesClients;
+        public Clients ClientSelectionne { get; private set; }
 
         public UCRechercheClient()
         {
             InitializeComponent();
+            ChargerTousLesClients();
+        }
 
-            Clients unClient = new Clients();
+        private void ChargerTousLesClients()
+        {
             tousLesClients = Clients.FindAll();
             dataClients.ItemsSource = tousLesClients;
         }
@@ -37,7 +40,6 @@ namespace SAE201.UCPages
         private void searchBox_TextChanged(object sender, TextChangedEventArgs e)
         {
             string filtre = searchBox.Text.ToLower();
-
             List<Clients> resultat = new List<Clients>();
 
             foreach (Clients c in tousLesClients)
@@ -55,9 +57,8 @@ namespace SAE201.UCPages
 
         private void Valider_Click(object sender, RoutedEventArgs e)
         {
-            if (dataClients.SelectedItem != null)
+            if (dataClients.SelectedItem is Clients c)
             {
-                Clients c = (Clients)dataClients.SelectedItem;
                 ClientSelectionne = c;
                 MessageBox.Show("Client sélectionné : " + c.NomClient + " " + c.PrenomClient);
             }
@@ -69,23 +70,32 @@ namespace SAE201.UCPages
 
         private void Creer_Click(object sender, RoutedEventArgs e)
         {
-            CreationClient f = new CreationClient(new Clients(), "Créer");
+            Clients unClient = new Clients();
+            CreationClient wClient = new CreationClient(unClient);
 
-            bool? result = f.ShowDialog();
+            bool? result = wClient.ShowDialog();
+
             if (result == true)
             {
-                tousLesClients = Clients.FindAll();
-                dataClients.ItemsSource = tousLesClients;
+                try
+                {
+                    unClient.NumClient = unClient.Create(); // Sauvegarde en base
+                    tousLesClients.Add(unClient);           // Ajout à la liste affichée
+                    dataClients.ItemsSource = null;         // Forcer le refresh
+                    dataClients.ItemsSource = tousLesClients;
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Le client n'a pas pu être créé.", "Erreur", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
             }
         }
 
-       /* private void VoirHistorique_Click(object sender, RoutedEventArgs e)
+        private void boutVoirHistoCommande_Click(object sender, RoutedEventArgs e)
         {
-            if (dataClients.SelectedItem != null)
+            if (dataClients.SelectedItem is Clients c)
             {
-                Clients c = (Clients)dataClients.SelectedItem;
-
-               List<Commande> commandes = Commande.TrouverParClient(c.NumClient);
+                List<Commande> commandes = Commande.TrouverParClient(c.NumClient);
 
                 if (commandes.Count == 0)
                 {
@@ -102,7 +112,83 @@ namespace SAE201.UCPages
             {
                 MessageBox.Show("Veuillez sélectionner un client.");
             }
+        }
 
-        }*/
+        private void editButon_Click(object sender, RoutedEventArgs e)
+        {
+            if (dataClients.SelectedItem == null)
+            {
+                MessageBox.Show("Veuillez sélectionner un client à modifier.", "Information", MessageBoxButton.OK, MessageBoxImage.Information);
+            }
+            else
+            {
+                Clients clientSelectionne = (Clients)dataClients.SelectedItem;
+
+                // Créer une copie pour modification
+                Clients copie = new Clients(
+                    clientSelectionne.NumClient,
+                    clientSelectionne.NomClient,
+                    clientSelectionne.PrenomClient,
+                    clientSelectionne.TelClient,
+                    clientSelectionne.AdresseRue,
+                    clientSelectionne.AdresseCodePostal,
+                    clientSelectionne.AdresseVille
+                );
+
+                CreationClient f = new CreationClient(copie);
+                bool? result = f.ShowDialog();
+
+                if (result == true)
+                {
+                    try
+                    {
+                        copie.Update(); // met à jour en base
+
+                        // met à jour la liste affichée
+                        clientSelectionne.NomClient = copie.NomClient;
+                        clientSelectionne.PrenomClient = copie.PrenomClient;
+                        clientSelectionne.TelClient = copie.TelClient;
+                        clientSelectionne.AdresseRue = copie.AdresseRue;
+                        clientSelectionne.AdresseCodePostal = copie.AdresseCodePostal;
+                        clientSelectionne.AdresseVille = copie.AdresseVille;
+
+                        dataClients.ItemsSource = null;
+                        dataClients.ItemsSource = tousLesClients;
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("Le client n’a pas pu être modifié.", "Erreur", MessageBoxButton.OK, MessageBoxImage.Error);
+                    }
+                }
+            }
+        }
+
+        private void btnsupp_Click(object sender, RoutedEventArgs e)
+        {
+            if (dataClients.SelectedItem == null)
+            {
+                MessageBox.Show("Veuillez sélectionner un client à supprimer.", "Attention", MessageBoxButton.OK, MessageBoxImage.Warning);
+            }
+            else
+            {
+                Clients clientASupprimer = (Clients)dataClients.SelectedItem;
+                MessageBoxResult result = MessageBox.Show("Êtes-vous sûr de vouloir supprimer ce client ?", "Confirmation", MessageBoxButton.YesNo, MessageBoxImage.Warning);
+
+                if (result == MessageBoxResult.Yes)
+                {
+                    try
+                    {
+                        clientASupprimer.Delete(); // suppression en base
+                        tousLesClients.Remove(clientASupprimer); // suppression de la liste
+                        dataClients.ItemsSource = null;
+                        dataClients.ItemsSource = tousLesClients;
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("Le client n’a pas pu être supprimé.", "Erreur", MessageBoxButton.OK, MessageBoxImage.Error);
+                    }
+                }
+            }
+        }
     }
 }
