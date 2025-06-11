@@ -29,17 +29,24 @@ namespace SAE201.UCPages
         {
 
             InitializeComponent();
+            dataPlats.Items.Filter = RecherchePlat;
             platforms = Plat.FindAll();
             dataPlats.ItemsSource = platforms;  
+        }
+        private bool RecherchePlat(object obj)
+        {
+            Plat unplat = obj as Plat;
+            return (unplat.NomPlat.StartsWith(textBoxPlats.Text, StringComparison.OrdinalIgnoreCase)
+            || unplat.NomPlat.StartsWith(textBoxPlats.Text, StringComparison.OrdinalIgnoreCase));
         }
 
         private void creerproduit_Click(object sender, RoutedEventArgs e)
         {
 
-            //Plat unPlat = new Plat();
-            //CreationPlats wPlat = new CreationPlats(unPlat);
+            Plat unPlat = new Plat();
+            CreationPlats wPlat = new CreationPlats(unPlat);
 
-            //bool? result = wPlat.ShowDialog();
+            bool? result = wPlat.ShowDialog();
 
             //if (result == true)
             //{
@@ -59,19 +66,8 @@ namespace SAE201.UCPages
 
         private void textBoxPlats_TextChanged(object sender, TextChangedEventArgs e)
         {
-            string filtre = textBoxPlats.Text.ToLower();
-            List<Plat> resultat = new List<Plat>();
-
-            foreach (Plat p in platforms)
-            {
-                if (p.NomPlat.ToLower().Contains(filtre) ||
-                    p.Categorie2.NomCategorie.ToLower().Contains(filtre) ||
-                    p.SousCategorie3.NomSousCategorie.ToLower().Contains(filtre))
-                {
-                    resultat.Add(p);
-                }
-            }
-            dataPlats.ItemsSource = resultat;
+            
+            CollectionViewSource.GetDefaultView(dataPlats.ItemsSource).Refresh();
         }
     }
 }
