@@ -9,12 +9,60 @@
     <Grid>
         <StackPanel Margin="10">
             <TextBlock Text="Rechercher un plat" FontSize="18" FontWeight="Bold" Margin="0,0,0,10"/>
-            <TextBox x:Name="textBoxPlats" Width="300" Margin="0,0,0,10" TextChanged="textBoxPlats_TextChanged"  />
+            <TextBlock Text="Rechercher avec le nom                        par le prix              par categorie      par sous categorie" FontSize="18" FontWeight="Bold" Margin="0,0,0,10"/>
+            <TextBox x:Name="textBoxPlats" Width="150" Margin="0,30,500,10" TextChanged="textBoxPlats_TextChanged"  />
+            <TextBox x:Name="textBoxPlatsPrix" Width="150" Margin="0,-30,0,10" TextChanged="textBoxPlats_TextChanged"  />
+            <ComboBox x:Name="comboboxcategorie" Width="120" Margin="320,-50,0,0" LostFocus="comboboxcategorie_LostFocus">
+                <ComboBoxItem >
+                    <TextBlock>Tout</TextBlock>
+                </ComboBoxItem>
+                <ComboBoxItem>
+                    <TextBlock>Charcuterie</TextBlock>   
+                </ComboBoxItem>
+                <ComboBoxItem>
+                    <TextBlock>Plat traiteur</TextBlock>
+                </ComboBoxItem>
+            </ComboBox>
+            <ComboBox x:Name="comboxsouscategorie" Width="120" Margin="0,-30,-600,0"  LostFocus="comboxsouscategorie_LostFocus">
+                <ComboBoxItem>
+                    <TextBlock>Tout</TextBlock>      
+                </ComboBoxItem>
+                <ComboBoxItem>
+                    <TextBlock>Pâtés</TextBlock>
+                </ComboBoxItem>
+                <ComboBoxItem>
+                    <TextBlock>Cuisine du monde</TextBlock>
+                </ComboBoxItem>
+                <ComboBoxItem>
+                    <TextBlock>Traiteur festif</TextBlock>
+                </ComboBoxItem>
+                <ComboBoxItem>
+                    <TextBlock>Terrines</TextBlock>
+                </ComboBoxItem>
+                <ComboBoxItem>
+                    <TextBlock>Jambons	Saucissons</TextBlock>
+                </ComboBoxItem>
+                <ComboBoxItem>
+                    <TextBlock>Végétarien traiteur</TextBlock>
+                </ComboBoxItem>
+                <ComboBoxItem>
+                    <TextBlock>Spécialités régionales</TextBlock>
+                </ComboBoxItem>
+                <ComboBoxItem>
+                    <TextBlock>Plats cuisinés</TextBlock>
+                </ComboBoxItem>
+                <ComboBoxItem>
+                    <TextBlock>Produits fumés</TextBlock>
+                </ComboBoxItem>
+                
+
+            </ComboBox>
+
 
             <DataGrid x:Name="dataPlats" Height="232"
               AutoGenerateColumns="False"
               SelectionMode="Single"
-              Margin="0,0,0,10"
+              Margin="0,20,0,10"
               IsReadOnly="True" Width="690">
 
                 <DataGrid.Columns>
@@ -26,7 +74,8 @@
                     <DataGridTextColumn Header="Sous-catégorie" Binding="{Binding SousCategorie3.NomSousCategorie}" Width="*" />
                 </DataGrid.Columns>
             </DataGrid>
-            <Button x:Name="creerproduit" Content="ajouter plat" Width="150" Click="creerproduit_Click"/>
+            <Button x:Name="creerproduit" Content="ajouter plat" Width="150" Click="creerproduit_Click" Margin="0,14,0,0"/>
+            
         </StackPanel>
     </Grid>
 </UserControl>

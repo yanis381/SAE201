@@ -15,6 +15,7 @@ namespace SAE201.Models
         private int idPlat;
         private string nomPlat;
         private decimal prixUnitaire;
+        private string prixUnitaireString;
         private int delaiPreparation;
         private int nbPersonne;
         private Categorie categorie2;
@@ -22,7 +23,8 @@ namespace SAE201.Models
         private string nomSousCategorie;
         private int numSousCategorie;
         private int numPeriode;
-
+        private string nomcategorie;
+        private string nomsouscategorie;
         public Plat()
         {
         }
@@ -43,6 +45,18 @@ namespace SAE201.Models
         {
             this.categorie2 = categorie2;
             this.sousCategorie3 = sousCategorie3;
+        }
+
+        public Plat(int idPlat, string nomPlat, decimal prixUnitaire, int delaiPreparation, int nbPersonne, string nomSousCategorie, int numPeriode, string nomcategorie)
+        {
+            this.idPlat = idPlat;
+            this.nomPlat = nomPlat;
+            this.prixUnitaire = prixUnitaire;
+            this.delaiPreparation = delaiPreparation;
+            this.nbPersonne = nbPersonne;
+            this.nomSousCategorie = nomSousCategorie;
+            this.numPeriode = numPeriode;
+            this.nomcategorie = nomcategorie;
         }
 
         public string NomPlat
@@ -180,6 +194,45 @@ namespace SAE201.Models
             }
         }
 
+        public string Nomcategorie
+        {
+            get
+            {
+                return this.nomcategorie;
+            }
+
+            set
+            {
+                this.nomcategorie = value;
+            }
+        }
+
+        public string Nomsouscategorie
+        {
+            get
+            {
+                return this.nomsouscategorie;
+            }
+
+            set
+            {
+                this.nomsouscategorie = value;
+            }
+        }
+
+        public string PrixUnitaireString
+        {
+            get
+            {
+                return this.prixUnitaireString;
+            }
+
+            set
+            {
+                this.prixUnitaireString = value;
+            }
+        }
+
         public static List<Plat> FindAll()
         {
             /*List<Categorie> listC = Categorie.FindAll();*/
@@ -213,8 +266,8 @@ namespace SAE201.Models
                 cmdInsert.Parameters.AddWithValue("delaipreparation",this.DelaiPreparation);
                 cmdInsert.Parameters.AddWithValue("nbpersonnes", this.NbPersonne);
 
-                cmdInsert.Parameters.AddWithValue("numsouscategorie", souscat);
-                cmdInsert.Parameters.AddWithValue("numperiode", numperiodess);
+                cmdInsert.Parameters.AddWithValue("numsouscategorie", /*souscat*/ 0);
+                cmdInsert.Parameters.AddWithValue("numperiode", /*numperiodess*/ 0 );
 
                 nb = DataAccess.Instance.ExecuteInsert(cmdInsert);
             }
