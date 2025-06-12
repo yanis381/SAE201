@@ -6,47 +6,53 @@
         xmlns:local="clr-namespace:SAE201.Pages"
         mc:Ignorable="d"
         Title="CreationPlats" Height="549" Width="300" ResizeMode="NoResize">
-    <Grid>
-        <Image Source="/image/logo-sibilia.png" Margin="25,354,639,18"/>
-        <StackPanel Margin="20" x:Name="stackPanelcreerPlat">
-            <TextBlock Text="Nom du plat" Margin="0,10"/>
-            <TextBox x:Name="textBoxCreaPlats" TextWrapping="Wrap" Text="{Binding NomPlat, ValidatesOnDataErrors=True}" Width="200"/>
+    <Grid Margin="10">
+        <StackPanel x:Name="stackPanelPlat">
 
-            <TextBlock Text="Prix du plat" Margin="0,10"/>
-            <TextBox x:Name="TextBoxPrixPlat" TextWrapping="Wrap" Text="{Binding PrixUnitaire, ValidatesOnDataErrors=True}" Width="200"/>
+            <TextBlock Text="Nom du plat" Margin="0,10"/>
+            <TextBox x:Name="textBoxNomPlat" Text="{Binding NomPlat, ValidatesOnDataErrors=True}" Width="250"/>
+
+            <TextBlock Text="Prix unitaire (€)" Margin="0,10"/>
+            <TextBox x:Name="textBoxPrix" Text="{Binding PrixUnitaire, ValidatesOnDataErrors=True}" Width="250"/>
+
+            <TextBlock Text="Délai de préparation (j)" Margin="0,10"/>
+            <TextBox x:Name="textBoxDelai" Text="{Binding DelaiPreparation, ValidatesOnDataErrors=True}" Width="250"/>
 
             <TextBlock Text="Nombre de personnes" Margin="0,10"/>
-            <TextBox x:Name="textBoxNbPersonne" TextWrapping="Wrap" Text="{Binding NbPersonne, ValidatesOnDataErrors=True}" Width="200"/>
+            <TextBox x:Name="textBoxNbPers" Text="{Binding NbPersonne, ValidatesOnDataErrors=True}" Width="250"/>
 
-            <TextBlock Text="Temps de préparation" Margin="0,10"/>
-            <TextBox x:Name="textBoxDelai" TextWrapping="Wrap" Text="{Binding DelaiPreparation, ValidatesOnDataErrors=True}" Width="200"/>
-
-            <TextBlock Text="Catégorie du plat" Margin="0,10"/>
-            <ComboBox x:Name="comboBoxTypePlatsDef" Width="200">
+            <TextBlock Text="Catégorie" Margin="0,10"/>
+            <ComboBox x:Name="comboBoxCategorie" Width="250">
                 <ComboBoxItem Content="Charcuterie"/>
                 <ComboBoxItem Content="Plat traiteur"/>
             </ComboBox>
 
             <TextBlock Text="Sous-catégorie" Margin="0,10"/>
-            <ComboBox x:Name="comboBoxSousCategorie" Width="200">
-                <ComboBoxItem Content="Printemps"/>
-                <ComboBoxItem Content="Été"/>
-                <ComboBoxItem Content="Automne"/>
-                <ComboBoxItem Content="Hiver"/>
+            <ComboBox x:Name="comboBoxSousCategorie" Width="250">
+                <ComboBoxItem Content="Pâtés"/>
+                <ComboBoxItem Content="Cuisine du monde"/>
+                <ComboBoxItem Content="Traiteur festif"/>
+                <ComboBoxItem Content="Terrines"/>
+                <ComboBoxItem Content="Jambons Saucissons"/>
+                <ComboBoxItem Content="Végétarien traiteur"/>
+                <ComboBoxItem Content="Spécialités régionales"/>
+                <ComboBoxItem Content="Plats cuisinés"/>
+                <ComboBoxItem Content="Produits fumés"/>
             </ComboBox>
 
             <TextBlock Text="Période" Margin="0,10"/>
-            <ComboBox x:Name="comboBoxPeriodeDef" Width="200">
+            <ComboBox x:Name="comboBoxPeriode" Width="250">
                 <ComboBoxItem Content="Printemps"/>
                 <ComboBoxItem Content="Été"/>
                 <ComboBoxItem Content="Automne"/>
                 <ComboBoxItem Content="Hiver"/>
             </ComboBox>
 
-            <StackPanel Orientation="Horizontal" Margin="0,20">
-                <Button x:Name="ValidBTnCReaPlats" Content="Valider" Width="100" Margin="10" Click="ValidBTnCReaPlats_Click"/>
-                <Button x:Name="AnnulerBTnCReaPlats" Content="Annuler" Width="100" Margin="10" Click="AnnulerBTnCReaPlats_Click"/>
+            <StackPanel Orientation="Horizontal" Margin="0,20" HorizontalAlignment="Center">
+                <Button Content="Valider" Width="100" Margin="10" Click="Valider_Click"/>
+                <Button Content="Annuler" Width="100" Margin="10" Click="Annuler_Click"/>
             </StackPanel>
+
         </StackPanel>
     </Grid>
 

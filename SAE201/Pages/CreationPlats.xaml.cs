@@ -21,58 +21,78 @@ namespace SAE201.Pages
     /// </summary>
     public partial class CreationPlats : Window
     {
-        public Plat Platcreer { get; set; }
-        public enum comboBoxPeriode { été , hiver , printemps }
+        public Plat MonPlat { get; private set; }
 
-        public int TypePlatSelectionne { get; private set; }
-        public int PeriodeSelectionnee { get; private set; }
+        public int NumSousCategorie { get; private set; }
+        public int NumPeriode { get; private set; }
 
-        private Plat monPlat;
-
-        public CreationPlats(MainWindow.Action actionDeLaPage, Plat p)
+        public CreationPlats(Plat unPlat)
         {
             InitializeComponent();
-            ValidBTnCReaPlats.Content = actionDeLaPage;
-            monPlat = p;
-            this.DataContext = monPlat;
-        }
-        private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            // ne pas utiliser sauf si besoin
+            this.MonPlat = unPlat;
+            this.DataContext = MonPlat;
         }
 
-        private void AnnulerBTnCReaPlats_Click(object sender, RoutedEventArgs e)
+        private void Valider_Click(object sender, RoutedEventArgs e)
         {
-           this.Close();
-        }
-
-        private void ValidBTnCReaPlats_Click(object sender, RoutedEventArgs e)
-        {
-
             bool ok = true;
-            foreach (UIElement uie in stackPanelcreerPlat.Children)
+
+            foreach (UIElement uie in stackPanelPlat.Children)
             {
-                if (uie is TextBox)
-                {
-                    TextBox txt = (TextBox)uie;
-                    txt.GetBindingExpression(TextBox.TextProperty).UpdateSource();
+                if (uie is TextBox txt)
+                    txt.GetBindingExpression(TextBox.TextProperty)?.UpdateSource();
 
-                }
-                else if (Validation.GetHasError(uie))
-                {
+                if (Validation.GetHasError(uie))
                     ok = false;
-                }
-
-                // NE PAS activer sinon ca marche plus 
-                /*else
-                {
-                    MessageBox.Show("c'est pas bon", "etstss" , MessageBoxButton.OK , MessageBoxImage.Warning);
-                    return;
-                }*/
             }
+
+            if (!ok)
+            {
+                MessageBox.Show("Veuillez corriger les erreurs avant de valider.");
+                return;
+            }
+
+            // Conversion des ComboBox en ID
+            NumSousCategorie = GetNumSousCategorie(comboBoxSousCategorie.Text);
+            NumPeriode = GetNumPeriode(comboBoxPeriode.Text);
+
             DialogResult = true;
         }
-        
+
+        private void Annuler_Click(object sender, RoutedEventArgs e)
+        {
+            DialogResult = false;
+        }
+
+        private int GetNumSousCategorie(string nom)
+        {
+            switch (nom)
+            {
+                case "Pâtés": return 1;
+                case "Cuisine du monde": return 2;
+                case "Traiteur festif": return 3;
+                case "Terrines": return 4;
+                case "Jambons Saucissons": return 5;
+                case "Végétarien traiteur": return 6;
+                case "Spécialités régionales": return 7;
+                case "Plats cuisinés": return 8;
+                case "Produits fumés": return 9;
+                default: return 0;
+            }
+        }
+
+        private int GetNumPeriode(string nom)
+        {
+            switch (nom)
+            {
+                case "Printemps": return 1;
+                case "Été": return 2;
+                case "Automne": return 3;
+                case "Hiver": return 4;
+                default: return 0;
+            }
+        }
     }
-    }
+
+}
 
