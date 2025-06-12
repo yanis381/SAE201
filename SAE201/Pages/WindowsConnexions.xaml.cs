@@ -66,6 +66,8 @@ namespace SAE201.Pages
             if (Employe.VerifierConnexion(login, mdp))
             {
                 MessageBox.Show("Connexion réussie !");
+                this.Close();
+
                 // ouvrir la fenêtre suivante ici
             }
             else

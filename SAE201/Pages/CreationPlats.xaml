@@ -5,21 +5,21 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SAE201.Pages"
         mc:Ignorable="d"
-        Title="CreationPlats" Height="500" Width="300" ResizeMode="NoResize">
+        Title="CreationPlats" Height="549" Width="300" ResizeMode="NoResize">
     <Grid>
         <Image Source="/image/logo-sibilia.png" Margin="25,354,639,18"/>
         <StackPanel Margin="20" x:Name="stackPanelcreerPlat">
             <TextBlock Text="Nom du plat" Margin="0,10"/>
-            <TextBox x:Name="textBoxCreaPlats" Text="{Binding NomPlat, ValidatesOnDataErrors=True}" Width="200"/>
+            <TextBox x:Name="textBoxCreaPlats" TextWrapping="Wrap" Text="{Binding NomPlat, ValidatesOnDataErrors=True}" Width="200"/>
 
             <TextBlock Text="Prix du plat" Margin="0,10"/>
-            <TextBox x:Name="TextBoxPrixPlat" Text="{Binding PrixUnitaire, ValidatesOnDataErrors=True}" Width="200"/>
+            <TextBox x:Name="TextBoxPrixPlat" TextWrapping="Wrap" Text="{Binding PrixUnitaire, ValidatesOnDataErrors=True}" Width="200"/>
 
             <TextBlock Text="Nombre de personnes" Margin="0,10"/>
-            <TextBox x:Name="textBoxNbPersonne" Text="{Binding NbPersonne, ValidatesOnDataErrors=True}" Width="200"/>
+            <TextBox x:Name="textBoxNbPersonne" TextWrapping="Wrap" Text="{Binding NbPersonne, ValidatesOnDataErrors=True}" Width="200"/>
 
             <TextBlock Text="Temps de préparation" Margin="0,10"/>
-            <TextBox x:Name="textBoxDelai" Text="{Binding DelaiPreparation, ValidatesOnDataErrors=True}" Width="200"/>
+            <TextBox x:Name="textBoxDelai" TextWrapping="Wrap" Text="{Binding DelaiPreparation, ValidatesOnDataErrors=True}" Width="200"/>
 
             <TextBlock Text="Catégorie du plat" Margin="0,10"/>
             <ComboBox x:Name="comboBoxTypePlatsDef" Width="200">
