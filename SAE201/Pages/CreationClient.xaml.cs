@@ -30,7 +30,7 @@ namespace SAE201.Pages
         private void boutValider_Click(object sender, RoutedEventArgs e)
         {
             bool ok = true;
-            foreach (UIElement uie in panelFormClient.Children)
+            foreach (UIElement uie in panelFormclient.Children)
             {
                 if (uie is TextBox)
                 {
