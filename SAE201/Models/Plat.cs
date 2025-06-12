@@ -15,268 +15,131 @@ namespace SAE201.Models
         private int idPlat;
         private string nomPlat;
         private decimal prixUnitaire;
-        private string prixUnitaireString;
         private int delaiPreparation;
         private int nbPersonne;
+
         private Categorie categorie2;
         private SousCategorie sousCategorie3;
-        private string nomSousCategorie;
+
         private int numSousCategorie;
         private int numPeriode;
-        private string nomcategorie;
-        private string nomsouscategorie;
-        public Plat()
-        {
-        }
 
-        public Plat(string nomPlat, decimal prixUnitaire, int delaiPreparation, int nbPersonne)
-        {
-            this.nomPlat = nomPlat;
-            this.prixUnitaire = prixUnitaire;
-            this.delaiPreparation = delaiPreparation;
-            this.nbPersonne = nbPersonne;
-        }
-        public Plat(int id, string nomPlat, decimal prixUnitaire, int delaiPreparation, int nbPersonne, Categorie categorie2, SousCategorie sousCategorie3)
-    : this(nomPlat, prixUnitaire, delaiPreparation, nbPersonne, categorie2, sousCategorie3)
-        {
-            this.idPlat = id;
-        }
-        public Plat(string nomPlat, decimal prixUnitaire, int delaiPreparation, int nbPersonne, Categorie categorie2, SousCategorie sousCategorie3) : this(nomPlat, prixUnitaire, delaiPreparation, nbPersonne)
-        {
-            this.categorie2 = categorie2;
-            this.sousCategorie3 = sousCategorie3;
-        }
+        public Plat() { }
 
-        public Plat(int idPlat, string nomPlat, decimal prixUnitaire, int delaiPreparation, int nbPersonne, string nomSousCategorie, int numPeriode, string nomcategorie)
+        public Plat(int idPlat, string nomPlat, decimal prixUnitaire, int delaiPreparation, int nbPersonne, Categorie categorie2, SousCategorie sousCategorie3)
         {
             this.idPlat = idPlat;
             this.nomPlat = nomPlat;
             this.prixUnitaire = prixUnitaire;
             this.delaiPreparation = delaiPreparation;
             this.nbPersonne = nbPersonne;
-            this.nomSousCategorie = nomSousCategorie;
-            this.numPeriode = numPeriode;
-            this.nomcategorie = nomcategorie;
+            this.categorie2 = categorie2;
+            this.sousCategorie3 = sousCategorie3;
         }
+
+        // GETTERS ET SETTERS
+        public int IdPlat { get => idPlat; set => idPlat = value; }
 
         public string NomPlat
         {
-            get
-            {
-                return this.nomPlat;
-            }
-
+            get => nomPlat;
             set
             {
-                if (string.IsNullOrWhiteSpace(value))
-                {
-                    throw new ArgumentException("le plat doit etre nomé");
-
-                }
-                this.nomPlat = value;
+                if (string.IsNullOrWhiteSpace(value)) throw new ArgumentException("Nom vide");
+                nomPlat = value;
             }
         }
 
         public decimal PrixUnitaire
         {
-            get
-            {
-                return this.prixUnitaire;
-            }
-
+            get => prixUnitaire;
             set
             {
-                if(value <= 0)
-                {
-                    throw new ArgumentException("le prix peut pas etre negatif ou a 0 ");
-                }
-                this.prixUnitaire = value;
+                if (value <= 0) throw new ArgumentException("Prix <= 0");
+                prixUnitaire = value;
             }
         }
 
         public int DelaiPreparation
         {
-            get
-            {
-                return this.delaiPreparation;
-            }
-
+            get => delaiPreparation;
             set
             {
-                if(value < 0)
-                {
-                    throw new ArgumentException("le temps de prepa doit etre positif");
-                }
-                this.delaiPreparation = value;
+                if (value < 0) throw new ArgumentException("Délai négatif");
+                delaiPreparation = value;
             }
         }
 
         public int NbPersonne
         {
-            get
-            {
-                return this.nbPersonne;
-            }
-
+            get => nbPersonne;
             set
             {
-                if(value <= 0)
-                {
-                    throw new ArgumentException(" il doit etre au moins pour une personne");
-                }
-                this.nbPersonne = value;
+                if (value <= 0) throw new ArgumentException("Nb personnes <= 0");
+                nbPersonne = value;
             }
         }
 
-        public Categorie Categorie2
-        {
-            get
-            {
-                return this.categorie2;
-            }
+        public Categorie Categorie2 { get => categorie2; set => categorie2 = value; }
 
-            set
-            {
-                this.categorie2 = value;
-            }
-        }
+        public SousCategorie SousCategorie3 { get => sousCategorie3; set => sousCategorie3 = value; }
 
-        public SousCategorie SousCategorie3
-        {
-            get
-            {
-                return this.sousCategorie3;
-            }
+        public int NumSousCategorie { get => numSousCategorie; set => numSousCategorie = value; }
 
-            set
-            {
-                this.sousCategorie3 = value;
-            }
-        }
+        public int NumPeriode { get => numPeriode; set => numPeriode = value; }
 
-        public int NumSousCategorie
-        {
-            get
-            {
-                
-                return this.numSousCategorie;
-            }
-
-            set
-            {
-                this.numSousCategorie = value;
-            }
-        }
-
-        public int NumPeriode
-        {
-            get
-            {
-                return this.numPeriode;
-            }
-
-            set
-            {
-                this.numPeriode = value;
-            }
-        }
-
-        public int IdPlat
-        {
-            get
-            {
-                return this.idPlat;
-            }
-
-            set
-            {
-                this.idPlat = value;
-            }
-        }
-
-        public string Nomcategorie
-        {
-            get
-            {
-                return this.nomcategorie;
-            }
-
-            set
-            {
-                this.nomcategorie = value;
-            }
-        }
-
-        public string Nomsouscategorie
-        {
-            get
-            {
-                return this.nomsouscategorie;
-            }
-
-            set
-            {
-                this.nomsouscategorie = value;
-            }
-        }
-
-        public string PrixUnitaireString
-        {
-            get
-            {
-                return this.prixUnitaireString;
-            }
-
-            set
-            {
-                this.prixUnitaireString = value;
-            }
-        }
 
         public static List<Plat> FindAll()
         {
-            /*List<Categorie> listC = Categorie.FindAll();*/
-            List<SousCategorie> listSC = SousCategorie.FindAll();
             List<Plat> lesPlats = new List<Plat>();
-            using (NpgsqlCommand cmdSelect = new NpgsqlCommand("select * from plat P join SousCategorie SC on Sc.numSousCategorie = P.numSousCategorie join Categorie CT on CT.numCategorie = SC.numCategorie join periode Pe on Pe.numPeriode =  P.numPeriode;"))
+
+            using (NpgsqlCommand cmd = new NpgsqlCommand(
+                "SELECT P.numplat, P.nomplat, P.prixunitaire, P.delaipreparation, P.nbpersonnes, " +
+                "SC.numSousCategorie, SC.nomSousCategorie, C.numCategorie, C.nomCategorie " +
+                "FROM plat P JOIN souscategorie SC ON P.numSousCategorie = SC.numSousCategorie " +
+                "JOIN categorie C ON SC.numCategorie = C.numCategorie"))
             {
-                DataTable dt = DataAccess.Instance.ExecuteSelect(cmdSelect);
+                DataTable dt = DataAccess.Instance.ExecuteSelect(cmd);
+
                 foreach (DataRow row in dt.Rows)
-                    lesPlats.Add(new Plat(
+                {
+                    Categorie cat = new Categorie((int)row["numCategorie"], (string)row["nomCategorie"]);
+                    SousCategorie sousCat = new SousCategorie((int)row["numSousCategorie"], (string)row["nomSousCategorie"]);
+
+                    Plat p = new Plat(
                         (int)row["numplat"],
                         (string)row["nomplat"],
                         (decimal)row["prixunitaire"],
                         (int)row["delaipreparation"],
                         (int)row["nbpersonnes"],
-                        new Categorie((int)row["numcategorie"], (string)row["nomcategorie"]),
-                        new SousCategorie((int)row["numsouscategorie"], (string)row["nomsouscategorie"])
-));
-            }
+                        cat,
+                        sousCat
+                    );
 
+                    lesPlats.Add(p);
+                }
+            }
             return lesPlats;
         }
-        public int Create(int souscat , int numperiodess)
+
+        public int Create(int sousCat, int periode)
         {
-            int nb = 0;
-            
-            using (var cmdInsert = new NpgsqlCommand("INSERT INTO plat (nomplat, prixunitaire, delaipreparation , nbpersonnes, numsouscategorie , numperiode) VALUES (@nomplat, @prixunitaire, @delaipreparation , @nbpersonnes, @numsouscategorie , @numperiode) RETURNING numplat"))
+            int id;
+            using (NpgsqlCommand cmd = new NpgsqlCommand(
+                "INSERT INTO plat (nomplat, prixunitaire, delaipreparation, nbpersonnes, numsouscategorie, numperiode) " +
+                "VALUES (@nom, @prix, @delai, @nb, @souscat, @periode) RETURNING numplat"))
             {
-                cmdInsert.Parameters.AddWithValue("nomplat", this.NomPlat ) ;
-                cmdInsert.Parameters.AddWithValue("prixunitaire", this.PrixUnitaire);
-                cmdInsert.Parameters.AddWithValue("delaipreparation",this.DelaiPreparation);
-                cmdInsert.Parameters.AddWithValue("nbpersonnes", this.NbPersonne);
+                cmd.Parameters.AddWithValue("nom", NomPlat);
+                cmd.Parameters.AddWithValue("prix", PrixUnitaire);
+                cmd.Parameters.AddWithValue("delai", DelaiPreparation);
+                cmd.Parameters.AddWithValue("nb", NbPersonne);
+                cmd.Parameters.AddWithValue("souscat", sousCat);
+                cmd.Parameters.AddWithValue("periode", periode);
 
-                cmdInsert.Parameters.AddWithValue("numsouscategorie", /*souscat*/ 0);
-                cmdInsert.Parameters.AddWithValue("numperiode", /*numperiodess*/ 0 );
-
-                nb = DataAccess.Instance.ExecuteInsert(cmdInsert);
+                id = DataAccess.Instance.ExecuteInsert(cmd);
             }
-             
-            return nb;
-        }
-        public override string ToString()
-        {
-            return $"{NomPlat} - {PrixUnitaire}€";
+            IdPlat = id;
+            return id;
         }
     }
 }

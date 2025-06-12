@@ -33,20 +33,14 @@
                     <TextBlock Text="Date de retrait prévue" Margin="0,15,0,5"/>
                     <DatePicker x:Name="dateRetraitPicker" Height="35"/>
 
-                    <!-- Checkboxes -->
-                    <CheckBox x:Name="checkPayee" Content="Payée" FontSize="14" Margin="0,15,0,0"/>
-                    <CheckBox x:Name="checkRetiree" Content="Retirée" FontSize="14" Margin="0,5,0,10"/>
+            <TextBlock Text="Date retrait prévue"/>
+            <DatePicker x:Name="dateRetraitPicker"/>
 
-                    <!-- Prix -->
-                    <TextBlock Text="Prix total (€)" Margin="0,15,0,5"/>
-                    <TextBox x:Name="textPrix" Height="35" FontSize="14"/>
+            <CheckBox x:Name="checkPayee" Content="Payée"/>
+            <CheckBox x:Name="checkRetiree" Content="Retirée"/>
 
-                    <!-- Bouton Valider -->
-                    <Button Content="✅ Valider"
-                            Width="140" Height="40"
-                            Background="#5CB85C" Foreground="White"
-                            FontWeight="Bold" Margin="0,25,0,10"
-                            Click="Valider_Click"/>
+            <TextBlock Text="Prix total"/>
+            <TextBox x:Name="textPrix"/>
 
                     <!-- Bouton Annuler -->
                     <Button Content="❌ Annuler"
