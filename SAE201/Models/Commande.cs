@@ -8,6 +8,7 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Navigation;
 
 namespace SAE201.Models
 {
@@ -19,6 +20,8 @@ namespace SAE201.Models
         private bool payee;
         private bool retiree;
         private decimal prixTotal;
+        private List<Plat> lesplatchoisie;
+        private int nbpersonnePrevue;
 
         public event PropertyChangedEventHandler? PropertyChanged;
 
@@ -118,6 +121,32 @@ namespace SAE201.Models
             }
         }
 
+        public List<Plat> Lesplatchoisie
+        {
+            get
+            {
+                return this.lesplatchoisie;
+            }
+
+            set
+            {
+                this.lesplatchoisie = value;
+            }
+        }
+
+        public int NbpersonnePrevue
+        {
+            get
+            {
+                return this.nbpersonnePrevue;
+            }
+
+            set
+            {
+                this.nbpersonnePrevue = value;
+            }
+        }
+
         private void OnPropertyChanged(string nom)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nom));
@@ -161,7 +190,7 @@ namespace SAE201.Models
                 cmdUpdate.Parameters.AddWithValue("retrait", this.DateRetraitPrevue);
                 cmdUpdate.Parameters.AddWithValue("payee", this.Payee);
                 cmdUpdate.Parameters.AddWithValue("retiree", this.Retiree);
-                cmdUpdate.Parameters.AddWithValue("prix", this.PrixTotal);
+                cmdUpdate.Parameters.AddWithValue("prix", calculPrixTotal());
                 cmdUpdate.Parameters.AddWithValue("id", this.IdCommande);
                 return DataAccess.Instance.ExecuteSet(cmdUpdate);
             }
@@ -212,7 +241,7 @@ namespace SAE201.Models
         {
             return HashCode.Combine(this.IdCommande, this.DateCommande, this.DateRetraitPrevue, this.Payee, this.Retiree, this.PrixTotal);
         }
-
+        // voir l'historique des clients 
         public static List<Commande> TrouverParClient(int idClient)
         {
             List<Commande> commandes = new List<Commande>();
@@ -234,6 +263,20 @@ namespace SAE201.Models
                 }
             }
             return commandes;
+        }
+        public decimal calculPrixTotal()
+        {
+            decimal PrixFianl = 0;
+            Contient contient = new Contient(NbpersonnePrevue);
+            
+            
+            for (int i = 0; i != Lesplatchoisie.Count; i++)
+            {
+                int nbpersonneplats = Lesplatchoisie[i].NbPersonne;
+               PrixFianl = PrixFianl + contient.PrixProduit(contient ,Lesplatchoisie[i]);
+
+            }
+            return PrixFianl;
         }
     }
 }

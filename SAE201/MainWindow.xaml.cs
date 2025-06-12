@@ -26,7 +26,6 @@ namespace SAE201
         public MainWindow()
         {
             InitializeComponent();
-            
             PageConnexion wind  = new PageConnexion();
             
             bool? result = wind.ShowDialog();
