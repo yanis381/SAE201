@@ -18,7 +18,7 @@ namespace SAE201.Models
         public Categorie(int idcategorie, string nomCategorie)
         {
             this.Idcategorie = idcategorie;
-            this.nomCategorie = nomCategorie;
+            this.NomCategorie = nomCategorie;
         }
 
         public string NomCategorie
@@ -30,6 +30,10 @@ namespace SAE201.Models
 
             set
             {
+                if (string.IsNullOrWhiteSpace(value)) { 
+                    
+                    throw new ArgumentNullException("il faut un nom de categorie");
+                }
                 this.nomCategorie = value;
             }
         }
@@ -45,6 +49,10 @@ namespace SAE201.Models
 
             set
             {
+                if (value < 0) {
+                    throw new ArgumentOutOfRangeException("il est en dessous de 0");
+                        
+                        }
                 this.idcategorie = value;
             }
         }

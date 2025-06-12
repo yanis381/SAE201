@@ -55,6 +55,10 @@ namespace SAE201.Models
 
             set
             {
+                if(value < 0)
+                {
+                    throw new ArgumentOutOfRangeException("pas bon");
+                }
                 this.numClient = value;
             }
         }
@@ -71,7 +75,7 @@ namespace SAE201.Models
             {
                 if (string.IsNullOrWhiteSpace(value))
                 {
-                    throw new ArgumentException("met un nom au client");
+                    throw new ArgumentOutOfRangeException("met un nom au client");
 
                 }
                 this.nomClient = value;

@@ -34,7 +34,7 @@
                     <DatePicker x:Name="dateRetraitPicker" Height="35"/>
 
             <TextBlock Text="Date retrait prévue"/>
-            <DatePicker x:Name="dateRetraitPicker"/>
+            <DatePicker x:Name="dateRetraitPicke"/>
 
             <CheckBox x:Name="checkPayee" Content="Payée"/>
             <CheckBox x:Name="checkRetiree" Content="Retirée"/>
