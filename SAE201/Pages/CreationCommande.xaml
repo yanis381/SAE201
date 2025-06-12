@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SAE201.Pages"
         mc:Ignorable="d"
-        Title="CreationCommande" Height="350" Width="400">
+        Title="CreationCommande" Height="350" Width="596.8">
     <Grid>
         <StackPanel x:Name="stackPanelCommande" Margin="20">
             <TextBlock Text="Date commande"/>
@@ -14,10 +14,12 @@
             <TextBlock Text="Date retrait prévue"/>
             <DatePicker x:Name="dateRetraitPicker"/>
 
-            <CheckBox x:Name="checkPayee" Content="Payée"/>
-            <CheckBox x:Name="checkRetiree" Content="Retirée"/>
+            <CheckBox x:Name="checkPayee" Content="Payée"  IsChecked="{Binding Payee , 
+    ValidatesOnExceptions=True}"/>
+            <CheckBox x:Name="checkRetiree" Content="Retirée"  IsChecked="{Binding Retiree , 
+    ValidatesOnExceptions=True}"/>
 
-            <TextBlock Text="Prix total"/>
+            <TextBlock Text="Nb de personne prévue"/>
             <TextBox x:Name="textPrix"/>
 
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,10">
