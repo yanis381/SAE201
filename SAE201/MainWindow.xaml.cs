@@ -29,14 +29,15 @@ namespace SAE201
             PageConnexion wind  = new PageConnexion();
             
             bool? result = wind.ShowDialog();
-           /* if (result == false) {
+            if (result == true)
+            {
+                MainWindow main = new MainWindow();
+                main.Show();
+            }
+            else
+            {
                 Application.Current.Shutdown();
-            }*/
-            
-            //MainContent.Content = new Connexions();
-            
-            //MainFrame.Navigate(new Pages.PageConnexions());
-             
+            }
 
 
 
@@ -107,5 +108,7 @@ namespace SAE201
             // clients 
             MainContent.Content = new UCRechercheClient();
         }
+
+   
     }
 }
