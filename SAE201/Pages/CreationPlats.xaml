@@ -1,59 +1,80 @@
 ﻿<Window x:Class="SAE201.Pages.CreationPlats"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:SAE201.Pages"
-        mc:Ignorable="d"
-        Title="CreationPlats" Height="549" Width="300" ResizeMode="NoResize">
-    <Grid Margin="10">
-        <StackPanel x:Name="stackPanelPlat">
+        Title="Création d’un plat"
+        Height="600" Width="400"
+        WindowStartupLocation="CenterScreen"
+        Background="#E26A6A"
+        ResizeMode="NoResize">
 
-            <TextBlock Text="Nom du plat" Margin="0,10"/>
-            <TextBox x:Name="textBoxNomPlat" Text="{Binding NomPlat, ValidatesOnDataErrors=True}" Width="250"/>
+    <DockPanel>
+        <!-- Bandeau rouge -->
+        <Border Background="#E26A6A" Height="80" DockPanel.Dock="Top">
+            <TextBlock Text="Création d’un plat"
+                       Foreground="White"
+                       FontSize="20"
+                       FontWeight="Bold"
+                       HorizontalAlignment="Center"
+                       VerticalAlignment="Center"/>
+        </Border>
 
-            <TextBlock Text="Prix unitaire (€)" Margin="0,10"/>
-            <TextBox x:Name="textBoxPrix" Text="{Binding PrixUnitaire, ValidatesOnDataErrors=True}" Width="250"/>
+        <!-- Carte blanche au centre -->
+        <ScrollViewer VerticalScrollBarVisibility="Auto">
+            <Border Background="White" CornerRadius="10" Padding="20"
+                    Margin="20" HorizontalAlignment="Center" VerticalAlignment="Top">
+                <StackPanel x:Name="stackPanelPlat" Width="280">
 
-            <TextBlock Text="Délai de préparation (j)" Margin="0,10"/>
-            <TextBox x:Name="textBoxDelai" Text="{Binding DelaiPreparation, ValidatesOnDataErrors=True}" Width="250"/>
+                    <TextBlock Text="Nom du plat" Margin="0,10,0,5"/>
+                    <TextBox x:Name="textBoxNomPlat" Text="{Binding NomPlat, ValidatesOnDataErrors=True}" Width="250"/>
 
-            <TextBlock Text="Nombre de personnes" Margin="0,10"/>
-            <TextBox x:Name="textBoxNbPers" Text="{Binding NbPersonne, ValidatesOnDataErrors=True}" Width="250"/>
+                    <TextBlock Text="Prix unitaire (€)" Margin="0,10,0,5"/>
+                    <TextBox x:Name="textBoxPrix" Text="{Binding PrixUnitaire, ValidatesOnDataErrors=True}" Width="250"/>
 
-            <TextBlock Text="Catégorie" Margin="0,10"/>
-            <ComboBox x:Name="comboBoxCategorie" Width="250">
-                <ComboBoxItem Content="Charcuterie"/>
-                <ComboBoxItem Content="Plat traiteur"/>
-            </ComboBox>
+                    <TextBlock Text="Délai de préparation (j)" Margin="0,10,0,5"/>
+                    <TextBox x:Name="textBoxDelai" Text="{Binding DelaiPreparation, ValidatesOnDataErrors=True}" Width="250"/>
 
-            <TextBlock Text="Sous-catégorie" Margin="0,10"/>
-            <ComboBox x:Name="comboBoxSousCategorie" Width="250">
-                <ComboBoxItem Content="Pâtés"/>
-                <ComboBoxItem Content="Cuisine du monde"/>
-                <ComboBoxItem Content="Traiteur festif"/>
-                <ComboBoxItem Content="Terrines"/>
-                <ComboBoxItem Content="Jambons Saucissons"/>
-                <ComboBoxItem Content="Végétarien traiteur"/>
-                <ComboBoxItem Content="Spécialités régionales"/>
-                <ComboBoxItem Content="Plats cuisinés"/>
-                <ComboBoxItem Content="Produits fumés"/>
-            </ComboBox>
+                    <TextBlock Text="Nombre de personnes" Margin="0,10,0,5"/>
+                    <TextBox x:Name="textBoxNbPers" Text="{Binding NbPersonne, ValidatesOnDataErrors=True}" Width="250"/>
 
-            <TextBlock Text="Période" Margin="0,10"/>
-            <ComboBox x:Name="comboBoxPeriode" Width="250">
-                <ComboBoxItem Content="Printemps"/>
-                <ComboBoxItem Content="Été"/>
-                <ComboBoxItem Content="Automne"/>
-                <ComboBoxItem Content="Hiver"/>
-            </ComboBox>
+                    <TextBlock Text="Catégorie" Margin="0,10,0,5"/>
+                    <ComboBox x:Name="comboBoxCategorie" Width="250">
+                        <ComboBoxItem Content="Charcuterie"/>
+                        <ComboBoxItem Content="Plat traiteur"/>
+                    </ComboBox>
 
-            <StackPanel Orientation="Horizontal" Margin="0,20" HorizontalAlignment="Center">
-                <Button Content="Valider" Width="100" Margin="10" Click="Valider_Click"/>
-                <Button Content="Annuler" Width="100" Margin="10" Click="Annuler_Click"/>
-            </StackPanel>
+                    <TextBlock Text="Sous-catégorie" Margin="0,10,0,5"/>
+                    <ComboBox x:Name="comboBoxSousCategorie" Width="250">
+                        <ComboBoxItem Content="Pâtés"/>
+                        <ComboBoxItem Content="Cuisine du monde"/>
+                        <ComboBoxItem Content="Traiteur festif"/>
+                        <ComboBoxItem Content="Terrines"/>
+                        <ComboBoxItem Content="Jambons Saucissons"/>
+                        <ComboBoxItem Content="Végétarien traiteur"/>
+                        <ComboBoxItem Content="Spécialités régionales"/>
+                        <ComboBoxItem Content="Plats cuisinés"/>
+                        <ComboBoxItem Content="Produits fumés"/>
+                    </ComboBox>
 
-        </StackPanel>
-    </Grid>
+                    <TextBlock Text="Période" Margin="0,10,0,5"/>
+                    <ComboBox x:Name="comboBoxPeriode" Width="250">
+                        <ComboBoxItem Content="Printemps"/>
+                        <ComboBoxItem Content="Été"/>
+                        <ComboBoxItem Content="Automne"/>
+                        <ComboBoxItem Content="Hiver"/>
+                    </ComboBox>
 
+                    <!-- Boutons -->
+                    <StackPanel Orientation="Horizontal" Margin="0,20,0,0" HorizontalAlignment="Center">
+                        <Button Content="✅ Valider" Width="100" Height="35"
+                                Background="#5CB85C" Foreground="White" FontWeight="Bold"
+                                Click="Valider_Click" Margin="10,0"/>
+                        <Button Content="❌ Annuler" Width="100" Height="35"
+                                Background="#B34444" Foreground="White" FontWeight="Bold"
+                                Click="Annuler_Click" Margin="10,0"/>
+                    </StackPanel>
+
+                </StackPanel>
+            </Border>
+        </ScrollViewer>
+    </DockPanel>
 </Window>

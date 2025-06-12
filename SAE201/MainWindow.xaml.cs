@@ -29,16 +29,7 @@ namespace SAE201
             PageConnexion wind  = new PageConnexion();
             
             bool? result = wind.ShowDialog();
-            if (result == true)
-            {
-                MainWindow main = new MainWindow();
-                main.Show();
-            }
-            else
-            {
-                Application.Current.Shutdown();
-            }
-
+          
 
 
 

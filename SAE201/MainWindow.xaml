@@ -5,33 +5,81 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SAE201"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="Maison Sibilia – Menu Principal"
+        Height="600" Width="1000"
+        Background="#E26A6A"
+        WindowStartupLocation="CenterScreen">
 
     <DockPanel>
-        <Menu DockPanel.Dock="Top">
-            <MenuItem  Header="_Commandes"  x:Name="menusCommandes">
-                <MenuItem
-x:Name="menuevoirLescommande"
-Header="_Voir les commandes" Click="menuevoirLescommande_Click" />
 
-            </MenuItem>
-            <MenuItem x:Name="menuPlat" Header="Pl_ats" Click="menuPlat_Click">
+        <!-- Bandeau avec logo -->
+        <Border Background="#E26A6A" Height="80" DockPanel.Dock="Top">
+            <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Margin="20,0">
+                <Image Source="/image/logo-sibilia.png" Height="50" />
+                <TextBlock Text="Maison Sibilia – Interface de gestion"
+                           Foreground="White" FontSize="20" FontWeight="Bold"
+                           VerticalAlignment="Center" Margin="20,0"/>
+            </StackPanel>
+        </Border>
 
-            </MenuItem>
-            <MenuItem Header="_Client" Click="MenuItem_Click">
+        <!-- Menu principal -->
+        <Border DockPanel.Dock="Top" Background="White" Height="60" BorderThickness="0,0,0,1" BorderBrush="#CCCCCC">
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
+                <Button Content="📦 Commandes"
+                Click="menuevoirLescommande_Click"
+                Margin="15,0"
+                Padding="20,10"
+                FontSize="16"
+                FontWeight="Bold"
+                Background="Transparent"
+                BorderThickness="0"
+                Cursor="Hand"/>
 
-                
-                </MenuItem>
-            <MenuItem x:Name="itemDeconnexion" Header="_Déconexion" >
-                <MenuItem x:Name="itemJusteSeDeco" Click="itemJusteSeDeco_Click" Header="Se deco_nnecter"></MenuItem>
-                <MenuItem x:Name="itemSeDecoEtQuitter" Click="itemSeDecoEtQuitter_Click" Header="Se deconnecter e_t fermer le logiciel"></MenuItem>
-                
-            </MenuItem>
+                <Button Content="🍽️ Plats"
+                Click="menuPlat_Click"
+                Margin="15,0"
+                Padding="20,10"
+                FontSize="16"
+                FontWeight="Bold"
+                Background="Transparent"
+                BorderThickness="0"
+                Cursor="Hand"/>
 
-        </Menu>
-        <ContentControl x:Name="MainContent">
-            <TextBlock TextWrapping="Wrap" Text="Bienvenue Choisiez votre action dans le menue " VerticalAlignment="Center" FontSize="35" Margin="40,0,0,0"/>
+                <Button Content="👥 Clients"
+                Click="MenuItem_Click"
+                Margin="15,0"
+                Padding="20,10"
+                FontSize="16"
+                FontWeight="Bold"
+                Background="Transparent"
+                BorderThickness="0"
+                Cursor="Hand"/>
 
+                <Button Content="🔒 Déconnexion"
+                Click="itemJusteSeDeco_Click"
+                Margin="15,0"
+                Padding="20,10"
+                FontSize="16"
+                FontWeight="Bold"
+                Background="Transparent"
+                BorderThickness="0"
+                Cursor="Hand"/>
+            </StackPanel>
+        </Border>
+
+        <!-- Contenu dynamique -->
+        <ContentControl x:Name="MainContent" Background="#E26A6A">
+            <Grid>
+                <Border Background="White" CornerRadius="15" Padding="30" Margin="100"
+                        VerticalAlignment="Center" HorizontalAlignment="Center">
+                    <StackPanel>
+                        <TextBlock Text="Bienvenue 👋" FontSize="26" FontWeight="Bold"
+                                   HorizontalAlignment="Center" Margin="0,0,0,10"/>
+                        <TextBlock Text="Choisissez une action dans le menu ci-dessus."
+                                   FontSize="14" HorizontalAlignment="Center" Foreground="Gray"/>
+                    </StackPanel>
+                </Border>
+            </Grid>
         </ContentControl>
     </DockPanel>
 </Window>
