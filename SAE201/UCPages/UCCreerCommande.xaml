@@ -4,9 +4,204 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:SAE201.UCPages"
-             mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
-    <Grid>
-            
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="700">
+
+    <Grid Background="#E26A6A">
+        <Border Background="White" CornerRadius="10" Margin="20" Padding="20">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+
+                <!-- Titre -->
+                <TextBlock Text="Créer une nouvelle commande"
+                           FontSize="22" FontWeight="Bold"
+                           Foreground="#333"
+                           HorizontalAlignment="Center"
+                           Grid.Row="0" Margin="0,0,0,20"/>
+
+                <!-- Contenu scrollable -->
+                <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto">
+                    <StackPanel Margin="20">
+
+                        <!-- Info Client -->
+                        <StackPanel Orientation="Horizontal" Margin="0,0,0,15">
+                            <TextBlock Text="Client : " VerticalAlignment="Center" FontWeight="Bold"/>
+                            <Label x:Name="lblClient" VerticalAlignment="Center" Margin="5,0" MinWidth="200"/>
+                            <Button Content="Sélectionner un client" Click="btnSelectionnerClient_Click" 
+                                    Background="#0275d8" Foreground="White" Padding="10,5"/>
+                        </StackPanel>
+
+                        <!-- Dates -->
+                        <Grid Margin="0,0,0,15">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+
+                            <StackPanel Grid.Column="0" Margin="0,0,10,0">
+                                <TextBlock Text="Date de commande" Margin="0,0,0,5"/>
+                                <DatePicker x:Name="dateCommande" Height="35"/>
+                            </StackPanel>
+
+                            <StackPanel Grid.Column="1" Margin="10,0,0,0">
+                                <TextBlock Text="Date de retrait prévue" Margin="0,0,0,5"/>
+                                <DatePicker x:Name="dateRetrait" Height="35"/>
+                            </StackPanel>
+                        </Grid>
+
+                        <!-- Recherche et ajout de Plat -->
+                        <GroupBox Header="Rechercher et ajouter des plats" Margin="0,0,0,15" Padding="10">
+                            <StackPanel>
+
+                                <!-- Filtres de recherche -->
+                                <Grid Margin="0,0,0,10">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width="*" />
+                                    </Grid.ColumnDefinitions>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                    </Grid.RowDefinitions>
+
+                                    <!-- Première ligne de filtres -->
+                                    <StackPanel Grid.Column="0" Grid.Row="0" Margin="5">
+                                        <TextBlock Text="Nom du plat" FontWeight="SemiBold" Margin="0,0,0,5"/>
+                                        <TextBox x:Name="textBoxNomPlat" TextChanged="textBoxPlats_TextChanged"/>
+                                    </StackPanel>
+
+                                    <StackPanel Grid.Column="1" Grid.Row="0" Margin="5">
+                                        <TextBlock Text="Prix (€)" FontWeight="SemiBold" Margin="0,0,0,5"/>
+                                        <TextBox x:Name="textBoxPrixPlat" TextChanged="textBoxPlats_TextChanged"/>
+                                    </StackPanel>
+
+                                    <StackPanel Grid.Column="2" Grid.Row="0" Margin="5">
+                                        <TextBlock Text="Délai (j)" FontWeight="SemiBold" Margin="0,0,0,5"/>
+                                        <TextBox x:Name="textBoxDelaiPlat" TextChanged="textBoxPlats_TextChanged"/>
+                                    </StackPanel>
+
+                                    <!-- Deuxième ligne de filtres -->
+                                    <StackPanel Grid.Column="0" Grid.Row="1" Margin="5">
+                                        <TextBlock Text="Catégorie" FontWeight="SemiBold" Margin="0,0,0,5"/>
+                                        <ComboBox x:Name="comboCategorieFiltrer" LostFocus="comboboxcategorie_LostFocus">
+                                            <ComboBoxItem Content="Tout"/>
+                                            <ComboBoxItem Content="Charcuterie"/>
+                                            <ComboBoxItem Content="Plat traiteur"/>
+                                        </ComboBox>
+                                    </StackPanel>
+
+                                    <StackPanel Grid.Column="1" Grid.Row="1" Margin="5">
+                                        <TextBlock Text="Sous-catégorie" FontWeight="SemiBold" Margin="0,0,0,5"/>
+                                        <ComboBox x:Name="comboSousCategorieFiltrer" LostFocus="comboxsouscategorie_LostFocus">
+                                            <ComboBoxItem Content="Tout"/>
+                                            <ComboBoxItem Content="Pâtés"/>
+                                            <ComboBoxItem Content="Cuisine du monde"/>
+                                            <ComboBoxItem Content="Traiteur festif"/>
+                                            <ComboBoxItem Content="Terrines"/>
+                                            <ComboBoxItem Content="Jambons Saucissons"/>
+                                            <ComboBoxItem Content="Végétarien traiteur"/>
+                                            <ComboBoxItem Content="Spécialités régionales"/>
+                                            <ComboBoxItem Content="Plats cuisinés"/>
+                                            <ComboBoxItem Content="Produits fumés"/>
+                                        </ComboBox>
+                                    </StackPanel>
+
+                                    <StackPanel Grid.Column="2" Grid.Row="1" Margin="5" HorizontalAlignment="Right" VerticalAlignment="Bottom">
+                                        <Button Content="🔄 Effacer filtres" Click="btnEffacerFiltres_Click"
+                                                Background="#6c757d" Foreground="White" Padding="5"/>
+                                    </StackPanel>
+                                </Grid>
+
+                                <!-- Liste des plats disponibles -->
+                                <DataGrid x:Name="dataGridPlatsDisponibles" AutoGenerateColumns="False" Height="150" 
+                                          IsReadOnly="True" HeadersVisibility="Column" Margin="0,0,0,10"
+                                          MouseDoubleClick="DataGridPlatsDisponibles_MouseDoubleClick">
+                                    <DataGrid.Columns>
+                                        <DataGridTextColumn Header="Nom" Binding="{Binding NomPlat}" Width="*"/>
+                                        <DataGridTextColumn Header="Prix" Binding="{Binding PrixUnitaire, StringFormat={}{0:N2}€}" Width="80"/>
+                                        <DataGridTextColumn Header="Délai" Binding="{Binding DelaiPreparation}" Width="60"/>
+                                        <DataGridTextColumn Header="Nb pers." Binding="{Binding NbPersonne}" Width="70"/>
+                                        <DataGridTextColumn Header="Catégorie" Binding="{Binding Categorie2.NomCategorie}" Width="120"/>
+                                        <DataGridTextColumn Header="Sous-catégorie" Binding="{Binding SousCategorie3.NomSousCategorie}" Width="120"/>
+                                    </DataGrid.Columns>
+                                </DataGrid>
+
+                                <!-- Ajout du plat sélectionné -->
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="100"/>
+                                        <ColumnDefinition Width="100"/>
+                                    </Grid.ColumnDefinitions>
+
+                                    <TextBlock Grid.Column="0" Text="Double-cliquez sur un plat ci-dessus pour le sélectionner, ou :" 
+                                               VerticalAlignment="Center" Margin="0,0,10,0"/>
+                                    <TextBox x:Name="txtQuantite" Grid.Column="1" 
+                                             Text="1" Margin="0,0,10,0" Height="35" TextAlignment="Center"/>
+                                    <Button Grid.Column="2" Content="Ajouter sélection" Click="btnAjouterPlatSelectionne_Click"
+                                            Background="#5CB85C" Foreground="White" Height="35"/>
+                                </Grid>
+                            </StackPanel>
+                        </GroupBox>
+
+                        <!-- Liste des lignes de commande -->
+                        <GroupBox Header="Plats commandés" Margin="0,0,0,15">
+                            <DataGrid x:Name="dataLignes" AutoGenerateColumns="False" Height="150" 
+                                      IsReadOnly="True" HeadersVisibility="Column">
+                                <DataGrid.Columns>
+                                    <DataGridTextColumn Header="Plat" Binding="{Binding Plat.NomPlat}" Width="*"/>
+                                    <DataGridTextColumn Header="Prix unitaire" Binding="{Binding Plat.PrixUnitaire, StringFormat={}{0:N2}€}" Width="120"/>
+                                    <DataGridTextColumn Header="Quantité" Binding="{Binding Quantite}" Width="100"/>
+                                    <DataGridTextColumn Header="Prix total" Binding="{Binding Prix, StringFormat={}{0:N2}€}" Width="120"/>
+                                    <DataGridTemplateColumn Header="Action" Width="80">
+                                        <DataGridTemplateColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <Button Content="❌" Click="btnSupprimerLigne_Click" 
+                                                        Background="#d9534f" Foreground="White" Width="30"/>
+                                            </DataTemplate>
+                                        </DataGridTemplateColumn.CellTemplate>
+                                    </DataGridTemplateColumn>
+                                </DataGrid.Columns>
+                            </DataGrid>
+                        </GroupBox>
+
+                        <!-- Total et options -->
+                        <Grid Margin="0,0,0,20">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="200"/>
+                            </Grid.ColumnDefinitions>
+
+                            <!-- Options -->
+                            <StackPanel Grid.Column="0">
+                                <CheckBox x:Name="checkPayee" Content="Commande payée" Margin="0,5"/>
+                                <CheckBox x:Name="checkRetiree" Content="Commande retirée" Margin="0,5"/>
+                            </StackPanel>
+
+                            <!-- Total -->
+                            <StackPanel Grid.Column="1" HorizontalAlignment="Right">
+                                <TextBlock Text="TOTAL :" FontWeight="Bold" FontSize="16" HorizontalAlignment="Right"/>
+                                <TextBlock x:Name="textPrixTotal" FontWeight="Bold" FontSize="20" 
+                                           Foreground="#d9534f" HorizontalAlignment="Right"/>
+                            </StackPanel>
+                        </Grid>
+
+                        <!-- Boutons -->
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                            <Button Content="✅ Valider la commande" Width="200" Height="45"
+                                    Background="#5CB85C" Foreground="White" FontWeight="Bold"
+                                    Click="btnValiderCommande_Click" Margin="10,0"/>
+                            <Button Content="🔄 Réinitialiser" Width="140" Height="45"
+                                    Background="#f0ad4e" Foreground="White" FontWeight="Bold"
+                                    Click="btnReinitialiser_Click" Margin="10,0"/>
+                        </StackPanel>
+
+                    </StackPanel>
+                </ScrollViewer>
+            </Grid>
+        </Border>
     </Grid>
 </UserControl>

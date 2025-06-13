@@ -24,6 +24,11 @@ namespace SAE201.Models
         private List<Plat> lesplatchoisie;
         private int nbpersonnePrevue;
 
+        // ✅ AJOUTEZ CES PROPRIÉTÉS
+        private int numClient;
+        private int numEmploye;
+
+
         public event PropertyChangedEventHandler? PropertyChanged;
 
         public Commande() { }
@@ -160,6 +165,28 @@ namespace SAE201.Models
             }
         }
 
+        public int NumClient
+        {
+            get { return this.numClient; }
+            set
+            {
+                if (value < 0) throw new ArgumentException("L'ID du client ne peut pas être négatif.");
+                this.numClient = value;
+                OnPropertyChanged(nameof(NumClient));
+            }
+        }
+
+        public int NumEmploye
+        {
+            get { return this.numEmploye; }
+            set
+            {
+                if (value < 0) throw new ArgumentException("L'ID de l'employé ne peut pas être négatif.");
+                this.numEmploye = value;
+                OnPropertyChanged(nameof(NumEmploye));
+            }
+        }
+
         private void OnPropertyChanged(string nom)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nom));
@@ -168,14 +195,19 @@ namespace SAE201.Models
         public int Create()
         {
             int nb = 0;
-            Contient ctn = new Contient(this.NbpersonnePrevue);
-            using (var cmdInsert = new NpgsqlCommand("INSERT INTO commande (datecommande, dateretraitprevue, payee, retiree, prixtotal) VALUES (@date, @retrait, @payee, @retiree, @prix) RETURNING numcommande"))
+            using (var cmdInsert = new NpgsqlCommand(@"INSERT INTO commande 
+        (numclient, numemploye, datecommande, dateretraitprevue, payee, retiree, prixtotal) 
+        VALUES (@client, @employe, @date, @retrait, @payee, @retiree, @prix) 
+        RETURNING numcommande"))
             {
+                cmdInsert.Parameters.AddWithValue("client", this.NumClient);
+                cmdInsert.Parameters.AddWithValue("employe", this.NumEmploye);
                 cmdInsert.Parameters.AddWithValue("date", this.DateCommande);
                 cmdInsert.Parameters.AddWithValue("retrait", this.DateRetraitPrevue);
                 cmdInsert.Parameters.AddWithValue("payee", this.Payee);
                 cmdInsert.Parameters.AddWithValue("retiree", this.Retiree);
                 cmdInsert.Parameters.AddWithValue("prix", this.PrixTotal);
+
                 nb = DataAccess.Instance.ExecuteInsert(cmdInsert);
             }
             this.IdCommande = nb;
