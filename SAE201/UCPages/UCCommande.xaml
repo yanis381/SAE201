@@ -5,42 +5,142 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:SAE201.UCPages"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800"
-             xmlns:model="clr-namespace:SAE201.Models"
->
-      <!-- <Window.DataContext>
-        <model:MagazinReserv x:Name="laCommande" Lescommandes="LeMagasin" />
-    </Window.DataContext> -->
-    <Grid >
-        <TextBlock Text="Rechercher une commande" FontSize="18" FontWeight="Bold" Margin="0,0,0,10"/>
-        <TextBox x:Name="textMotClefCommande"
-        Width="200"
-        Height="20"
-        TextWrapping="Wrap" Margin="297,-290,297,0" />
-        <DataGrid
-x:Name="dgCommandes"
-    Width="300"
-    AutoGenerateColumns="False"
-    IsReadOnly="True"
-    Margin="247,122,247,35">
-            <DataGrid.Columns>
-                <DataGridTextColumn Binding="{Binding IdCommande}" Header="ID" Width="*"/>
-                <DataGridTextColumn Binding="{Binding DateCommande, StringFormat=dd/MM/yyyy}" Header="Date commande" Width="*"/>
-                <DataGridTextColumn Binding="{Binding DateRetraitPrevue, StringFormat=dd/MM/yyyy}" Header="Date retrait" Width="*"/>
-                <DataGridCheckBoxColumn Binding="{Binding Payee}" Header="Payée" Width="*"/>
-                <DataGridCheckBoxColumn Binding="{Binding Retiree}" Header="Retirée" Width="*"/>
-                <DataGridTextColumn Binding="{Binding PrixTotal}" Header="Prix (€)" Width="*"/>
-                <DataGridTextColumn Binding="{Binding NomClient}" Header="Nom client" Width="*"/>
-                <DataGridTextColumn Binding="{Binding NomEmploye}" Header="Nom employe" Width="*"/>
-                
-            </DataGrid.Columns>
-        </DataGrid>
-        <Button x:Name="btnsupp" FontFamily="Segoe MDL2 Assets" 
-            Content="&#xE74D;"  HorizontalAlignment="Left" Margin="629,196,0,0" VerticalAlignment="Top" Width="30" Height="30" Click="btnsupp_Click"/>
-        <Button x:Name="editButon" Content="&#xEDFB;"
-            FontFamily="Segoe MDL2 Assets" HorizontalAlignment="Left" Margin="631,307,0,0" VerticalAlignment="Top" Width="30" Height="30" Click="editButon_Click"/>
+             d:DesignHeight="500" d:DesignWidth="900">
+
+    <Grid Background="#E26A6A">
+        <Border Background="White" CornerRadius="10" Margin="20" Padding="20">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+
+                <!-- Titre -->
+                <TextBlock Text="Liste des commandes"
+                           FontSize="20" FontWeight="Bold"
+                           Foreground="#333"
+                           HorizontalAlignment="Center"
+                           Grid.Row="0" Margin="0,0,0,20"/>
+
+                <!-- Barre de recherche et boutons -->
+                <Grid Grid.Row="1" Margin="0,0,0,15">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+
+                    <!-- Zone de recherche -->
+                    <StackPanel Grid.Column="0" Orientation="Horizontal">
+                        <TextBlock Text="Rechercher :" VerticalAlignment="Center" Margin="0,0,10,0"/>
+                        <TextBox x:Name="textMotClefCommande"
+                                 Width="250" Height="30"
+                                 VerticalContentAlignment="Center"
+                                 TextChanged="textMotClefCommande_TextChanged"/>
+                    </StackPanel>
+
+                    <!-- Boutons -->
+                    <StackPanel Grid.Column="1" Orientation="Horizontal">
+                        <Button x:Name="btnCommandesDuJour"
+                                Content="📅 Commandes du jour"
+                                Background="#17a2b8" Foreground="White"
+                                FontWeight="Bold"
+                                Width="160" Height="30"
+                                Margin="0,0,10,0"
+                                Click="btnCommandesDuJour_Click"/>
+
+                        <Button x:Name="btnToutesCommandes"
+                                Content="📋 Toutes"
+                                Background="#6c757d" Foreground="White"
+                                FontWeight="Bold"
+                                Width="80" Height="30"
+                                Margin="0,0,10,0"
+                                Click="btnToutesCommandes_Click"/>
 
 
+                    </StackPanel>
+                </Grid>
 
+                <!-- Tableau -->
+                <DataGrid x:Name="dgCommandes"
+                          Grid.Row="2"
+                          AutoGenerateColumns="False"
+                          IsReadOnly="True"
+                          HeadersVisibility="Column"
+                          AlternatingRowBackground="#f8f9fa"
+                          GridLinesVisibility="Horizontal"
+                          SelectionMode="Single">
+
+                    <DataGrid.ColumnHeaderStyle>
+                        <Style TargetType="DataGridColumnHeader">
+                            <Setter Property="Background" Value="#E26A6A"/>
+                            <Setter Property="Foreground" Value="White"/>
+                            <Setter Property="FontWeight" Value="Bold"/>
+                            <Setter Property="Padding" Value="8"/>
+                        </Style>
+                    </DataGrid.ColumnHeaderStyle>
+
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="N° Commande" 
+                                            Binding="{Binding IdCommande}" 
+                                            Width="100"/>
+
+                        <DataGridTextColumn Header="Date commande" 
+                                            Binding="{Binding DateCommande, StringFormat=dd/MM/yyyy}" 
+                                            Width="120"/>
+
+                        <DataGridTextColumn Header="Date retrait" 
+                                            Binding="{Binding DateRetraitPrevue, StringFormat=dd/MM/yyyy}" 
+                                            Width="120"/>
+
+                        <DataGridTextColumn Header="Payée" 
+                                            Binding="{Binding Payee}" 
+                                            Width="80"/>
+
+                        <DataGridTextColumn Header="Retirée" 
+                                            Binding="{Binding Retiree}" 
+                                            Width="80"/>
+
+                        <DataGridTextColumn Header="Prix (€)" 
+                                            Binding="{Binding PrixTotal, StringFormat={}{0:N2}}" 
+                                            Width="100"/>
+                    </DataGrid.Columns>
+                </DataGrid>
+
+                <!-- Boutons d'actions -->
+                <StackPanel Grid.Row="3" Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,15,0,0">
+                    <Button x:Name="btnModifier"
+                            Content="✏️ Modifier"
+                            Background="#f0ad4e" Foreground="White"
+                            FontWeight="Bold"
+                            Width="100" Height="35"
+                            Margin="10,0"
+                            Click="btnModifier_Click"/>
+
+                    <Button x:Name="btnSupprimer"
+                            Content="🗑️ Supprimer"
+                            Background="#d9534f" Foreground="White"
+                            FontWeight="Bold"
+                            Width="100" Height="35"
+                            Margin="10,0"
+                            Click="btnSupprimer_Click"/>
+
+                    <TextBlock x:Name="txtInfo" 
+                               Text="0 commande(s) affichée(s)"
+                               FontStyle="Italic"
+                               Foreground="#666"
+                               VerticalAlignment="Center"
+                               Margin="30,0,20,0"/>
+
+                    <TextBlock x:Name="txtFiltreCourant"
+                               Text=""
+                               FontWeight="Bold"
+                               Foreground="#E26A6A"
+                               VerticalAlignment="Center"/>
+                </StackPanel>
+
+            </Grid>
+        </Border>
     </Grid>
 </UserControl>
