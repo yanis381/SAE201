@@ -89,7 +89,7 @@ namespace SAE201.Models
             {
                 if (string.IsNullOrWhiteSpace(value))
                 {
-                    throw new ArgumentException("met un prennom a l'employe");
+                    throw new ArgumentException("met un prenom a l'employe");
 
                 }
                 this.prenomEmploye = value;

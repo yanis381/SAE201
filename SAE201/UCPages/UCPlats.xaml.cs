@@ -55,12 +55,22 @@ namespace SAE201.UCPages
             Filtrer();
         }
 
+        private void comboTempsPrep_LostFocus(object sender, RoutedEventArgs e)
+        {
+            Filtrer();
+        }
+
+
+
         private void Filtrer()
         {
             string filtreNom = textBoxPlats.Text.ToLower();
             string filtrePrix = textBoxPlatsPrix.Text.ToLower();
             string filtreCategorie = comboboxcategorie.Text;
             string filtreSousCategorie = comboxsouscategorie.Text;
+            string filtreTempsPrep = textBoxTempsPrep.Text;
+
+
 
             List<Plat> resultats = new List<Plat>();
 
@@ -94,7 +104,18 @@ namespace SAE201.UCPages
                         ok = false;
                 }
 
+
+                // Filtre délai
+                if (!string.IsNullOrWhiteSpace(filtreTempsPrep))
+                {
+                    if (p.DelaiPreparation.ToString() != filtreTempsPrep)
+                        ok = false;
+                }
+
+
                 if (ok) resultats.Add(p);
+
+
             }
 
             dataPlats.ItemsSource = resultats;
@@ -123,5 +144,7 @@ namespace SAE201.UCPages
             }
 
         }
+
+     
     }
 } 
