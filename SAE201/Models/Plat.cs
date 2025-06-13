@@ -122,7 +122,7 @@ namespace SAE201.Models
                 this.numPeriode = value;
             }
         }
-
+        // trouver les plat 
         public static List<Plat> FindAll()
         {
             List<Plat> lesPlats = new List<Plat>();
@@ -155,7 +155,7 @@ namespace SAE201.Models
             }
             return lesPlats;
         }
-
+        // creer un plat
         public int Create(int sousCat, int periode)
         {
             int id;
