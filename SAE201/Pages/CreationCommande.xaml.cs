@@ -1,24 +1,11 @@
 ﻿using SAE201.Models;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
-using static SAE201.MainWindow;
 
 namespace SAE201.Pages
 {
-    /// <summary>
-    /// Logique d'interaction pour CreationCommande.xaml
-    /// </summary>
     public partial class CreationCommande : Window
     {
         public Commande CommandeCreee { get; private set; }
@@ -28,35 +15,63 @@ namespace SAE201.Pages
             InitializeComponent();
             this.CommandeCreee = commande;
             this.DataContext = CommandeCreee;
+
+            // Initialiser les valeurs dans les contrôles
+            InitialiserInterface();
+        }
+
+        private void InitialiserInterface()
+        {
+            // S'assurer que les dates sont affichées correctement
+            dateCommandePicker.SelectedDate = CommandeCreee.DateCommande;
+            dateRetraitPicker.SelectedDate = CommandeCreee.DateRetraitPrevue;
+            checkPayee.IsChecked = CommandeCreee.Payee;
+            checkRetiree.IsChecked = CommandeCreee.Retiree;
+            textPrix.Text = CommandeCreee.PrixTotal.ToString("N2");
         }
 
         private void Valider_Click(object sender, RoutedEventArgs e)
         {
-            bool ok = true;
-
-            // Vérifie chaque champ pour mettre à jour les bindings
-            foreach (UIElement uie in stackPanelCommande.Children)
+            try
             {
-                if (uie is TextBox txt)
-                    txt.GetBindingExpression(TextBox.TextProperty)?.UpdateSource();
+                // Récupérer les valeurs des contrôles
+                if (dateCommandePicker.SelectedDate.HasValue)
+                {
+                    CommandeCreee.DateCommande = dateCommandePicker.SelectedDate.Value;
+                }
 
-                if (uie is DatePicker dp)
-                    dp.GetBindingExpression(DatePicker.SelectedDateProperty)?.UpdateSource();
+                if (dateRetraitPicker.SelectedDate.HasValue)
+                {
+                    CommandeCreee.DateRetraitPrevue = dateRetraitPicker.SelectedDate.Value;
+                }
 
-                if (uie is CheckBox cb)
-                    cb.GetBindingExpression(CheckBox.IsCheckedProperty)?.UpdateSource();
+                CommandeCreee.Payee = checkPayee.IsChecked ?? false;
+                CommandeCreee.Retiree = checkRetiree.IsChecked ?? false;
 
-                if (Validation.GetHasError(uie))
-                    ok = false;
+                // Validation du prix
+                if (decimal.TryParse(textPrix.Text, out decimal prix))
+                {
+                    CommandeCreee.PrixTotal = prix;
+                }
+                else
+                {
+                    MessageBox.Show("Veuillez saisir un prix valide.", "Erreur", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    return;
+                }
+
+                // Validation des dates
+                if (CommandeCreee.DateRetraitPrevue <= CommandeCreee.DateCommande)
+                {
+                    MessageBox.Show("La date de retrait doit être postérieure à la date de commande.", "Erreur", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    return;
+                }
+
+                this.DialogResult = true;
             }
-
-            if (!ok)
+            catch (Exception ex)
             {
-                MessageBox.Show("Corrigez les erreurs avant de valider.", "Erreur", MessageBoxButton.OK, MessageBoxImage.Warning);
-                return;
+                MessageBox.Show("Erreur lors de la validation : " + ex.Message, "Erreur", MessageBoxButton.OK, MessageBoxImage.Error);
             }
-
-            this.DialogResult = true;
         }
 
         private void Annuler_Click(object sender, RoutedEventArgs e)

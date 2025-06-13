@@ -3,27 +3,16 @@ using SAE201.Pages;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace SAE201.UCPages
 {
-    /// <summary>
-    /// Logique d'interaction pour UCCommande.xaml
-    /// </summary>
     public partial class UCCommande : UserControl
     {
         private List<Commande> lesCommandes = new List<Commande>();
-
+        private List<Commande> commandesAffichees = new List<Commande>();
+        private bool filtreJourActif = false;
 
         public UCCommande()
         {
@@ -34,103 +23,157 @@ namespace SAE201.UCPages
         private void ChargerCommandes()
         {
             lesCommandes = Commande.FindAll();
-            dgCommandes.ItemsSource = lesCommandes;
+            commandesAffichees = new List<Commande>(lesCommandes);
+            dgCommandes.ItemsSource = commandesAffichees;
+            MettreAJourInfo();
         }
 
         private void textMotClefCommande_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            AppliquerFiltres();
+        }
+
+        private void btnCommandesDuJour_Click(object sender, RoutedEventArgs e)
+        {
+            filtreJourActif = true;
+            textMotClefCommande.Text = "";
+            AppliquerFiltres();
+        }
+
+        private void btnToutesCommandes_Click(object sender, RoutedEventArgs e)
+        {
+            filtreJourActif = false;
+            textMotClefCommande.Text = "";
+            AppliquerFiltres();
+        }
+
+        private void AppliquerFiltres()
         {
             string filtre = textMotClefCommande.Text.ToLower();
             List<Commande> resultat = new List<Commande>();
 
             foreach (Commande c in lesCommandes)
             {
-                if (c.IdCommande.ToString().Contains(filtre) ||
-                    c.DateCommande.ToString("dd/MM/yyyy").ToLower().Contains(filtre) ||
-                    c.PrixTotal.ToString().ToLower().Contains(filtre))
+                bool inclure = true;
+
+                // Filtre par jour si activé
+                if (filtreJourActif)
+                {
+                    if (c.DateCommande.Date != DateTime.Today)
+                    {
+                        inclure = false;
+                    }
+                }
+
+                // Filtre par texte si saisi
+                if (inclure && !string.IsNullOrWhiteSpace(filtre))
+                {
+                    if (!(c.IdCommande.ToString().Contains(filtre) ||
+                          c.DateCommande.ToString("dd/MM/yyyy").Contains(filtre) ||
+                          c.DateRetraitPrevue.ToString("dd/MM/yyyy").Contains(filtre) ||
+                          c.PrixTotal.ToString("N2").Contains(filtre)))
+                    {
+                        inclure = false;
+                    }
+                }
+
+                if (inclure)
                 {
                     resultat.Add(c);
                 }
             }
 
-            dgCommandes.ItemsSource = resultat;
+            commandesAffichees = resultat;
+            dgCommandes.ItemsSource = commandesAffichees;
+            MettreAJourInfo();
         }
 
-
-        private void btnsupp_Click(object sender, RoutedEventArgs e)
+        private void MettreAJourInfo()
         {
-            if (dgCommandes.SelectedItem == null)
+            txtInfo.Text = $"{commandesAffichees.Count} commande(s) affichée(s)";
+
+            if (filtreJourActif)
             {
-                MessageBox.Show("Veuillez sélectionner une commande à supprimer.", "Attention", MessageBoxButton.OK, MessageBoxImage.Warning);
+                txtFiltreCourant.Text = $"📅 Commandes du {DateTime.Today:dd/MM/yyyy}";
             }
             else
             {
-                Commande commandeASupprimer = (Commande)dgCommandes.SelectedItem;
-                MessageBoxResult result = MessageBox.Show("Êtes-vous sûr de vouloir supprimer cette commande ?", "Confirmation", MessageBoxButton.YesNo, MessageBoxImage.Warning);
-                if (result == MessageBoxResult.Yes)
-                {
-                    try
-                    {
-                        commandeASupprimer.Delete();
-                        lesCommandes.Remove(commandeASupprimer);
-                        dgCommandes.ItemsSource = null;
-                        dgCommandes.ItemsSource = lesCommandes;
-                    }
-                    catch (Exception ex)
-                    {
-                        MessageBox.Show("La commande n’a pas pu être supprimée.", "Erreur", MessageBoxButton.OK, MessageBoxImage.Error);
-                    }
-                }
+                txtFiltreCourant.Text = "";
             }
         }
 
-        private void bouttonAjoutDsBd_Click(object sender, RoutedEventArgs e)
-        {
-            Commande uneCommande = new Commande();
-            CreationCommande wCommande = new CreationCommande(uneCommande);
-            bool? result = wCommande.ShowDialog();
-            if (result == true)
-            {
-                try
-                {
-                    uneCommande.IdCommande = uneCommande.Create();
-                    lesCommandes.Add(uneCommande);
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("La commande n’a pas pu être ajoutée.", "Erreur", MessageBoxButton.OK, MessageBoxImage.Error);
-                }
-            }
-        }
-
-        private void editButon_Click(object sender, RoutedEventArgs e)
+        private void btnModifier_Click(object sender, RoutedEventArgs e)
         {
             if (dgCommandes.SelectedItem == null)
             {
                 MessageBox.Show("Veuillez sélectionner une commande à modifier.", "Information", MessageBoxButton.OK, MessageBoxImage.Information);
+                return;
             }
-            else
+
+            Commande commandeSelectionnee = (Commande)dgCommandes.SelectedItem;
+
+            // Créer une copie pour la modification
+            Commande copie = new Commande(
+                commandeSelectionnee.IdCommande,
+                commandeSelectionnee.DateCommande,
+                commandeSelectionnee.DateRetraitPrevue,
+                commandeSelectionnee.Payee,
+                commandeSelectionnee.Retiree,
+                commandeSelectionnee.PrixTotal);
+
+            // Ouvrir la fenêtre de modification
+            CreationCommande fenetreModif = new CreationCommande(copie);
+            bool? result = fenetreModif.ShowDialog();
+
+            if (result == true)
             {
-                Commande commandeSelectionnee = (Commande)dgCommandes.SelectedItem;
-                Commande copie = new Commande(commandeSelectionnee.IdCommande, commandeSelectionnee.DateCommande, commandeSelectionnee.DateRetraitPrevue, commandeSelectionnee.Payee, commandeSelectionnee.Retiree, commandeSelectionnee.PrixTotal);
-                CreationCommande wCommande = new CreationCommande(copie);
-                bool? result = wCommande.ShowDialog();
-                if (result == true)
+                try
                 {
-                    try
-                    {
-                        copie.Update();
-                        commandeSelectionnee.DateCommande = copie.DateCommande;
-                        commandeSelectionnee.DateRetraitPrevue = copie.DateRetraitPrevue;
-                        commandeSelectionnee.Payee = copie.Payee;
-                        commandeSelectionnee.Retiree = copie.Retiree;
-                        commandeSelectionnee.PrixTotal = copie.PrixTotal;
-                        dgCommandes.ItemsSource = null;
-                        dgCommandes.ItemsSource =lesCommandes;
-                    }
-                    catch (Exception ex)
-                    {
-                        MessageBox.Show("La commande n’a pas pu être modifiée.", "Erreur", MessageBoxButton.OK, MessageBoxImage.Error);
-                    }
+                    // Sauvegarder les modifications en base
+                    copie.Update();
+
+                    // Mettre à jour l'objet dans la liste
+                    commandeSelectionnee.DateCommande = copie.DateCommande;
+                    commandeSelectionnee.DateRetraitPrevue = copie.DateRetraitPrevue;
+                    commandeSelectionnee.Payee = copie.Payee;
+                    commandeSelectionnee.Retiree = copie.Retiree;
+                    commandeSelectionnee.PrixTotal = copie.PrixTotal;
+
+                    // Rafraîchir l'affichage
+                    AppliquerFiltres();
+                    MessageBox.Show("Commande modifiée avec succès !", "Succès", MessageBoxButton.OK, MessageBoxImage.Information);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Erreur lors de la modification : " + ex.Message, "Erreur", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+            }
+        }
+
+        private void btnSupprimer_Click(object sender, RoutedEventArgs e)
+        {
+            if (dgCommandes.SelectedItem == null)
+            {
+                MessageBox.Show("Veuillez sélectionner une commande à supprimer.", "Attention", MessageBoxButton.OK, MessageBoxImage.Warning);
+                return;
+            }
+
+            Commande commandeASupprimer = (Commande)dgCommandes.SelectedItem;
+            MessageBoxResult result = MessageBox.Show($"Supprimer la commande n°{commandeASupprimer.IdCommande} ?",
+                                                      "Confirmation", MessageBoxButton.YesNo, MessageBoxImage.Question);
+
+            if (result == MessageBoxResult.Yes)
+            {
+                try
+                {
+                    commandeASupprimer.Delete();
+                    lesCommandes.Remove(commandeASupprimer);
+                    AppliquerFiltres();
+                    MessageBox.Show("Commande supprimée !", "Succès", MessageBoxButton.OK, MessageBoxImage.Information);
+                }
+                catch (Exception)
+                {
+                    MessageBox.Show("Erreur lors de la suppression.", "Erreur", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
             }
         }
