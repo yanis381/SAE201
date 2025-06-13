@@ -104,7 +104,14 @@ namespace SAE201.Models.Tests
         [ExpectedException(typeof(ArgumentException), "categorie cp -1 ")]
         public void CommandePrevueApresDateRetrait()
         {
-            Commande cmd = new Commande(-2, new DateTime(2025, 06, 13), new DateTime(2025, 06, 16), true, false, -6);
+            Commande cmd = new Commande(-2, new DateTime(2025, 06, 16), new DateTime(2025, 06, 13), true, false, 36);
+        }
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentException), "categorie cp -1 ")]
+        public void CommandePrevuApresDateRetrait2()
+        {
+            Commande cmd = new Commande(-2, new DateTime(2025, 06, 16), new DateTime(2025, 06, 13), true, false, 36);
         }
     }
-}
+        
+ }

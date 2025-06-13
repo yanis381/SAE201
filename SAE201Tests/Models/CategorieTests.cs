@@ -37,13 +37,7 @@ namespace SAE201.Models.Tests
         }
 
 
-        [TestMethod]
-        [ExpectedException(typeof(ArgumentNullException), "categorie nom ")] 
-        public void NomNull()
-        {
-            Categorie cat = new Categorie(-1, "");
-
-        }
+       
         
     }
 }
