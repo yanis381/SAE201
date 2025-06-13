@@ -167,13 +167,14 @@ namespace SAE201.Models
         public int Create()
         {
             int nb = 0;
+            Contient ctn = new Contient(this.NbpersonnePrevue);
             using (var cmdInsert = new NpgsqlCommand("INSERT INTO commande (datecommande, dateretraitprevue, payee, retiree, prixtotal) VALUES (@date, @retrait, @payee, @retiree, @prix) RETURNING numcommande"))
             {
                 cmdInsert.Parameters.AddWithValue("date", this.DateCommande);
                 cmdInsert.Parameters.AddWithValue("retrait", this.DateRetraitPrevue);
                 cmdInsert.Parameters.AddWithValue("payee", this.Payee);
                 cmdInsert.Parameters.AddWithValue("retiree", this.Retiree);
-                cmdInsert.Parameters.AddWithValue("prix", this.PrixTotal);
+                cmdInsert.Parameters.AddWithValue("prix", );
                 nb = DataAccess.Instance.ExecuteInsert(cmdInsert);
             }
             this.IdCommande = nb;
