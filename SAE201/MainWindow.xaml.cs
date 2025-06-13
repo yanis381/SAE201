@@ -52,10 +52,7 @@ namespace SAE201
             }
         }
 
-        private void cbChoix_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-
-        }
+    
 
         private void menuevoirLescommande_Click(object sender, RoutedEventArgs e)
         {
@@ -72,8 +69,8 @@ namespace SAE201
         private void itemJusteSeDeco_Click(object sender, RoutedEventArgs e)
         {
             PageConnexion connexion = new PageConnexion();
-            connexion.Show();  // 🔁 Ouvre d'abord la fenêtre de connexion
-            this.Close();      // ❌ Ensuite ferme la fenêtre actuelle
+            connexion.Show();  
+            this.Close(); 
         }
 
 

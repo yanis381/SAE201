@@ -14,7 +14,7 @@ namespace SAE201.Models
         private string prenomEmploye;
         private string password;
         private string login;
-        //private Role RoleEmploye; 
+
 
         public Employe(string nomEmploye, string prenomEmploye, string password, string login)
         {
@@ -22,6 +22,7 @@ namespace SAE201.Models
             this.PrenomEmploye = prenomEmploye;
             this.Password = password;
             this.Login = login;
+          
         }
 
         public string NomEmploye
@@ -96,6 +97,11 @@ namespace SAE201.Models
                 this.prenomEmploye = value;
             }
         }
+
+        
+
+
+        
 
         public static bool VerifierConnexion(string login, string password)
         {
