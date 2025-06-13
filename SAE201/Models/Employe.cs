@@ -15,6 +15,14 @@ namespace SAE201.Models
         private string password;
         private string login;
 
+        public Employe(string nomEmploye, string prenomEmploye, string password, string login)
+        {
+            this.NomEmploye = nomEmploye;
+            this.PrenomEmploye = prenomEmploye;
+            this.Password = password;
+            this.Login = login;
+        }
+
         public string NomEmploye
         {
             get

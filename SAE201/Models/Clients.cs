@@ -27,23 +27,23 @@ namespace SAE201.Models
 
         public Clients(int id, string nom, string prenom, string tel, string rue, string cp, string ville)
         {
-            this.numClient = id;
-            this.nomClient = nom;
-            this.prenomClient = prenom;
-            this.telClient = tel;
-            this.adresseRue = rue;
-            this.adresseCodePostal = cp;
-            this.adresseVille = ville;
+            this.NumClient = id;
+            this.NomClient = nom;
+            this.PrenomClient = prenom;
+            this.TelClient = tel;
+            this.AdresseRue = rue;
+            this.AdresseCodePostal = cp;
+            this.AdresseVille = ville;
         }
 
         public Clients(string nom, string prenom, string tel, string rue, string cp, string ville)
         {
-            this.nomClient = nom;
-            this.prenomClient = prenom;
-            this.telClient = tel;
-            this.adresseRue = rue;
-            this.adresseCodePostal = cp;
-            this.adresseVille = ville;
+            this.NomClient = nom;
+            this.PrenomClient = prenom;
+            this.TelClient = tel;
+            this.AdresseRue = rue;
+            this.AdresseCodePostal = cp;
+            this.AdresseVille = ville;
         }
 
         public int NumClient
@@ -111,6 +111,7 @@ namespace SAE201.Models
 
             set
             {
+                int sertaR;
                 if (string.IsNullOrWhiteSpace(value))
                 {
                     throw new ArgumentException("vous devez donnez un numero de tel ");
@@ -123,6 +124,10 @@ namespace SAE201.Models
                 else if (value.Length < 10)
                 {
                     throw new ArgumentException(" le num de tel est trop cout");
+                }
+                else if(int.TryParse(value ,out sertaR) == false)
+                {
+                    throw new ArgumentException(" c'est pas un num ");
                 }
                 this.telClient = value;
                 PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(TelClient)));
@@ -138,6 +143,8 @@ namespace SAE201.Models
 
             set
             {
+
+                
                 this.adresseRue = value;
                 PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(AdresseRue)));
             }
@@ -152,6 +159,10 @@ namespace SAE201.Models
 
             set
             {
+                if (int.Parse(value) <= 0)
+                {
+                    throw new ArgumentException("pas de vrai code postal");
+                }
                 this.adresseCodePostal = value;
                 PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(AdresseCodePostal)));
             }
@@ -166,6 +177,11 @@ namespace SAE201.Models
 
             set
             {
+                if (string.IsNullOrWhiteSpace(value))
+                {
+                    throw new ArgumentException("vous devez donnez une adresse ");
+
+                }
                 this.adresseVille = value;
                 PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(AdresseVille)));
             }

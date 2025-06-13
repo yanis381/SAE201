@@ -14,6 +14,10 @@ namespace SAE201.Models.Tests
         [TestMethod()]
         public void ClientsTest()
         {
+            Clients cll = new Clients(2, "SAVY", "Alexandre", "0785835105", "nom de la rue", "1", "Annecy");
+            Assert.AreEqual("SAVY", cll.NomClient, "pas le bon nom");
+            Assert.AreEqual("Alexandre", cll.PrenomClient, "pas bon le prenom");
+            Assert.AreEqual("nom de la rue", cll.AdresseRue, "pas la bonne rue");
 
         }
 
@@ -85,6 +89,50 @@ namespace SAE201.Models.Tests
             
         }
 
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentException), "categorie cp -1 ")]
+        public void CodepostalEgalAzero()
+        {
+            Clients cll = new Clients(2, "SAVY", "Alexandre", "0785835105", "nom de la rue ", "0", "Annecy");
+        }
+        
 
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentException), "categorie cp -1 ")]
+        public void numtelmoinsdedixNum()
+        {
+            Clients cll = new Clients(2, "SAVY", "Alexandre", "078580", "nom de la rue ", "3", "Annecy");
+        }
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentException), "categorie cp -1 ")]
+        public void numtelAudessusDeDixNum()
+        {
+            Clients cll = new Clients(2, "SAVY", "Alexandre", "0785851454151514514545454545454545454545454505", "nom de la rue ", "3", "Annecy");
+        }
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentException), "categorie cp -1 ")]
+        public void numtelvide()
+        {
+            Clients cll = new Clients(2, "SAVY", "Alexandre", "  ", "nom de la rue ", "3", "Annecy");
+        }
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentException), "categorie cp -1 ")]
+        public void numtel_QuiEstPasEnNombre()
+        {
+            Clients cll = new Clients(2, "SAVY", "Alexandre", "zero six", "nom de la rue ", "3", "Annecy");
+        }
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentException), "categorie cp -1 ")]
+        public void AdreeseVille_Vide()
+        {
+            Clients cll = new Clients(2, "SAVY", "Alexandre", "0785735105", "nom de la rue ", "3", "  ");
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentException), "categorie cp -1 ")]
+        public void Prenom_Vide()
+        {
+            Clients cll = new Clients(2, "SAVY", "", "0785735105", "nom de la rue ", "3", "Annecy");
+        }
     }
 }
