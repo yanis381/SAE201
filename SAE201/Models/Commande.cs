@@ -8,6 +8,7 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Media.TextFormatting;
 using System.Windows.Navigation;
 
 namespace SAE201.Models
@@ -63,10 +64,10 @@ namespace SAE201.Models
             }
             set
             {
-                if(value >= DateRetraitPrevue)
+               /* if(value >= DateRetraitPrevue)
                 {
                     throw new ArgumentException("dateCommande apres la date de retrait");
-                }
+                }*/
                 dateCommande = value;
                 OnPropertyChanged(nameof(DateCommande));
             }
@@ -174,7 +175,7 @@ namespace SAE201.Models
                 cmdInsert.Parameters.AddWithValue("retrait", this.DateRetraitPrevue);
                 cmdInsert.Parameters.AddWithValue("payee", this.Payee);
                 cmdInsert.Parameters.AddWithValue("retiree", this.Retiree);
-                cmdInsert.Parameters.AddWithValue("prix", );
+                cmdInsert.Parameters.AddWithValue("prix", this.PrixTotal);
                 nb = DataAccess.Instance.ExecuteInsert(cmdInsert);
             }
             this.IdCommande = nb;
@@ -220,6 +221,9 @@ namespace SAE201.Models
 
         public static List<Commande> FindAll()
         {
+            /*select c.NumCommande , c.Numclient , c.NumEmploye , c.DateCommande, c.DateRetraitPrevue , c.Payee , c.Retiree , c.PrixTotal , cl.nomClient , E.NomEmploye from commande c 
+join Employe E on E.NumEmploye = c.NumEmploye 
+join Client cl on cl.numClient = C.numClient*/
             List<Commande> lesCommandes = new List<Commande>();
             using (NpgsqlCommand cmdSelect = new NpgsqlCommand("SELECT * FROM commande;"))
             {
