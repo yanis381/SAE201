@@ -6,7 +6,7 @@
              mc:Ignorable="d">
 
     <Grid Background="#E26A6A">
-        <Border Background="White" CornerRadius="10" Margin="30" Padding="30">
+        <Border Background="White" CornerRadius="10" Margin="35" Padding="30">
             <Grid>
 
                 <Grid.RowDefinitions>
@@ -26,6 +26,7 @@
                 <!-- Filtres -->
                 <Grid Grid.Row="1" Margin="0,0,0,20">
                     <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
                         <ColumnDefinition Width="*" />
                         <ColumnDefinition Width="*" />
                         <ColumnDefinition Width="*" />
@@ -70,7 +71,14 @@
                             <ComboBoxItem Content="Produits fumés"/>
                         </ComboBox>
                     </StackPanel>
+
+                    <!-- Délai -->
+                    <StackPanel Grid.Column="4" Margin="10">
+                        <TextBlock Text="Filtrer par délai (j)" FontWeight="SemiBold" Margin="0,0,0,5"/>
+                        <TextBox x:Name="textBoxTempsPrep" Width="160" TextChanged="textBoxPlats_TextChanged"/>
+                    </StackPanel>
                 </Grid>
+
 
                 <!-- Tableau -->
                 <DataGrid x:Name="dataPlats"
