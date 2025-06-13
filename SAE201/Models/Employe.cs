@@ -51,6 +51,11 @@ namespace SAE201.Models
 
             set
             {
+                if (string.IsNullOrWhiteSpace(value))
+                {
+                    throw new ArgumentException("met un nom a l'employe");
+
+                }
                 this.password = value;
             }
         }
@@ -64,6 +69,11 @@ namespace SAE201.Models
 
             set
             {
+                if (string.IsNullOrWhiteSpace(value))
+                {
+                    throw new ArgumentException("met un nom a l'employe");
+
+                }
                 this.login = value;
             }
         }

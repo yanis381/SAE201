@@ -17,19 +17,24 @@ namespace SAE201.Models
 
         public SousCategorie(int idsoucategorie, string nomSousCategorie)
         {
-            this.idsoucategorie = idsoucategorie;
-            this.nomSousCategorie = nomSousCategorie;
+            this.Idsoucategorie = idsoucategorie;
+            this.NomSousCategorie = nomSousCategorie;
         }
 
         public int Idsoucategorie
         {
             get
             {
+                
                 return this.idsoucategorie;
             }
 
             set
             {
+                if(value <0)
+                {
+                    throw new ArgumentException("sous categorie ");
+                }
                 this.idsoucategorie = value;
             }
         }
@@ -43,7 +48,11 @@ namespace SAE201.Models
 
             set
             {
-                this.nomSousCategorie = value;
+                if (string.IsNullOrWhiteSpace(value))
+                {
+                    throw new ArgumentException("il faut donner un nom de sous categorie ");
+                }
+                    this.nomSousCategorie = value;
             }
         }
         public static List<SousCategorie> FindAll()

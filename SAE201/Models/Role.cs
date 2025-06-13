@@ -10,6 +10,11 @@ namespace SAE201.Models
     {
         private string nomRole;
 
+        public Role(string nomRole)
+        {
+            this.NomRole = nomRole;
+        }
+
         public string NomRole
         {
             get
@@ -19,6 +24,11 @@ namespace SAE201.Models
 
             set
             {
+                if (string.IsNullOrWhiteSpace(value))
+                {
+                    throw new ArgumentException("il faut un role ");
+
+                }
                 this.nomRole = value;
             }
         }

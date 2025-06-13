@@ -28,17 +28,17 @@ namespace SAE201.Models
 
         public Plat(int idPlat, string nomPlat, decimal prixUnitaire, int delaiPreparation, int nbPersonne, Categorie categorie2, SousCategorie sousCategorie3)
         {
-            this.idPlat = idPlat;
-            this.nomPlat = nomPlat;
-            this.prixUnitaire = prixUnitaire;
-            this.delaiPreparation = delaiPreparation;
-            this.nbPersonne = nbPersonne;
-            this.categorie2 = categorie2;
-            this.sousCategorie3 = sousCategorie3;
+            this.IdPlat = idPlat;
+            this.NomPlat = nomPlat;
+            this.PrixUnitaire = prixUnitaire;
+            this.DelaiPreparation = delaiPreparation;
+            this.NbPersonne = nbPersonne;
+            this.Categorie2 = categorie2;
+            this.SousCategorie3 = sousCategorie3;
         }
 
         // GETTERS ET SETTERS
-        public int IdPlat { get => idPlat; set => idPlat = value; }
+        
 
         public string NomPlat
         {
@@ -65,7 +65,7 @@ namespace SAE201.Models
             get => delaiPreparation;
             set
             {
-                if (value < 0) throw new ArgumentException("Délai négatif");
+                if (value <= 0) throw new ArgumentException("Délai négatif");
                 delaiPreparation = value;
             }
         }
@@ -86,8 +86,42 @@ namespace SAE201.Models
 
         public int NumSousCategorie { get => numSousCategorie; set => numSousCategorie = value; }
 
-        public int NumPeriode { get => numPeriode; set => numPeriode = value; }
+        
 
+        public int IdPlat
+        {
+            get
+            {
+                return this.idPlat;
+            }
+
+            set
+            {
+                if (value < 0)
+                {
+                    throw new ArgumentException("pas d'id negatif");
+                }
+                
+                this.idPlat = value;
+            }
+        }
+
+        public int NumPeriode
+        {
+            get
+            {
+                return this.numPeriode;
+            }
+
+            set
+            {
+                if (value < 0)
+                {
+                    throw new ArgumentException("pas de numero de periodes");
+                }
+                this.numPeriode = value;
+            }
+        }
 
         public static List<Plat> FindAll()
         {
