@@ -25,7 +25,16 @@
         <!-- Menu principal -->
         <Border DockPanel.Dock="Top" Background="White" Height="60" BorderThickness="0,0,0,1" BorderBrush="#CCCCCC">
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
-                <Button Content="📦 Commandes"
+
+                <Button x:Name="menucreercommande" Content="📦 Créer une Commande"
+                Margin="15,0"
+                Padding="20,10"
+                FontSize="16"
+                FontWeight="Bold"
+                Background="Transparent"
+                BorderThickness="0"
+                Cursor="Hand" Click="menucreercommande_Click"/>
+                <Button x:Name="menuvoircommande" Content="📦 Commandes"
                 Click="menuevoirLescommande_Click"
                 Margin="15,0"
                 Padding="20,10"
@@ -35,7 +44,7 @@
                 BorderThickness="0"
                 Cursor="Hand"/>
 
-                <Button Content="🍽️ Plats"
+                <Button x:Name="menuvoirplat" Content="🍽️ Plats"
                 Click="menuPlat_Click"
                 Margin="15,0"
                 Padding="20,10"
@@ -45,8 +54,8 @@
                 BorderThickness="0"
                 Cursor="Hand"/>
 
-                <Button Content="👥 Clients"
-                Click="MenuItem_Click"
+                <Button x:Name="menuvoitclient" Content="👥 Clients"
+                Click="menuvoitclient_Click"
                 Margin="15,0"
                 Padding="20,10"
                 FontSize="16"

@@ -30,6 +30,9 @@ x:Name="dgCommandes"
                 <DataGridCheckBoxColumn Binding="{Binding Payee}" Header="Payée" Width="*"/>
                 <DataGridCheckBoxColumn Binding="{Binding Retiree}" Header="Retirée" Width="*"/>
                 <DataGridTextColumn Binding="{Binding PrixTotal}" Header="Prix (€)" Width="*"/>
+                <DataGridTextColumn Binding="{Binding NomClient}" Header="Nom client" Width="*"/>
+                <DataGridTextColumn Binding="{Binding NomEmploye}" Header="Nom employe" Width="*"/>
+                
             </DataGrid.Columns>
         </DataGrid>
         <Button x:Name="btnsupp" FontFamily="Segoe MDL2 Assets" 

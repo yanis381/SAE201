@@ -43,7 +43,17 @@ namespace SAE201.UCPages
             if (dataGridClients.SelectedItem is Clients c)
             {
                 ClientSelectionne = c;
-                MessageBox.Show("Client sélectionné : " + c.NomClient + " " + c.PrenomClient);
+
+                // Fermer la fenêtre parent si elle existe
+                Window parentWindow = Window.GetWindow(this);
+                if (parentWindow != null)
+                {
+                    parentWindow.DialogResult = true;
+                }
+                else
+                {
+                    MessageBox.Show("Client sélectionné : " + c.NomClient + " " + c.PrenomClient);
+                }
             }
             else
             {

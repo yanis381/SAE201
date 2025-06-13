@@ -91,12 +91,14 @@ namespace SAE201
             this.Close();
         }
 
-        private void MenuItem_Click(object sender, RoutedEventArgs e)
+        private void menucreercommande_Click(object sender, RoutedEventArgs e)
         {
-            // clients 
-            MainContent.Content = new UCRechercheClient();
+            MainContent.Content = new UCCreerCommande();
         }
 
-   
+        private void menuvoitclient_Click(object sender, RoutedEventArgs e)
+        {
+            MainContent.Content = new UCRechercheClient();
+        }
     }
 }
