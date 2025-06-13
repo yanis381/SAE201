@@ -55,7 +55,7 @@
                 BorderThickness="0"
                 Cursor="Hand"/>
 
-                <Button Content="🔒 Déconnexion"
+                <Button x:Name="BtnDeconnexion" Content="🔒 Déconnexion"
                 Click="itemJusteSeDeco_Click"
                 Margin="15,0"
                 Padding="20,10"

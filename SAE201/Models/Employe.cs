@@ -14,6 +14,7 @@ namespace SAE201.Models
         private string prenomEmploye;
         private string password;
         private string login;
+        //private Role RoleEmploye; 
 
         public Employe(string nomEmploye, string prenomEmploye, string password, string login)
         {

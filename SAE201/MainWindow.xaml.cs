@@ -67,22 +67,17 @@ namespace SAE201
             MainContent.Content = new UCPlats();
         }
 
-        
+
 
         private void itemJusteSeDeco_Click(object sender, RoutedEventArgs e)
         {
-            //DecoPuisReco();
-            MessageBox.Show("en devellopement");
-
-            
-            
+            PageConnexion connexion = new PageConnexion();
+            connexion.Show();  // 🔁 Ouvre d'abord la fenêtre de connexion
+            this.Close();      // ❌ Ensuite ferme la fenêtre actuelle
         }
 
-        private void itemSeDecoEtQuitter_Click(object sender, RoutedEventArgs e)
-        {
-            this.Close();
-            
-        }
+
+
         private void DecoPuisReco()
         {
             this.Close();
