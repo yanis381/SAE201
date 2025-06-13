@@ -63,6 +63,10 @@ namespace SAE201.Models
             }
             set
             {
+                if(value >= DateRetraitPrevue)
+                {
+                    throw new ArgumentException("dateCommande apres la date de retrait");
+                }
                 dateCommande = value;
                 OnPropertyChanged(nameof(DateCommande));
             }
@@ -76,6 +80,10 @@ namespace SAE201.Models
             }
             set
             {
+                if (value <= DateCommande)
+                {
+                    throw new ArgumentException("dateCommande apres la date de retrait");
+                }
                 dateRetraitPrevue = value;
                 OnPropertyChanged(nameof(DateRetraitPrevue));
             }
@@ -143,6 +151,10 @@ namespace SAE201.Models
 
             set
             {
+                if(value <= 0)
+                {
+                    throw new ArgumentException("nb personne < | = 0");
+                }
                 this.nbpersonnePrevue = value;
             }
         }

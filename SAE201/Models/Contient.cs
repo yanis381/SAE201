@@ -19,8 +19,8 @@ namespace SAE201.Models
 
         public Contient(int quantiter, decimal prix)
         {
-            this.quantiter = quantiter;
-            this.prix = prix;
+            this.Quantiter = quantiter;
+            this.Prix = prix;
         }
 
         public int Quantiter
@@ -32,6 +32,10 @@ namespace SAE201.Models
 
             set
             {
+                if (value <= 0) {
+                    throw new ArgumentException("valeur quantiter inferieur ou egal a 0");
+                
+                }
                 this.quantiter = value;
             }
         }
@@ -46,6 +50,13 @@ namespace SAE201.Models
 
             set
             {
+
+                if (value <= 0)
+                {
+                    throw new ArgumentException("valeur Prix inferieur ou egal a 0");
+
+                }
+
                 this.prix = value ;
                     
             }

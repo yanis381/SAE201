@@ -25,6 +25,8 @@ namespace SAE201
         public enum Action { Modifier, Créer }
         public MainWindow()
         {
+            
+
             InitializeComponent();
             PageConnexion wind  = new PageConnexion();
             
