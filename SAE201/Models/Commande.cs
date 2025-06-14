@@ -8,6 +8,7 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Documents;
 using System.Windows.Media.TextFormatting;
 using System.Windows.Navigation;
 
@@ -23,6 +24,8 @@ namespace SAE201.Models
         private decimal prixTotal;
         private List<Plat> lesplatchoisie;
         private int nbpersonnePrevue;
+        Employe employeCommande;
+        Clients clientCommande;
 
         // ✅ AJOUTEZ CES PROPRIÉTÉS
         private int numClient;
@@ -41,10 +44,17 @@ namespace SAE201.Models
             Retiree = retiree;
             PrixTotal = prixTotal;
         }
+        
         public Commande(int idCommande, DateTime dateCommande, DateTime dateRetraitPrevue, bool payee, bool retiree, decimal prixTotal)
             : this(dateCommande, dateRetraitPrevue, payee, retiree, prixTotal)
         {
             IdCommande = idCommande;
+        }
+
+        public Commande(int idCommande, DateTime dateCommande, DateTime dateRetraitPrevue, bool payee, bool retiree, decimal prixTotal, Employe employe, Clients client) : this(idCommande, dateCommande, dateRetraitPrevue, payee, retiree, prixTotal)
+        {
+            this.EmployeCommande = employe;
+            this.ClientCommande = client;
         }
 
         public int IdCommande
@@ -187,6 +197,36 @@ namespace SAE201.Models
             }
         }
 
+        
+
+        
+
+        public Employe EmployeCommande
+        {
+            get
+            {
+                return this.employeCommande;
+            }
+
+            set
+            {
+                this.employeCommande = value;
+            }
+        }
+
+        public Clients ClientCommande
+        {
+            get
+            {
+                return this.clientCommande;
+            }
+
+            set
+            {
+                this.clientCommande = value;
+            }
+        }
+
         private void OnPropertyChanged(string nom)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nom));
@@ -253,22 +293,25 @@ namespace SAE201.Models
 
         public static List<Commande> FindAll()
         {
-            /*select c.NumCommande , c.Numclient , c.NumEmploye , c.DateCommande, c.DateRetraitPrevue , c.Payee , c.Retiree , c.PrixTotal , cl.nomClient , E.NomEmploye from commande c 
-join Employe E on E.NumEmploye = c.NumEmploye 
-join Client cl on cl.numClient = C.numClient*/
+            
             List<Commande> lesCommandes = new List<Commande>();
-            using (NpgsqlCommand cmdSelect = new NpgsqlCommand("SELECT * FROM commande;"))
+            using (NpgsqlCommand cmdSelect = new NpgsqlCommand("select c.NumCommande , c.Numclient , c.NumEmploye ,c.DateCommande, c.DateRetraitPrevue , c.Payee , c.Retiree ,c.PrixTotal , cl.nomClient ,E.NomEmploye , E.numRole , E.prenomemploye , E.login , E.Password , cl.Prenomclient , cl.tel , cl.adresserue , cl.adressecp , cl.adresseville from commande c join Employe E on E.NumEmploye = c.NumEmploye join Client cl on cl.numClient = c.numClient"
+                ))
             {
                 DataTable dt = DataAccess.Instance.ExecuteSelect(cmdSelect);
                 foreach (DataRow dr in dt.Rows)
                 {
+                    Employe empl = new Employe((String)dr["NomEmploye"], (String)dr["NomEmploye"], (String)dr["Password"], (String)dr["login"]);
+                    Clients clients = new Clients((String)dr["nomClient"], (String)dr["prenomemploye"], (String)dr["tel"], (String)dr["adresserue"], (String)dr["adressecp"], (String)dr["adresseville"]);
                     lesCommandes.Add(new Commande(
                         (int)dr["numcommande"],
                         (DateTime)dr["datecommande"],
                         (DateTime)dr["dateretraitprevue"],
                         (bool)dr["payee"],
                         (bool)dr["retiree"],
-                        (decimal)dr["prixtotal"]
+                        (decimal)dr["prixtotal"],
+                        empl,
+                        clients
                     ));
                 }
             }

@@ -92,7 +92,7 @@
 
                         <DataGridTextColumn Header="Date retrait" 
                                             Binding="{Binding DateRetraitPrevue, StringFormat=dd/MM/yyyy}" 
-                                            Width="120"/>
+                                            Width="100"/>
 
                         <DataGridTextColumn Header="Payée" 
                                             Binding="{Binding Payee}" 
@@ -104,8 +104,16 @@
 
                         <DataGridTextColumn Header="Prix (€)" 
                                             Binding="{Binding PrixTotal, StringFormat={}{0:N2}}" 
-                                            Width="100"/>
+                                            Width="80"/>
+                        <DataGridTextColumn Header="Nom de L'employe" 
+                     Binding="{Binding EmployeCommande.NomEmploye}" 
+                     Width="125"/>
+                        <DataGridTextColumn Header="Nom du client" 
+Binding="{Binding ClientCommande.NomClient}" 
+Width="100"/>
+                        <!-- ClientCommande -->
                     </DataGrid.Columns>
+                    
                 </DataGrid>
 
                 <!-- Boutons d'actions -->
