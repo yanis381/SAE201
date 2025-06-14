@@ -22,20 +22,6 @@ namespace SAE201.Pages
     /// </summary>
     public partial class PageConnexion : Window
     {
-        private bool testCo;
-
-        public bool TestCo
-        {
-            get
-            {
-                return this.testCo;
-            }
-
-            set
-            {
-                this.testCo = value;
-            }
-        }
 
 
 

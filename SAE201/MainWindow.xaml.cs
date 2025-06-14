@@ -73,21 +73,6 @@ namespace SAE201
             this.Close(); 
         }
 
-
-
-        private void DecoPuisReco()
-        {
-            this.Close();
-            DecoPartdeux();
-        }
-        private void DecoPartdeux()
-        {
-            MainWindow reco = new MainWindow();
-
-            reco.ShowDialog();
-            this.Close();
-        }
-
         private void menucreercommande_Click(object sender, RoutedEventArgs e)
         {
             MainContent.Content = new UCCreerCommande();
