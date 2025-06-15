@@ -12,7 +12,7 @@ namespace SAE201.UCPages
     {
         private Clients clientSelectionne;
         private List<Plat> tousLesPlats;
-        private ObservableCollection<Contient> contientCommande;  // ← Changé de LigneCommande à Contient
+        private ObservableCollection<Contient> contientCommande;
         private decimal prixTotal;
 
         public UCCreerCommande()
@@ -24,12 +24,12 @@ namespace SAE201.UCPages
         private void InitialiserInterface()
         {
             // Initialiser les collections
-            contientCommande = new ObservableCollection<Contient>();  // ← Changé
+            contientCommande = new ObservableCollection<Contient>();
             tousLesPlats = Plat.FindAll();
 
             // Configurer les contrôles
             dataGridPlatsDisponibles.ItemsSource = tousLesPlats;
-            dataLignes.ItemsSource = contientCommande;  // ← Changé
+            dataLignes.ItemsSource = contientCommande;  
 
             // Initialiser les ComboBox de filtrage
             comboCategorieFiltrer.SelectedIndex = 0;
@@ -145,7 +145,7 @@ namespace SAE201.UCPages
             }
         }
 
-        //  - Logique commune d'ajout de plat
+        //  - Logique d'ajout de plat
         private void AjouterPlatALaCommande(Plat platSelectionne)
         {
             if (!int.TryParse(txtQuantite.Text, out int quantite) || quantite <= 0)
@@ -157,11 +157,11 @@ namespace SAE201.UCPages
             // Vérifier si le plat est déjà dans la liste
             Contient contientExistant = null;
 
-            foreach (Contient contient in contientCommande)  // ← Changé
+            foreach (Contient contient in contientCommande)  
             {
-                if (contient.Unplat.IdPlat == platSelectionne.IdPlat)  // ← Changé
+                if (contient.Unplat.IdPlat == platSelectionne.IdPlat) 
                 {
-                    contientExistant = contient;  // ← Changé
+                    contientExistant = contient; 
                     break;
                 }
             }
@@ -169,18 +169,18 @@ namespace SAE201.UCPages
             // Si le plat est déjà présent, on augmente la quantité
             if (contientExistant != null)
             {
-                contientExistant.Quantiter += quantite;  // ← Changé
+                contientExistant.Quantiter += quantite; 
                 // Recalculer le prix avec la nouvelle quantité
-                contientExistant.Prix = contientExistant.PrixProduit(contientExistant, platSelectionne);  // ← Changé
+                contientExistant.Prix = contientExistant.PrixProduit(contientExistant, platSelectionne);
             }
             else
             {
                 // Sinon on ajoute un nouveau contient
-                Contient nouveauContient = new Contient(quantite);  // ← Changé
-                nouveauContient.Unplat = platSelectionne;  // ← Changé
-                nouveauContient.Prix = nouveauContient.PrixProduit(nouveauContient, platSelectionne);  // ← Changé
+                Contient nouveauContient = new Contient(quantite);
+                nouveauContient.Unplat = platSelectionne;
+                nouveauContient.Prix = nouveauContient.PrixProduit(nouveauContient, platSelectionne);
 
-                contientCommande.Add(nouveauContient);  // ← Changé
+                contientCommande.Add(nouveauContient);
             }
 
             // Réinitialise la zone de saisie
@@ -217,11 +217,11 @@ namespace SAE201.UCPages
         private void btnSupprimerLigne_Click(object sender, RoutedEventArgs e)
         {
             Button btn = sender as Button;
-            Contient contient = btn.DataContext as Contient;  // ← Changé
+            Contient contient = btn.DataContext as Contient;
 
-            if (contient != null)  // ← Changé
+            if (contient != null)
             {
-                contientCommande.Remove(contient);  // ← Changé
+                contientCommande.Remove(contient);
                 MettreAJourTotal();
             }
         }
@@ -229,9 +229,9 @@ namespace SAE201.UCPages
         private void MettreAJourTotal()
         {
             prixTotal = 0;
-            foreach (Contient contient in contientCommande)  // ← Changé
+            foreach (Contient contient in contientCommande) 
             {
-                prixTotal += contient.Prix;  // ← Changé
+                prixTotal += contient.Prix; 
             }
             textPrixTotal.Text = prixTotal.ToString("N2") + " €";
         }
@@ -263,7 +263,7 @@ namespace SAE201.UCPages
                 return;
             }
 
-            if (contientCommande.Count == 0)  // ← Changé
+            if (contientCommande.Count == 0) 
             {
                 MessageBox.Show("Veuillez ajouter au moins un plat à la commande.", "Attention", MessageBoxButton.OK, MessageBoxImage.Warning);
                 return;
@@ -275,7 +275,7 @@ namespace SAE201.UCPages
                 Commande nouvelleCommande = new Commande
                 {
                     NumClient = clientSelectionne.NumClient,
-                    NumEmploye = 1, // À adapter selon votre système de connexion
+                    NumEmploye = 1, 
                     DateCommande = dateCommande.SelectedDate.Value,
                     DateRetraitPrevue = dateRetrait.SelectedDate.Value,
                     Payee = checkPayee.IsChecked ?? false,
@@ -315,9 +315,9 @@ namespace SAE201.UCPages
         private int CalculerNbPersonnesTotal()
         {
             int totalPersonnes = 0;
-            foreach (Contient contient in contientCommande)  // ← Changé
+            foreach (Contient contient in contientCommande)  
             {
-                totalPersonnes += contient.Quantiter * contient.Unplat.NbPersonne;  // ← Changé
+                totalPersonnes += contient.Quantiter * contient.Unplat.NbPersonne;  
             }
             return totalPersonnes;
         }
@@ -328,7 +328,7 @@ namespace SAE201.UCPages
             lblClient.Content = "";
             dateCommande.SelectedDate = DateTime.Now;
             dateRetrait.SelectedDate = DateTime.Now.AddDays(1);
-            contientCommande.Clear();  // ← Changé
+            contientCommande.Clear();  
             txtQuantite.Text = "1";
             checkPayee.IsChecked = false;
             checkRetiree.IsChecked = false;
