@@ -66,8 +66,8 @@ namespace SAE201.Models.Tests
         [TestMethod()]
         public void EqualsTest()
         {
-            var c1 = new Clients(1, "A", "B", "0606060606", "Rue", "75000", "Paris");
-            var c2 = new Clients(1, "A", "B", "0606060606", "Rue", "75000", "Paris");
+             Clients c1 = new Clients(1, "A", "B", "0606060606", "Rue", "75000", "Paris");
+             Clients c2 = new Clients(1, "A", "B", "0606060606", "Rue", "75000", "Paris");
             Assert.IsTrue(c1.Equals(c2));
         }
 
