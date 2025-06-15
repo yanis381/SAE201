@@ -21,34 +21,36 @@ namespace SAE201.UCPages
 
         private void ChargerTousLesClients()
         {
-            tousLesClients = Clients.FindAll();
-            dataGridClients.ItemsSource = tousLesClients;
+            tousLesClients = Clients.FindAll();  // Récupère tous les clients depuis la base
+            dataGridClients.ItemsSource = tousLesClients;  // Affiche les clients dans le DataGrid
         }
+
 
         private void textBoxRechercheClient_TextChanged(object sender, TextChangedEventArgs e)
         {
-            string filtre = textBoxRechercheClient.Text.ToLower();
+            string filtre = textBoxRechercheClient.Text.ToLower();  // Récupère le texte de recherche en minuscule
             var resultat = tousLesClients
                 .Where(c =>
-                    c.NomClient.ToLower().Contains(filtre) ||
-                    c.PrenomClient.ToLower().Contains(filtre) ||
-                    c.TelClient.ToLower().Contains(filtre))
+                    c.NomClient.ToLower().Contains(filtre) ||         // Recherche dans le nom
+                    c.PrenomClient.ToLower().Contains(filtre) ||      // ou le prénom
+                    c.TelClient.ToLower().Contains(filtre))           // ou le numéro de téléphone
                 .ToList();
 
-            dataGridClients.ItemsSource = resultat;
+            dataGridClients.ItemsSource = resultat;  // Met à jour le DataGrid avec les résultats filtrés
         }
+
 
         private void btnSelectionner_Click(object sender, RoutedEventArgs e)
         {
-            if (dataGridClients.SelectedItem is Clients c)
+            if (dataGridClients.SelectedItem is Clients c)  // Vérifie qu’un client est sélectionné
             {
-                ClientSelectionne = c;
+                ClientSelectionne = c;  // Stocke le client sélectionné
 
-                // Fermer la fenêtre parent si elle existe
+                // Ferme la fenêtre parente si c’est une boîte de dialogue
                 Window parentWindow = Window.GetWindow(this);
                 if (parentWindow != null)
                 {
-                    parentWindow.DialogResult = true;
+                    parentWindow.DialogResult = true;  // Permet de retourner le client à l’appelant
                 }
                 else
                 {
@@ -61,20 +63,21 @@ namespace SAE201.UCPages
             }
         }
 
+
         private void btnCreerClient_Click(object sender, RoutedEventArgs e)
         {
-            Clients unClient = new Clients();
-            CreationClient wClient = new CreationClient(unClient);
+            Clients unClient = new Clients();  // Crée un client vide
+            CreationClient wClient = new CreationClient(unClient);  // Ouvre une fenêtre pour saisir les infos
 
-            bool? result = wClient.ShowDialog();
+            bool? result = wClient.ShowDialog();  // Attend la fermeture de la fenêtre
 
             if (result == true)
             {
                 try
                 {
-                    unClient.NumClient = unClient.Create();
-                    tousLesClients.Add(unClient);
-                    dataGridClients.ItemsSource = null;
+                    unClient.NumClient = unClient.Create();  // Enregistre le client dans la base
+                    tousLesClients.Add(unClient);            // L’ajoute à la liste locale
+                    dataGridClients.ItemsSource = null;      // Rafraîchit le DataGrid
                     dataGridClients.ItemsSource = tousLesClients;
                 }
                 catch (Exception)
@@ -84,21 +87,20 @@ namespace SAE201.UCPages
             }
         }
 
+
         private void btnVoirHistorique_Click(object sender, RoutedEventArgs e)
         {
             if (dataGridClients.SelectedItem is Clients c)
             {
-                var commandes = Commande.TrouverParClient(c.NumClient);
+                var commandes = Commande.TrouverParClient(c.NumClient);  // Récupère les commandes du client
 
                 if (commandes.Count == 0)
                 {
-                    MessageBox.Show("Ce client n’a encore aucune commande.");
-                    // Tu peux ignorer ou cacher une section ici si elle existe
+                    MessageBox.Show("Ce client n’a encore aucune commande.");  // Aucune commande trouvée
                 }
                 else
                 {
-                    MessageBox.Show("Historique trouvé pour " + c.NomClient);
-                    // À compléter si tu as un tableau ou une vue pour l'historique
+                    MessageBox.Show("Historique trouvé pour " + c.NomClient);  // Historique existant
                 }
             }
             else
@@ -106,6 +108,7 @@ namespace SAE201.UCPages
                 MessageBox.Show("Veuillez sélectionner un client.");
             }
         }
+
 
         private void editButon_Click(object sender, RoutedEventArgs e)
         {
@@ -117,6 +120,7 @@ namespace SAE201.UCPages
 
             Clients clientSelectionne = (Clients)dataGridClients.SelectedItem;
 
+            // Création d’une copie pour l’édition
             Clients copie = new Clients(
                 clientSelectionne.NumClient,
                 clientSelectionne.NomClient,
@@ -127,6 +131,7 @@ namespace SAE201.UCPages
                 clientSelectionne.AdresseVille
             );
 
+            // Ouvre la fenêtre d’édition avec la copie
             CreationClient f = new CreationClient(copie);
             bool? result = f.ShowDialog();
 
@@ -134,8 +139,9 @@ namespace SAE201.UCPages
             {
                 try
                 {
-                    copie.Update();
+                    copie.Update();  // Met à jour la base avec les nouvelles valeurs
 
+                    // Met à jour l’objet original
                     clientSelectionne.NomClient = copie.NomClient;
                     clientSelectionne.PrenomClient = copie.PrenomClient;
                     clientSelectionne.TelClient = copie.TelClient;
@@ -143,6 +149,7 @@ namespace SAE201.UCPages
                     clientSelectionne.AdresseCodePostal = copie.AdresseCodePostal;
                     clientSelectionne.AdresseVille = copie.AdresseVille;
 
+                    // Rafraîchit le DataGrid
                     dataGridClients.ItemsSource = null;
                     dataGridClients.ItemsSource = tousLesClients;
                 }
@@ -153,6 +160,7 @@ namespace SAE201.UCPages
             }
         }
 
+
         private void btnsupp_Click(object sender, RoutedEventArgs e)
         {
             if (dataGridClients.SelectedItem == null)
@@ -162,14 +170,17 @@ namespace SAE201.UCPages
             }
 
             Clients clientASupprimer = (Clients)dataGridClients.SelectedItem;
+
             MessageBoxResult result = MessageBox.Show("Êtes-vous sûr de vouloir supprimer ce client ?", "Confirmation", MessageBoxButton.YesNo, MessageBoxImage.Warning);
 
             if (result == MessageBoxResult.Yes)
             {
                 try
                 {
-                    clientASupprimer.Delete();
-                    tousLesClients.Remove(clientASupprimer);
+                    clientASupprimer.Delete();  // Supprime le client en base
+                    tousLesClients.Remove(clientASupprimer);  // Supprime de la liste locale
+
+                    // Rafraîchit le DataGrid
                     dataGridClients.ItemsSource = null;
                     dataGridClients.ItemsSource = tousLesClients;
                 }
@@ -181,3 +192,5 @@ namespace SAE201.UCPages
         }
     }
 }
+    
+

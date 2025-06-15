@@ -31,40 +31,33 @@ namespace SAE201.Pages
 
         }
 
-
-        private void btnValider_Click(object sender, RoutedEventArgs e)
-        {
-            if (string.IsNullOrWhiteSpace(tbLogin.Text))
-            {
-                MessageBox.Show("metter votre login");
-            }
-          
-            else
-            {
-                this.Close();
-            }
-        }
+        // Événement déclenché lors du clic sur le bouton "Employé" (pour se connecter)
         private void btnEmploye_Click(object sender, RoutedEventArgs e)
         {
-            string login = tbLogin.Text.Trim();
-            string mdp = tbPassword.Password.Trim();
+            // Récupère le login et le mot de passe entrés par l'utilisateur
+                string login = tbLogin.Text;
+                string mdp = tbPassword.Password;
 
+            // Appelle la méthode statique du modèle Employe pour vérifier si l'utilisateur existe en base
             if (Employe.VerifierConnexion(login, mdp))
             {
                 MessageBox.Show("Connexion réussie !");
-                this.Close();
+                this.Close(); // Ferme la fenêtre de connexion
 
-                // ouvrir la fenêtre suivante ici
+                
             }
             else
             {
                 MessageBox.Show("Identifiants incorrects.");
             }
         }
-
-
     }
 }
+
+
+
+    
+
 
     
 

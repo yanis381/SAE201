@@ -29,17 +29,19 @@ namespace SAE201.UCPages
 
         public UCPlats()
         {
-            InitializeComponent();
-            ChargerPlats();
-            comboboxcategorie.SelectedIndex = 0;
+            InitializeComponent(); // Initialise les composants graphiques XAML
+            ChargerPlats(); // Charge tous les plats au lancement
+            comboboxcategorie.SelectedIndex = 0; // Sélectionne "Tout" par défaut dans les filtres
             comboxsouscategorie.SelectedIndex = 0;
         }
 
+
         private void ChargerPlats()
         {
-            lesPlats = Plat.FindAll();
-            dataPlats.ItemsSource = lesPlats;
+            lesPlats = Plat.FindAll(); // Appelle une méthode du modèle pour récupérer tous les plats
+            dataPlats.ItemsSource = lesPlats; // Remplit le DataGrid
         }
+
 
         // Filtre combiné sur tout
         private void textBoxPlats_TextChanged(object sender, TextChangedEventArgs e)
@@ -114,42 +116,49 @@ namespace SAE201.UCPages
                         ok = false;
                 }
 
-
+                // Si le plat passe tous les filtres, on l’ajoute à la liste
                 if (ok) resultats.Add(p);
 
 
             }
 
-            dataPlats.ItemsSource = resultats;
+            dataPlats.ItemsSource = resultats; // Mise à jour du DataGrid avec les plats filtrés
         }
 
         private void creerproduit_Click(object sender, RoutedEventArgs e)
         {
-            // Création du plat via la fenêtre (logique standard TD)
+            // Création d’un objet Plat vide
             Plat unPlat = new Plat();
+
+            // Ouverture de la fenêtre de création avec le plat en paramètre
             CreationPlats wPlat = new CreationPlats(unPlat);
-            bool? result = wPlat.ShowDialog();
+            bool? result = wPlat.ShowDialog(); // Attend la fermeture de la fenêtre
 
             if (result == true)
             {
                 try
                 {
+                    // Crée le plat dans la base, puis l’ajoute à la liste locale
                     int id = unPlat.Create(wPlat.NumSousCategorie, wPlat.NumPeriode);
                     lesPlats.Add(unPlat);
+
+                    // Rafraîchit l’affichage
                     dataPlats.ItemsSource = null;
                     dataPlats.ItemsSource = lesPlats;
                 }
                 catch (Exception)
                 {
+                    // En cas d’erreur à la création
                     MessageBox.Show("Le plat n’a pas pu être créé.", "Erreur", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
             }
-
         }
-    
+    }
+}
 
-        }
+
+        
 
      
-    }
+    
 
