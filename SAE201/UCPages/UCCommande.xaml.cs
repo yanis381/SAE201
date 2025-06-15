@@ -154,7 +154,7 @@ namespace SAE201.UCPages
                 commandeSelectionnee.PrixTotal);
 
             // Ouvrir la fenêtre de modification
-            CreationCommande fenetreModif = new CreationCommande(copie);
+            ModifierCommande fenetreModif = new ModifierCommande(copie);
             bool? result = fenetreModif.ShowDialog();
 
             if (result == true)
