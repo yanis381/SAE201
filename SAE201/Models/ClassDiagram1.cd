@@ -1,2 +1,91 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<ClassDiagram /> 
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="SAE201.Models.Categorie">
+    <Position X="11" Y="1.75" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>BAAAAQAAAAAAAAAAAAAQAAAAAAAAAAABAAAAAAQAAAA=</HashCode>
+      <FileName>Models\Categorie.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SAE201.Models.Clients">
+    <Position X="7.75" Y="0.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AgQAACIIAAAAAAAAgAAQAAAogAECAMGAgAABgAAAAAg=</HashCode>
+      <FileName>Models\Clients.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="SAE201.Models.Commande">
+    <Position X="14" Y="0.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AIwgCADAIAAKACAAqAAYCAAgiAFCANQCwAAAAAAIIAA=</HashCode>
+      <FileName>Models\Commande.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="SAE201.Models.Contient">
+    <Position X="3.5" Y="2" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAEAAAABAAAAAAAAAAAAAAAAAAAAAgABQAIAAEAAAA=</HashCode>
+      <FileName>Models\Contient.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SAE201.Models.DataAccess" Collapsed="true">
+    <Position X="9.75" Y="2.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAgAAAAAAAAgAAAABIBAAAABAABAAQAgAABAAAAA=</HashCode>
+      <FileName>Models\DataAccess.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SAE201.Models.Employe" Collapsed="true">
+    <Position X="10" Y="1" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAIAgAAAAIAAAAAAAAICAAAQAgAEEAA=</HashCode>
+      <FileName>Models\Employe.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SAE201.Models.LogError" Collapsed="true">
+    <Position X="9.25" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\LogError.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SAE201.Models.MagazinReserv">
+    <Position X="0.75" Y="4.5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>gAAABAAAAAAAAAAAAAAAIAAAACIAAAAAAAAABAAAAAQ=</HashCode>
+      <FileName>Models\MagazinReserv.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SAE201.Models.MontantToColor" Collapsed="true">
+    <Position X="3.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAIAAAAAAAAgAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\MontantToColor.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="SAE201.Models.Plat">
+    <Position X="5" Y="2" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAEAAAAAAQKAAAEQgQAIMIAAACAEAAAAAAAIAwABA=</HashCode>
+      <FileName>Models\Plat.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SAE201.Models.Role">
+    <Position X="10.25" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAA=</HashCode>
+      <FileName>Models\Role.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SAE201.Models.SousCategorie">
+    <Position X="1" Y="0.5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAQAAAQAAAAAAAAAQQAAAAAAAAAAAAAAAAAAAAAEA=</HashCode>
+      <FileName>Models\SousCategorie.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
