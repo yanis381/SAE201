@@ -50,6 +50,16 @@
                                 Margin="0,0,10,0"
                                 Click="btnCommandesDuJour_Click"/>
 
+                        <Button x:Name="btnCommandesRecuperees"
+                                Content="✅ Récupérées"
+                                Background="#28a745" Foreground="White"
+                                FontWeight="Bold"
+                                Width="120" Height="30"
+                                Margin="0,0,10,0"
+                                Click="btnCommandesRecuperees_Click"/>
+
+
+
                         <Button x:Name="btnToutesCommandes"
                                 Content="📋 Toutes"
                                 Background="#6c757d" Foreground="White"
@@ -57,8 +67,6 @@
                                 Width="80" Height="30"
                                 Margin="0,0,10,0"
                                 Click="btnToutesCommandes_Click"/>
-
-
                     </StackPanel>
                 </Grid>
 
@@ -113,7 +121,7 @@ Binding="{Binding ClientCommande.NomClient}"
 Width="100"/>
                         <!-- ClientCommande -->
                     </DataGrid.Columns>
-                    
+
                 </DataGrid>
 
                 <!-- Boutons d'actions -->
@@ -133,19 +141,6 @@ Width="100"/>
                             Width="100" Height="35"
                             Margin="10,0"
                             Click="btnSupprimer_Click"/>
-
-                    <TextBlock x:Name="txtInfo" 
-                               Text="0 commande(s) affichée(s)"
-                               FontStyle="Italic"
-                               Foreground="#666"
-                               VerticalAlignment="Center"
-                               Margin="30,0,20,0"/>
-
-                    <TextBlock x:Name="txtFiltreCourant"
-                               Text=""
-                               FontWeight="Bold"
-                               Foreground="#E26A6A"
-                               VerticalAlignment="Center"/>
                 </StackPanel>
 
             </Grid>
