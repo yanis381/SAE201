@@ -22,7 +22,7 @@ namespace SAE201
     {
         public MagazinReserv LeMagazin {  get; set; }
 
-        public enum Action { Modifier, Créer }
+       
         public MainWindow()
         {
             
