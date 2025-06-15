@@ -155,30 +155,38 @@ namespace SAE201.UCPages
             }
 
             // Vérifier si le plat est déjà dans la liste
-            LigneCommande ligneExistante = lignesCommande.FirstOrDefault(l => l.Plat.IdPlat == platSelectionne.IdPlat);
+            LigneCommande ligneExistante = null;
 
+            foreach (LigneCommande ligne in lignesCommande)
+            {
+                if (ligne.Plat.IdPlat == platSelectionne.IdPlat)
+                {
+                    ligneExistante = ligne;
+                    break;
+                }
+            }
+
+            // Si le plat est déjà présent, on augmente la quantité
             if (ligneExistante != null)
             {
-                // Mettre à jour la quantité existante
                 ligneExistante.Quantite += quantite;
                 ligneExistante.CalculerPrix();
             }
             else
             {
-                // Ajouter une nouvelle ligne
-                LigneCommande nouvelleLigne = new LigneCommande
-                {
-                    Plat = platSelectionne,
-                    Quantite = quantite
-                };
+                // Sinon on ajoute une nouvelle ligne
+                LigneCommande nouvelleLigne = new LigneCommande();
+                nouvelleLigne.Plat = platSelectionne;
+                nouvelleLigne.Quantite = quantite;
                 nouvelleLigne.CalculerPrix();
+
                 lignesCommande.Add(nouvelleLigne);
             }
 
-            // Réinitialiser la quantité
+            // Réinitialise la zone de saisie
             txtQuantite.Text = "1";
 
-            // Mettre à jour le total
+            // Met à jour le prix total de la commande
             MettreAJourTotal();
         }
 
