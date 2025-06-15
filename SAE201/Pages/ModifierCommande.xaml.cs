@@ -46,25 +46,19 @@ namespace SAE201.Pages
 
         private void Valider_Click(object sender, RoutedEventArgs e)
         {
-            try
-            {
-                // Mettre à jour uniquement le statut "Payée"
-                CommandeCreee1.Payee = checkPayee.IsChecked ?? false;
+            // Récupère l'état de la case à cocher "payée" (true si cochée, false sinon)
+            CommandeCreee1.Payee = checkPayee.IsChecked == true;
 
-                // Confirmation visuelle
-                string message = CommandeCreee1.Payee
-                    ? "La commande est maintenant marquée comme payée."
-                    : "La commande est maintenant marquée comme non payée.";
+            // Prépare un texte en fonction du nouveau statut
+            string statut = CommandeCreee1.Payee ? "payée" : "non payée";
 
-                MessageBox.Show(message, "Statut modifié", MessageBoxButton.OK, MessageBoxImage.Information);
+            // Affiche une confirmation à l'utilisateur
+            MessageBox.Show("La commande est maintenant marquée comme " + statut + ".", "Statut modifié");
 
-                this.DialogResult = true;
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Erreur lors de la modification : " + ex.Message, "Erreur", MessageBoxButton.OK, MessageBoxImage.Error);
-            }
+            // Ferme la fenêtre avec un résultat positif (la modif est validée)
+            DialogResult = true;
         }
+
 
         private void Annuler_Click(object sender, RoutedEventArgs e)
         {
