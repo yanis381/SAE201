@@ -13,6 +13,7 @@ namespace SAE201.UCPages
         private List<Commande> lesCommandes = new List<Commande>();
         private List<Commande> commandesAffichees = new List<Commande>();
         private bool filtreJourActif = false;
+        private bool filtreRecupereesActif = false;
 
         public UCCommande()
         {
@@ -25,7 +26,6 @@ namespace SAE201.UCPages
             lesCommandes = Commande.FindAll();
             commandesAffichees = new List<Commande>(lesCommandes);
             dgCommandes.ItemsSource = commandesAffichees;
-            MettreAJourInfo();
         }
 
         private void textMotClefCommande_TextChanged(object sender, TextChangedEventArgs e)
@@ -35,16 +35,31 @@ namespace SAE201.UCPages
 
         private void btnCommandesDuJour_Click(object sender, RoutedEventArgs e)
         {
+            ResetFiltres();
             filtreJourActif = true;
+            textMotClefCommande.Text = "";
+            AppliquerFiltres();
+        }
+
+        private void btnCommandesRecuperees_Click(object sender, RoutedEventArgs e)
+        {
+            ResetFiltres();
+            filtreRecupereesActif = true;
             textMotClefCommande.Text = "";
             AppliquerFiltres();
         }
 
         private void btnToutesCommandes_Click(object sender, RoutedEventArgs e)
         {
-            filtreJourActif = false;
+            ResetFiltres();
             textMotClefCommande.Text = "";
             AppliquerFiltres();
+        }
+
+        private void ResetFiltres()
+        {
+            filtreJourActif = false;
+            filtreRecupereesActif = false;
         }
 
         private void AppliquerFiltres()
@@ -65,13 +80,45 @@ namespace SAE201.UCPages
                     }
                 }
 
+                // Filtre par commandes récupérées si activé
+                if (filtreRecupereesActif)
+                {
+                    if (!c.Retiree)
+                    {
+                        inclure = false;
+                    }
+                }
+
                 // Filtre par texte si saisi
                 if (inclure && !string.IsNullOrWhiteSpace(filtre))
                 {
-                    if (!(c.IdCommande.ToString().Contains(filtre) ||
-                          c.DateCommande.ToString("dd/MM/yyyy").Contains(filtre) ||
-                          c.DateRetraitPrevue.ToString("dd/MM/yyyy").Contains(filtre) ||
-                          c.PrixTotal.ToString("N2").Contains(filtre)))
+                    bool correspondanceTexte = false;
+
+                    // Recherche dans différents champs
+                    if (c.IdCommande.ToString().Contains(filtre) ||
+                        c.DateCommande.ToString("dd/MM/yyyy").Contains(filtre) ||
+                        c.DateRetraitPrevue.ToString("dd/MM/yyyy").Contains(filtre) ||
+                        c.PrixTotal.ToString("N2").Contains(filtre))
+                    {
+                        correspondanceTexte = true;
+                    }
+
+                    // Recherche dans le nom de l'employé si disponible
+                    if (c.EmployeCommande != null &&
+                        c.EmployeCommande.NomEmploye.ToLower().Contains(filtre))
+                    {
+                        correspondanceTexte = true;
+                    }
+
+                    // Recherche dans le nom du client si disponible
+                    if (c.ClientCommande != null &&
+                        (c.ClientCommande.NomClient.ToLower().Contains(filtre) ||
+                         c.ClientCommande.PrenomClient.ToLower().Contains(filtre)))
+                    {
+                        correspondanceTexte = true;
+                    }
+
+                    if (!correspondanceTexte)
                     {
                         inclure = false;
                     }
@@ -85,21 +132,6 @@ namespace SAE201.UCPages
 
             commandesAffichees = resultat;
             dgCommandes.ItemsSource = commandesAffichees;
-            MettreAJourInfo();
-        }
-
-        private void MettreAJourInfo()
-        {
-            txtInfo.Text = $"{commandesAffichees.Count} commande(s) affichée(s)";
-
-            if (filtreJourActif)
-            {
-                txtFiltreCourant.Text = $"📅 Commandes du {DateTime.Today:dd/MM/yyyy}";
-            }
-            else
-            {
-                txtFiltreCourant.Text = "";
-            }
         }
 
         private void btnModifier_Click(object sender, RoutedEventArgs e)

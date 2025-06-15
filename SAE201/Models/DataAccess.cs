@@ -14,7 +14,7 @@ namespace SAE201.Models
     {
         private static readonly DataAccess instance = new DataAccess();
 
-        private readonly string connectionString = "Host=localhost;Port=5432;Username=postgres;Password=1029;Database=Sibilia";
+        private readonly string connectionString = "Host=localhost;Port=5432;Username=postgres;Password=postgres;Database=sibilia";
 
         private NpgsqlConnection connection;
 

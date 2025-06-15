@@ -276,7 +276,7 @@ namespace SAE201.Models
                 cmdUpdate.Parameters.AddWithValue("retrait", this.DateRetraitPrevue);
                 cmdUpdate.Parameters.AddWithValue("payee", this.Payee);
                 cmdUpdate.Parameters.AddWithValue("retiree", this.Retiree);
-                cmdUpdate.Parameters.AddWithValue("prix", calculPrixTotal());
+                cmdUpdate.Parameters.AddWithValue("prix", this.PrixTotal);
                 cmdUpdate.Parameters.AddWithValue("id", this.IdCommande);
                 return DataAccess.Instance.ExecuteSet(cmdUpdate);
             }
