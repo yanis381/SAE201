@@ -1,10 +1,6 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using SAE201.Models;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SAE201.Models.Tests
 {
@@ -12,15 +8,24 @@ namespace SAE201.Models.Tests
     public class RoleTests
     {
         [TestMethod()]
-        public void RoleTest()
+        public void RoleTest_Valid()
         {
-           
+            Role r = new Role("Responsable magasin");
+            Assert.AreEqual("Responsable magasin", r.NomRole);
         }
+
         [TestMethod]
-        [ExpectedException(typeof(ArgumentException), "categorie cp -1 ")]
-        public void AucunRole_Donnée()
+        [ExpectedException(typeof(ArgumentException), "Le rôle ne peut pas être vide.")]
+        public void RoleTest_Vide()
         {
-            Role emp = new Role("  ");
+            Role r = new Role("   ");
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentException), "Le rôle ne peut pas être null.")]
+        public void RoleTest_Null()
+        {
+            Role r = new Role(null);
         }
     }
 }

@@ -44,9 +44,5 @@ namespace SAE201.Models.Tests
     }
 }
 
-namespace SAE201Tests.Models
-{
-    internal class SousCategorieTests
-    {
-    }
-}
+
+
