@@ -152,9 +152,9 @@
                             <DataGrid x:Name="dataLignes" AutoGenerateColumns="False" Height="150" 
                                       IsReadOnly="True" HeadersVisibility="Column">
                                 <DataGrid.Columns>
-                                    <DataGridTextColumn Header="Plat" Binding="{Binding Plat.NomPlat}" Width="*"/>
-                                    <DataGridTextColumn Header="Prix unitaire" Binding="{Binding Plat.PrixUnitaire, StringFormat={}{0:N2}€}" Width="120"/>
-                                    <DataGridTextColumn Header="Quantité" Binding="{Binding Quantite}" Width="100"/>
+                                    <DataGridTextColumn Header="Plat" Binding="{Binding Unplat.NomPlat}" Width="*"/>
+                                    <DataGridTextColumn Header="Prix unitaire" Binding="{Binding Unplat.PrixUnitaire, StringFormat={}{0:N2}€}" Width="120"/>
+                                    <DataGridTextColumn Header="Quantité" Binding="{Binding Quantiter}" Width="100"/>
                                     <DataGridTextColumn Header="Prix total" Binding="{Binding Prix, StringFormat={}{0:N2}€}" Width="120"/>
                                     <DataGridTemplateColumn Header="Action" Width="80">
                                         <DataGridTemplateColumn.CellTemplate>

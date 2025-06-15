@@ -32,9 +32,9 @@ namespace SAE201.Models
 
             set
             {
-                if (value <= 0) {
-                    throw new ArgumentException("valeur quantiter inferieur ou egal a 0");
-                
+                if (value < 1 || value > 100)
+                {
+                    throw new ArgumentOutOfRangeException("La quantité doit être comprise entre 1 et 100.");
                 }
                 this.quantiter = value;
             }
