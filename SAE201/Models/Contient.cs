@@ -74,7 +74,7 @@ namespace SAE201.Models
                 this.unplat = value;
             }
         }
-
+        // calculer le prix de 1 produit avec sa quantiter
         public decimal PrixProduit(Contient contientplat , Plat unplat)
         {
             decimal augmentation = 1;

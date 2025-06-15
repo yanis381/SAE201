@@ -290,10 +290,11 @@ namespace SAE201.Models
                 return DataAccess.Instance.ExecuteSet(cmdDelete);
             }
         }
-
+        // trouvée toute les donnée voulue
         public static List<Commande> FindAll()
         {
-            
+            // possible de faire select * from from commande c join Employe E on E.NumEmploye = c.NumEmploye join Client cl on cl.numClient = c.numClient
+                
             List<Commande> lesCommandes = new List<Commande>();
             using (NpgsqlCommand cmdSelect = new NpgsqlCommand("select c.NumCommande , c.Numclient , c.NumEmploye ,c.DateCommande, c.DateRetraitPrevue , c.Payee , c.Retiree ,c.PrixTotal , cl.nomClient ,E.NomEmploye , E.numRole , E.prenomemploye , E.login , E.Password , cl.Prenomclient , cl.tel , cl.adresserue , cl.adressecp , cl.adresseville from commande c join Employe E on E.NumEmploye = c.NumEmploye join Client cl on cl.numClient = c.numClient"
                 ))

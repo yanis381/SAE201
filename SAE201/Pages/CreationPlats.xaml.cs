@@ -63,7 +63,7 @@ namespace SAE201.Pages
         {
             DialogResult = false;
         }
-
+        // donne le numero de la sous categorie pr bd
         private int GetNumSousCategorie(string nom)
         {
             switch (nom)
@@ -80,7 +80,7 @@ namespace SAE201.Pages
                 default: return 0;
             }
         }
-
+        // donne le numero de la periode pr bd
         private int GetNumPeriode(string nom)
         {
             switch (nom)
