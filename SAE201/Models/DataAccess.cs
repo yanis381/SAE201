@@ -18,7 +18,7 @@ namespace SAE201.Models
 
         private NpgsqlConnection connection;
 
-        public static DataAccess Instance
+        public static DataAccess Instance   
         {
             get
             {
