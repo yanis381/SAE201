@@ -14,14 +14,14 @@ namespace SAE201.Models.Tests
             [TestMethod()]
             public void ContientTest_ConstructeurQuantite()
             {
-                var contient = new Contient(3);
+                Contient contient = new Contient(3);
                 Assert.AreEqual(3, contient.Quantiter);
             }
 
             [TestMethod()]
             public void ContientTest_ConstructeurComplet()
             {
-                var contient = new Contient(5, 25m);
+                Contient contient = new Contient(5, 25m);
                 Assert.AreEqual(5, contient.Quantiter);
                 Assert.AreEqual(25m, contient.Prix);
             }
@@ -35,7 +35,7 @@ namespace SAE201.Models.Tests
                     NbPersonne = 2
                 };
 
-                var contient = new Contient(4);
+                Contient contient = new Contient(4);
                 decimal prix = contient.PrixProduit(contient, plat);
                 Assert.IsTrue(prix > 0);
             }
